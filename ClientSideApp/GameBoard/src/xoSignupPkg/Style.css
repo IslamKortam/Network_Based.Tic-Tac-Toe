@@ -1,0 +1,27 @@
+#hedding{
+    -fx-font-size:25px;
+    -fx-font-weight:bold;
+    -fx-font-weigth: bold;
+    -fx-text-fill:white;
+}
+.borderRadius{
+    -fx-background-radius: 15;
+}
+#txtFullName,
+#txtUserName,
+#txtEmail,
+#txtPassword,
+#txtRePassword
+{
+    -fx-background-radius: 8;
+    -fx-padding:10;
+    -fx-font-size:15px;
+}
+#btnSignup{
+    -fx-background-radius: 8;
+    -fx-font-size:16px;
+}
+#btnChoose{
+    -fx-background-radius: 8;
+    -fx-font-size:10px;
+}
