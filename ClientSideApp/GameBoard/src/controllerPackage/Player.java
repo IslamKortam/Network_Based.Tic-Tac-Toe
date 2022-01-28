@@ -18,16 +18,18 @@ public class Player {
     private String email;
     private int score;
     private int iconIndex;
+    private PlayerStatus status;
     
     
     /* Constructors */
-    public Player(int id, String userName, String fullName, String email, int score, int iconIndex) {
+    public Player(int id, String userName, String fullName, String email, int score, int iconIndex, PlayerStatus status) {
         this.id = id;
         this.userName = userName;
         this.fullName = fullName;
         this.email = email;
         this.score = score;
         this.iconIndex = iconIndex;
+        this.status = status;
     }
     
     public Player() {
@@ -37,6 +39,7 @@ public class Player {
         this.email = "";
         this.score = 0;
         this.iconIndex = 0;
+        this.status = PlayerStatus.OFFLINE;
     }
 
     /* Setters */
@@ -64,6 +67,10 @@ public class Player {
         this.iconIndex = iconIndex;
     }
 
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
+    }
+
     
     /* Getters */
     
@@ -89,6 +96,10 @@ public class Player {
 
     public int getIconIndex() {
         return iconIndex;
+    }
+
+    public PlayerStatus getStatus() {
+        return status;
     }
     
     
