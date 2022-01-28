@@ -103,7 +103,7 @@ public class GameBoardController implements Initializable {
         Utility.setButtons(buttons);
         for(int i=0; i < buttons.size(); i++)
         {
-            Utility.setUpButton(i);
+            Utility.setBoxHandler(i);
             System.out.println(i);
         }        
     }

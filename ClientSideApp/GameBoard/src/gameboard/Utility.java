@@ -5,7 +5,11 @@
  */
 package gameboard;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,26 +37,29 @@ public class Utility {
         static void setPlayerScore(Label l,String score){
            l.setText(score);
        }
-        static void setUpButton(int i){
-            Button button = buttons.get(i);
+        static void setBoxHandler(int boxNumer){
+        // event occurs here, button index = i
+            Button button = buttons.get(boxNumer);
             button.setOnMouseClicked(mouseEvent ->{
-            setPlayerSymbol(i  , "x");
-            button.setDisable(true);
+//            setBox(boxNumer  , "x");
+            System.out.println("button pressed " +boxNumer);
             });
         }
-        static void setPlayerSymbol(int i  , String symbol){
-            buttons.get(i).setText(symbol);
-            System.out.println(buttons.get(i).getText());
+        static void setBox(int boxNumber  , String text){
+        // set the text on the buitton by String symbol and set "disable" feature of the buttons 
+            buttons.get(boxNumber).setText(text);
+            buttons.get(boxNumber).setDisable(true);
         }
 
-        static void resetButton(int i){
-            buttons.get(i).setDisable(false);
-            buttons.get(i).setText("");
+        static void resetBox(int boxNumber){
+        // cancels the "disable" feature of the button and clear the text on it
+            buttons.get(boxNumber).setDisable(false);
+            buttons.get(boxNumber).setText("");
         }
-        static void resetAllButtons(){
+        static void resetAllBoxes(){
             for(int i =0; i<buttons.size();i++)
             {
-            resetButton(i);
+            resetBox(i);
             }
         }
         static void changeVisibility(BorderPane ChatBox){
@@ -62,6 +69,10 @@ public class Utility {
             else{
                 ChatBox.setVisible(true);
             }
-
         }
+    static Scene getScene() throws IOException{
+        Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
+        Scene scene = new Scene(root);
+        return scene;
+}
 }

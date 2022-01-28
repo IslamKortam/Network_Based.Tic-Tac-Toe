@@ -18,11 +18,12 @@ public class GameBoard extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
+//        System.out.println(getClass());
         
-        Scene scene = new Scene(root);
+//        Scene scene = new Scene(root);
         
-        stage.setScene(scene);
+        stage.setScene(Utility.getScene());
         stage.show();
     }
 
