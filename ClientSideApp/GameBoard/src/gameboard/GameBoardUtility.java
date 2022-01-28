@@ -20,11 +20,12 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Salma
  */
-public class Utility {
-
+public class GameBoardUtility {
+        private static Scene scene;
         static ArrayList<Button> buttons;
+        
         public static void setButtons(ArrayList<Button> buttons) {
-            Utility.buttons = buttons;
+            GameBoardUtility.buttons = buttons;
         }
     
        static  void setAvatar(ImageView imv ,String path,Class c){
@@ -70,9 +71,12 @@ public class Utility {
                 ChatBox.setVisible(true);
             }
         }
-    static Scene getScene() throws IOException{
+        
+    public static void initScene()throws IOException{
         Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
+    }    
+    public static Scene getScene(){
         return scene;
-}
+    }
 }

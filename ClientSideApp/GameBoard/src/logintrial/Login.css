@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jan 22, 2022, 10:30:23 PM
+    Author     : Bahaa eldin
+*/
+
+#form 
+{
+    -fx-background-radius: 25px;
+    -fx-background-color: rgba(132,37,225,255); 
+}
+#signinbtn 
+{
+    -fx-background-color: white;
+}
+#nameField , #passwdField
+{
+   -fx-background-radius: 10px; 
+}
