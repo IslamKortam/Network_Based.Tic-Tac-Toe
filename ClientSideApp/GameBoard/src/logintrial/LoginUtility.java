@@ -37,7 +37,7 @@ public class LoginUtility {
     }
 
     public static void initScene() throws IOException {
-        Parent root = FXMLLoader.load((logintrial.LoginTrial.class).getResource("Login.fxml"));
+        Parent root = FXMLLoader.load((logintrial.LoginUtility.class).getResource("Login.fxml"));
         scene = new Scene(root);
     }
 

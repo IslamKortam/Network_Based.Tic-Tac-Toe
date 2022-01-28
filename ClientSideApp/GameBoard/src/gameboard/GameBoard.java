@@ -24,7 +24,9 @@ public class GameBoard extends Application {
 //        Scene scene = new Scene(root);
         
         GameBoardUtility.initScene();
-        stage.setScene(GameBoardUtility.getScene());
+        logintrial.LoginUtility.initScene();
+        
+        stage.setScene(logintrial.LoginUtility.getScene());
         
         stage.show();
     }
