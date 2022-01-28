@@ -21,7 +21,7 @@ import javafx.scene.layout.BorderPane;
  * @author Salma
  */
 public class GameBoardUtility {
-
+        private static Scene scene;
         static ArrayList<Button> buttons;
         public static void setButtons(ArrayList<Button> buttons) {
             GameBoardUtility.buttons = buttons;
@@ -70,9 +70,12 @@ public class GameBoardUtility {
                 ChatBox.setVisible(true);
             }
         }
-    static Scene getScene() throws IOException{
+        
+    static void initScene()throws IOException{
         Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
+    }    
+    static Scene getScene(){
         return scene;
-}
+    }
 }

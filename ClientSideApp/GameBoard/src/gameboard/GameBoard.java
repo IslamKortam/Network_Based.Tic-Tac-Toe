@@ -23,6 +23,7 @@ public class GameBoard extends Application {
         
 //        Scene scene = new Scene(root);
         
+        GameBoardUtility.initScene();
         stage.setScene(GameBoardUtility.getScene());
         
         stage.show();
