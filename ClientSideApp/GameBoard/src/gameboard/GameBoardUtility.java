@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 public class GameBoardUtility {
         private static Scene scene;
         static ArrayList<Button> buttons;
+        
         public static void setButtons(ArrayList<Button> buttons) {
             GameBoardUtility.buttons = buttons;
         }
@@ -71,11 +72,11 @@ public class GameBoardUtility {
             }
         }
         
-    static void initScene()throws IOException{
+    public static void initScene()throws IOException{
         Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
         scene = new Scene(root);
     }    
-    static Scene getScene(){
+    public static Scene getScene(){
         return scene;
     }
 }
