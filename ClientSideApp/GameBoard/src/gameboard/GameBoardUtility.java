@@ -20,11 +20,11 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Salma
  */
-public class Utility {
+public class GameBoardUtility {
 
         static ArrayList<Button> buttons;
         public static void setButtons(ArrayList<Button> buttons) {
-            Utility.buttons = buttons;
+            GameBoardUtility.buttons = buttons;
         }
     
        static  void setAvatar(ImageView imv ,String path,Class c){

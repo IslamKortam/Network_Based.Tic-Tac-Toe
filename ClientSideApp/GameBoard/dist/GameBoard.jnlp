@@ -8,8 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="GameBoard.jar" size="89907" download="eager" />
+    <jar href="GameBoard.jar" size="89934" download="eager" />
   </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="GameBoard" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="gameboard.GameBoard"  name="GameBoard" />
   <update check="always"/>
 </jnlp>

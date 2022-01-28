@@ -100,10 +100,10 @@ public class GameBoardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
-        Utility.setButtons(buttons);
+        GameBoardUtility.setButtons(buttons);
         for(int i=0; i < buttons.size(); i++)
         {
-            Utility.setBoxHandler(i);
+            GameBoardUtility.setBoxHandler(i);
             System.out.println(i);
         }        
     }
@@ -115,17 +115,17 @@ public class GameBoardController implements Initializable {
             // only for testing no need 
             // to know how to use class utility
     void changeAvatar(ActionEvent event) {
-        Utility.setAvatar(player1Img, "2.png", getClass());
-        Utility.setAvatar(player2Img, "3.png", getClass());
-        Utility.setPlayerName(player1Name, "mona");
-         Utility.setPlayerName(player2Name, "ghada");
-          Utility.setPlayerName(player1Score, "5");
-         Utility.setPlayerName(player2Score, "6");
+        GameBoardUtility.setAvatar(player1Img, "2.png", getClass());
+        GameBoardUtility.setAvatar(player2Img, "3.png", getClass());
+        GameBoardUtility.setPlayerName(player1Name, "mona");
+         GameBoardUtility.setPlayerName(player2Name, "ghada");
+          GameBoardUtility.setPlayerName(player1Score, "5");
+         GameBoardUtility.setPlayerName(player2Score, "6");
     }    
     
     @FXML
     void viewChatBox(MouseEvent event) {
-        Utility.changeVisibility(ChatBox);
+        GameBoardUtility.changeVisibility(ChatBox);
     }
     
 //    public void setPlayerSymbol(Button button){
