@@ -4,8 +4,12 @@
  */
 package controllerPackage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +21,8 @@ import javafx.scene.layout.StackPane;
  * @author Bahaa eldin
  */
 public class PlayersSceneUtility {
+    private static Scene scene;
+
     static String score;
     static String userName;
     static PlayerStatus status;
@@ -47,7 +53,13 @@ public class PlayersSceneUtility {
             playersFlowPane.getChildren().add(playerPane);
         }
     }
-    
+    public static void initScene()throws IOException{
+        Parent root = FXMLLoader.load((controllerPackage.PlayersScene.class).getResource("PlayersSceneFXML.fxml"));
+        scene = new Scene(root);
+    }    
+    public static Scene getScene(){
+        return scene;
+    }    
 
 
     

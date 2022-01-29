@@ -22,11 +22,8 @@ public class PlayersScene extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("PlayersSceneFXML.fxml"));
-//    System.out.println(getClass());
-        
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
+        PlayersSceneUtility.initScene();
+        stage.setScene(PlayersSceneUtility.getScene());
     
         
         stage.show();
