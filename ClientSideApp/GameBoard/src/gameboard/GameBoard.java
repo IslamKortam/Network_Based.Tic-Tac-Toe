@@ -25,7 +25,7 @@ public class GameBoard extends Application {
         
         GameBoardUtility.initScene();
         stage.setScene(GameBoardUtility.getScene());
-        
+         GameBoardUtility.setPlyer("salma", "4", 0);
         stage.show();
     }
 
