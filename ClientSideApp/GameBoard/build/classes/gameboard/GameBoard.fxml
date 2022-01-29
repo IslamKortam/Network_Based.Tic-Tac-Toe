@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameboard.GameBoardController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameboard.GameBoardController">
     <children>
       <FlowPane layoutX="246.0" layoutY="182.0" prefHeight="240.0" prefWidth="240.0">
          <children>
@@ -68,7 +67,6 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="changeAvatar" layoutX="17.0" layoutY="497.0" mnemonicParsing="false" onAction="#changeAvatar" text="test" />
       <Button fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="29.0" style="-fx-graphic: url('/resources/home.png');" />
       <BorderPane fx:id="ChatBox" layoutX="506.0" layoutY="243.0" prefHeight="277.0" prefWidth="200.0" visible="false">
          <bottom>

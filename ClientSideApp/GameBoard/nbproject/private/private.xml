@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignupPage.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignupController.java</file>
-=======
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/Utility.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoard.fxml</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoard.java</file>
->>>>>>> a80690c0b91e96e104998ac4bf444cd73401cf86
+            <file>file:/C:/Users/Salma/Desktop/g/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoard.java</file>
+            <file>file:/C:/Users/Salma/Desktop/g/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardUtility.java</file>
+            <file>file:/C:/Users/Salma/Desktop/g/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignupController.java</file>
+            <file>file:/C:/Users/Salma/Desktop/g/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/FXMLSignup.fxml</file>
+            <file>file:/C:/Users/Salma/Desktop/g/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardController.java</file>
         </group>
     </open-files>
 </project-private>

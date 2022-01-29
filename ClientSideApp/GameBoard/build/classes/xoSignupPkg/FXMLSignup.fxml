@@ -63,7 +63,7 @@
             </ImageView>
             <ImageView fx:id="userAvatar" fitHeight="109.0" fitWidth="90.0" layoutX="128.0" layoutY="50.0" pickOnBounds="true">
                <image>
-                  <Image url="@../resources/AvatarImgs/imgUser1.png" />
+                  <Image url="@../resources/AvatarImgs/1.png" />
                </image>
             </ImageView>
             <Label fx:id="AvatarID" layoutX="63.0" layoutY="105.0" text="0" visible="false" />

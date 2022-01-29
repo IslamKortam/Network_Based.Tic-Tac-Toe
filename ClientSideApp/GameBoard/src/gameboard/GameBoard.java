@@ -28,12 +28,17 @@ public class GameBoard extends Application {
 //        Scene scene = new Scene(root);
         
         GameBoardUtility.initScene();
+
+        stage.setScene(GameBoardUtility.getScene());
+         GameBoardUtility.setPlyer("salma", "4", 0, "Islam", "3", 5);
+
         LoginUtility.initScene();
         SignUpUtility.initScene();
         modes.ModesUtility.initScene();
         
-        stage.setScene(modes.ModesUtility.getScene());
+        stage.setScene(GameBoardUtility.getScene());
         
+
         stage.show();
     }
 

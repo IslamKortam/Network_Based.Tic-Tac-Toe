@@ -55,8 +55,7 @@ public class GameBoardController implements Initializable {
 
     @FXML
     private Button button1;
-        @FXML
-    private Button changeAvatar;
+  
 
 
     @FXML
@@ -101,6 +100,7 @@ public class GameBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
         GameBoardUtility.setButtons(buttons);
+         GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img);
         for(int i=0; i < buttons.size(); i++)
         {
             GameBoardUtility.setBoxHandler(i);
@@ -111,17 +111,7 @@ public class GameBoardController implements Initializable {
     void backToHome(ActionEvent event) {
 
     }
- @FXML
-            // only for testing no need 
-            // to know how to use class utility
-    void changeAvatar(ActionEvent event) {
-        GameBoardUtility.setAvatar(player1Img, "2.png", getClass());
-        GameBoardUtility.setAvatar(player2Img, "3.png", getClass());
-        GameBoardUtility.setPlayerName(player1Name, "mona");
-         GameBoardUtility.setPlayerName(player2Name, "ghada");
-          GameBoardUtility.setPlayerName(player1Score, "5");
-         GameBoardUtility.setPlayerName(player2Score, "6");
-    }    
+
     
     @FXML
     void viewChatBox(MouseEvent event) {
