@@ -10,6 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import logintrial.LoginUtility;
+import xoSignupPkg.SignUpUtility;
+
+
 /**
  *
  * @author Bahaa eldin
@@ -24,9 +28,18 @@ public class GameBoard extends Application {
 //        Scene scene = new Scene(root);
         
         GameBoardUtility.initScene();
+
         stage.setScene(GameBoardUtility.getScene());
          GameBoardUtility.setPlyer("salma", "4", 0);
+
+        LoginUtility.initScene();
+        SignUpUtility.initScene();
+        
+        stage.setScene(SignUpUtility.getScene());
+        
+
         stage.show();
+        SignUpUtility.displaySignUpErrorMsg(0, "Error Data Not valid ----- Islam");
     }
 
     /**
