@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" stylesheets="@PlayersScene.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerPackage.PlayersSceneController">
+   <children>
+      <Button fx:id="backBtn" focusTraversable="false" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="41.0" prefWidth="47.0" style="-fx-graphic: url(&quot;/resources/home.png&quot;);;" />
+      <FlowPane fx:id="playersPane" layoutX="185.0" layoutY="113.0" orientation="VERTICAL" prefHeight="392.0" prefWidth="381.0" />
+   </children>
+</AnchorPane>
