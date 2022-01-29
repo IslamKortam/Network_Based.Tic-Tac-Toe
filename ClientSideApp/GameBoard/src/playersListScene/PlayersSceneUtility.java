@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controllerPackage;
+package playersListScene;
 
+import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -54,7 +56,7 @@ public class PlayersSceneUtility {
         }
     }
     public static void initScene()throws IOException{
-        Parent root = FXMLLoader.load((controllerPackage.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
+        Parent root = FXMLLoader.load((playersListScene.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
     }    
     public static Scene getScene(){

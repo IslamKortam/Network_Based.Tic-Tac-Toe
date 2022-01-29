@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
-package controllerPackage;
+package playersListScene;
 
+import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.util.Vector;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
