@@ -54,7 +54,7 @@ public class PlayersSceneUtility {
         }
     }
     public static void initScene()throws IOException{
-        Parent root = FXMLLoader.load((controllerPackage.PlayersScene.class).getResource("PlayersSceneFXML.fxml"));
+        Parent root = FXMLLoader.load((controllerPackage.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
     }    
     public static Scene getScene(){
