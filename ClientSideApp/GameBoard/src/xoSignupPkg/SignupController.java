@@ -110,6 +110,7 @@ public class SignupController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SignUpUtility.setSignUpControllerReference(this);
         a = new Alert(Alert.AlertType.NONE);
         th = new ScheduledThreadPoolExecutor(1);
         
