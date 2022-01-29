@@ -30,11 +30,11 @@ public class GameBoard extends Application {
         GameBoardUtility.initScene();
         LoginUtility.initScene();
         SignUpUtility.initScene();
+        modes.ModesUtility.initScene();
         
-        stage.setScene(SignUpUtility.getScene());
+        stage.setScene(modes.ModesUtility.getScene());
         
         stage.show();
-        SignUpUtility.displaySignUpErrorMsg(0, "Error Data Not valid ----- Islam");
     }
 
     /**

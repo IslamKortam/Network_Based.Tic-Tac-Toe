@@ -19,15 +19,13 @@ public class ModesController {
     private Label label;
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.show();
+    private void handleSinglePlayerButtonAction(ActionEvent event) {
+        System.out.println("Single Player");
     }
 
     @FXML
-    private void handleButtonAction2(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.show();
+    private void handleMultiPlayerButtonAction(ActionEvent event) {
+        System.out.println("Multi Player");
 
     }
 }
