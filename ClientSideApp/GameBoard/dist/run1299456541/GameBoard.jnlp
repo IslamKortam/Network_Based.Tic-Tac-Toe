@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<<< HEAD:ClientSideApp/GameBoard/dist/run1020097166/GameBoard.jnlp
-    <jar href="GameBoard.jar" size="3489728" download="eager" />
-========
-    <jar href="GameBoard.jar" size="3457882" download="eager" />
->>>>>>>> setplayerinfo:ClientSideApp/GameBoard/dist/run1457911821/GameBoard.jnlp
+    <jar href="GameBoard.jar" size="3489899" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="GameBoard" >
