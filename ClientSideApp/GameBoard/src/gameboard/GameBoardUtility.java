@@ -46,7 +46,7 @@ public class GameBoardUtility {
             player1Score.setText(score1);
             player2Score.setText(score2);
             
-            Image im1= new Image(GameBoardController.class.getResourceAsStream("/resources/AvatarImgs/"+Integer.toString(i)+".png"));
+            Image im1= new Image(GameBoardController.class.getResourceAsStream("/resources/AvatarImgs/"+Integer.toString(png1)+".png"));
             Image im2= new Image(GameBoardController.class.getResourceAsStream("/resources/AvatarImgs/"+Integer.toString(i)+".png"));
              img1.setImage(im1);
              img2.setImage(im2);
