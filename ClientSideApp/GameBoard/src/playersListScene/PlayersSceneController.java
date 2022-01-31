@@ -5,6 +5,7 @@
 package playersListScene;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
