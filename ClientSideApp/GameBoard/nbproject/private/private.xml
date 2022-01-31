@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/E:/Amany/2.ITI/Java/Repository/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayerElements.java</file>
             <file>file:/E:/Amany/2.ITI/Java/Repository/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersScene.java</file>
@@ -9,5 +10,8 @@
             <file>file:/E:/Amany/2.ITI/Java/Repository/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/Player.java</file>
             <file>file:/E:/Amany/2.ITI/Java/Repository/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersSceneUtility.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 81ca8a6a5b25bf0d23d09d2c4e5263593dbd70eb
     </open-files>
 </project-private>
