@@ -63,7 +63,7 @@ public class PlayersSceneUtility {
             newPlayer.setUserId(Player.getId());
 
             FlowPane playerPane = new FlowPane();
-            playerPane.getChildren().addAll(usrImgView , usrNameLabel  ,new Label("  "), scoreLabel , new Label("  ") ,statusLabel , newPlayer.getInviteBtn());
+            playerPane.getChildren().addAll(usrImgView , usrNameLabel  ,new Label("  "), scoreLabel , new Label("  ") ,statusLabel ,new Label("  "), newPlayer.getInviteBtn());
             
             playersFlowPane.getChildren().add(playerPane);
             // Adding the newPlayer object to the ArrayList Which contains elements for each new player 
@@ -116,7 +116,7 @@ public class PlayersSceneUtility {
     }
 
     public static void initScene()throws IOException{
-        Parent root = FXMLLoader.load((playersListScene.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
+        Parent root = FXMLLoader.load((playersListScene.PlayersScene.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
     }    
 
