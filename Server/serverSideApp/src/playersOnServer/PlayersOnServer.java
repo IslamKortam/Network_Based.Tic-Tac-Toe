@@ -29,8 +29,7 @@ public class PlayersOnServer extends Application {
         PlayersVector.add(p3);
         
         
-        PlayersOnServerUtility.setButtonForPlayers(PlayersVector);
-        
+        PlayersOnServerUtility.appendNewPlayer(PlayersVector);
         stage.setScene(PlayersOnServerUtility.getScene());
     
         

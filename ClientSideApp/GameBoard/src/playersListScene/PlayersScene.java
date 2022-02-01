@@ -30,13 +30,29 @@ public class PlayersScene extends Application {
         Player p1 = new Player(0, "Islam", "ISLAM KORTAM", "imkortam@gmail.com", 100, 1, PlayerStatus.ONLINE);
         Player p2 = new Player(1, "Alaa", "Alaa KORTAM", "Alaa@gmail.com", 200, 0, PlayerStatus.OFFLINE);
         Player p3 = new Player(2, "Ahmed", "Ahmed KORTAM", "Ahmed@gmail.com", 300, 2, PlayerStatus.IN_MULTIPLAYER_GAME);
+          Player p4 = new Player(3, "Islam", "ISLAM KORTAM", "imkortam@gmail.com", 100, 1, PlayerStatus.ONLINE);
+        Player p5 = new Player(4, "Alaa", "Alaa KORTAM", "Alaa@gmail.com", 200, 0, PlayerStatus.OFFLINE);
+        Player p6 = new Player(5, "Ahmed", "Ahmed KORTAM", "Ahmed@gmail.com", 300, 2, PlayerStatus.IN_MULTIPLAYER_GAME);
+        PlayersVector.add(p4);
+        PlayersVector.add(p5);
+        PlayersVector.add(p6);
+        
         PlayersVector.add(p1);
+
         PlayersVector.add(p2);
         PlayersVector.add(p3);
-        
-        
-        PlayersSceneUtility.setButtonForPlayers(PlayersVector);
-        
+
+
+//PlayersSceneUtility.setPlayers(PlayersVector);
+//PlayersSceneUtility.addNewPlayer(0);
+//PlayersSceneUtility.addNewPlayer(1);
+//PlayersSceneUtility.addNewPlayer(2);
+//PlayersSceneUtility.addNewPlayer(3);
+
+        PlayersSceneUtility.appendNewPlayer(PlayersVector);
+
+//        PlayersSceneUtility.updatePlayer(1);
+
         stage.setScene(PlayersSceneUtility.getScene());
     
         
