@@ -8,6 +8,7 @@ package serverdao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -40,8 +41,8 @@ public class Dao {
         insertStatement.setString(4, p.getPassword());
         insertStatement.setInt(5, p.getPicture());
         insertStatement.setInt(6, p.getScore());
-        insertStatement.setString(7, p.getLastVisit());
-        insertStatement.setInt(8, p.getVisible());
+        insertStatement.setDate(7, p.getLastVisit());
+        insertStatement.setBoolean(8, p.getVisible());
         insertStatement.execute();
     }
 
@@ -51,12 +52,32 @@ public class Dao {
                 + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
         insertStatement.setInt(1, g.getPlayer1Id());
         insertStatement.setInt(2, g.getPlayer2Id());
-        insertStatement.setString(3, g.getDate_time());
+        insertStatement.setDate(3, g.getDate_time());
         insertStatement.setLong(4, g.getTimeLength());
         insertStatement.setString(5, g.getBoard());
-        insertStatement.setInt(6, g.isComplete());
+        insertStatement.setBoolean(6, g.isComplete());
         insertStatement.setInt(7, g.getWinnerId());
-        insertStatement.setInt(8, g.getVisible());
+        insertStatement.setBoolean(8, g.getVisible());
         insertStatement.execute();
+    }
+    
+    public static PlayerPojo selectPlayerByID(int ID) throws SQLException {
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where ID=?");
+        selectStatement.setInt(1, ID);
+        ResultSet query = selectStatement.executeQuery();
+        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
+                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        return player;
+    }
+    
+    public static PlayerPojo selectPlayerByEmail(String Email) throws SQLException {
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
+        selectStatement.setString(1, Email);
+        ResultSet query = selectStatement.executeQuery();
+        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
+                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        return player;
     }
 }

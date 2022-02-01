@@ -5,6 +5,8 @@
  */
 package serverdao;
 
+import java.sql.Date;
+
 /**
  *
  * @author Salma
@@ -15,14 +17,14 @@ public class GamePojo {
     private int player2Id;
     private long timeLength;
     private String board;
-    private int complete;
+    private Boolean complete;
     private int winnerId;
-    private String date_time;
-    private int visible;
+    private Date date_time;
+    private Boolean visible;
 
    
 
-    public GamePojo(int player1Id, int player2Id, long timeLength, String board, int complete, int winnerId, String date_time,int visible) {
+    public GamePojo(int player1Id, int player2Id, long timeLength, String board, Boolean complete, int winnerId, Date date_time,Boolean visible) {
         this.player1Id = player1Id;
         this.player2Id = player2Id;
         this.timeLength = timeLength;
@@ -66,14 +68,6 @@ public class GamePojo {
         this.board = board;
     }
 
-    public int isComplete() {
-        return complete;
-    }
-
-    public void setComplete(int complete) {
-        this.complete = complete;
-    }
-
     public int getWinnerId() {
         return winnerId;
     }
@@ -82,20 +76,29 @@ public class GamePojo {
         this.winnerId = winnerId;
     }
 
-    public String getDate_time() {
+    public Boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
+    }
+
+    public Date getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(String date_time) {
+    public void setDate_time(Date date_time) {
         this.date_time = date_time;
     }
 
-   public int getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(int visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+    
     
 }
