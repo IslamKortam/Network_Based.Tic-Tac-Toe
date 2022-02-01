@@ -7,11 +7,13 @@ package serverdao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
  *
  * @author Salma
+ * // using my sql queries 
  */
 public class Dao {
 
@@ -20,16 +22,41 @@ public class Dao {
     private static String dataBaseName;//enter values here
     private static String dataBasePassword;//enter values here
     private static Connection connection = null;
-    
-    
-    
-    
-    
-    private static void startConnection( ) throws SQLException{
-          
-     // DriverManager.registerDriver(new org.postgresql.Driver());  //according to database used
-          Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
-           System.out.println("successfully connected");
+
+    public static void startConnection() throws SQLException {
+
+        // DriverManager.registerDriver(new org.postgresql.Driver());  //according to database used
+        Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
+        System.out.println("successfully connected");
     }
 
+    public static void insertIntoPlayerTable(PlayerPojo p) throws SQLException {
+        PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO Users (FullName ,UserName "
+                + ",Email ,Password ,Avatar ,Score ,LastVisit,visible )\n"
+                + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
+        insertStatement.setString(1, p.getUserName());
+        insertStatement.setString(2, p.getNickName());
+        insertStatement.setString(3, p.getEmail());
+        insertStatement.setString(4, p.getPassword());
+        insertStatement.setInt(5, p.getPicture());
+        insertStatement.setInt(6, p.getScore());
+        insertStatement.setString(7, p.getLastVisit());
+        insertStatement.setInt(8, p.getVisible());
+        insertStatement.execute();
+    }
+
+    public static void insertIntoGameTable(GamePojo g) throws SQLException {
+        PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO  Game (Player1ID ,Player2ID ,"
+                + "Date ,TimeLength ,Board ,Complete ,WinnerID,visible )\n"
+                + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
+        insertStatement.setInt(1, g.getPlayer1Id());
+        insertStatement.setInt(2, g.getPlayer2Id());
+        insertStatement.setString(3, g.getDate_time());
+        insertStatement.setLong(4, g.getTimeLength());
+        insertStatement.setString(5, g.getBoard());
+        insertStatement.setInt(6, g.isComplete());
+        insertStatement.setInt(7, g.getWinnerId());
+        insertStatement.setInt(8, g.getVisible());
+        insertStatement.execute();
+    }
 }
