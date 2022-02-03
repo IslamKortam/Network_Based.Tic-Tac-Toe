@@ -12,8 +12,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Salma
- * // using my sql queries 
+ * @author Salma // using my sql queries
  */
 public class Dao {
 
@@ -30,7 +29,7 @@ public class Dao {
         System.out.println("successfully connected");
     }
 
-    public static void closeConnection() throws SQLException{
+    public static void closeConnection() throws SQLException {
         Dao.connection.close();
         Dao.connection = null;
     }
@@ -65,18 +64,34 @@ public class Dao {
         insertStatement.execute();
     }
 
-
-    public static void UpdateScore(int userId , int score) throws SQLException{
+    public static void UpdateScore(int userId, int score) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET Score=? WHERE ID=?");
         updateStatement.setInt(1, score);
         updateStatement.setInt(2, userId);
     }
 
-    public static void UpdateLastVisit(String lastVisit , int userId) throws SQLException{
+    public static void UpdateLastVisit(String lastVisit, int userId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET LastVisit=? WHERE ID=?");
         updateStatement.setString(1, lastVisit);
         updateStatement.setInt(2, userId);
     }
 
+    public static void updatePlayerVisibility(int vStatus, int userId) throws SQLException {
+        PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET visible=? WHERE ID=?");
+        updateStatement.setInt(1, vStatus);
+        updateStatement.setInt(2, userId);
+    }
+
+    public static void updateGameVisibility(int vStatus, int gameId) throws SQLException {
+        PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Visible=? WHERE ID=?");
+        updateStatement.setInt(1, vStatus);
+        updateStatement.setInt(2, gameId);
+    }
+
+    public static void updateGameCompletion(int cStatus, int gameId) throws SQLException {
+        PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Complete=? WHERE ID=?");
+        updateStatement.setInt(1, cStatus);
+        updateStatement.setInt(2, gameId);
+    }
 
 }
