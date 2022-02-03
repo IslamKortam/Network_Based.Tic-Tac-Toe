@@ -29,10 +29,12 @@ public class Dao {
         Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
         System.out.println("successfully connected");
     }
+
     public static void closeConnection() throws SQLException{
         Dao.connection.close();
         Dao.connection = null;
     }
+
     public static void insertIntoPlayerTable(PlayerPojo p) throws SQLException {
         PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO Users (FullName ,UserName "
                 + ",Email ,Password ,Avatar ,Score ,LastVisit,visible )\n"
@@ -63,6 +65,7 @@ public class Dao {
         insertStatement.execute();
     }
 
+
     public static void UpdateScore(int userId , int score) throws SQLException{
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET Score=? WHERE ID=?");
         updateStatement.setInt(1, score);
@@ -74,5 +77,6 @@ public class Dao {
         updateStatement.setString(1, lastVisit);
         updateStatement.setInt(2, userId);
     }
+
 
 }
