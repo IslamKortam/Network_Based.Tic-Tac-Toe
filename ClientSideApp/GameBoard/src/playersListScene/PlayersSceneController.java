@@ -5,30 +5,37 @@
 package playersListScene;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class PlayersSceneController implements Initializable{
 
     @FXML
-    private FlowPane  playersPane;
+      private VBox area;
+
     @FXML
     private Button backBtn;
     Vector<Player> playersVector;
+   ArrayList<Node> nodes;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        PlayersSceneUtility.setPlayersFlowPane(playersPane);
+      
         playersVector = new Vector<Player>();
-//        playersVector.add(new Player(21 , "Amany" , "Bahaa" , "eee" , 4 ,5 ,PlayerStatus.OFFLINE));
-//        playersVector.add(new Player(21 , "Islam Leader" , "Kortam" , "eee" , 4 ,5 ,PlayerStatus.OFFLINE));
+        nodes = new ArrayList<>();
+        PlayersSceneUtility.setParentContainer(nodes, playersVector, area);
+
     }
 
     @FXML
