@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="serverSideApp.jar" size="234259" download="eager" />
+=======
+    <jar href="serverSideApp.jar" size="75181" download="eager" />
+>>>>>>> Dao
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="serverhome.ServerHome"  name="serverSideApp" />
   <update check="always"/>

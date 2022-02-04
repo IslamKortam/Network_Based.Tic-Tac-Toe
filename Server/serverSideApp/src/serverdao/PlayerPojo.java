@@ -5,6 +5,8 @@
  */
 package serverdao;
 
+import java.sql.Date;
+
 /**
  *
  * @author Salma
@@ -17,12 +19,12 @@ public class PlayerPojo {
     private String password;
     private int picture;
     private int score;
-    private String lastVisit;
-    private int visible;
+    private Date lastVisit;
+    private Boolean visible;
 
    
 
-    public PlayerPojo(String userName, String nickName, String email, String password, int picture, int score, String lastVisit,int visible) {
+    public PlayerPojo(String userName, String nickName, String email, String password, int picture, int score, Date lastVisit,Boolean visible) {
         this.userName = userName;
         this.nickName = nickName;
         this.email = email;
@@ -81,21 +83,22 @@ public class PlayerPojo {
         this.score = score;
     }
 
-    public String getLastVisit() {
+    public Date getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(String lastVisit) {
+    public void setLastVisit(Date lastVisit) {
         this.lastVisit = lastVisit;
     }
 
-   
-     public int getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(int visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+
+   
 
 }
