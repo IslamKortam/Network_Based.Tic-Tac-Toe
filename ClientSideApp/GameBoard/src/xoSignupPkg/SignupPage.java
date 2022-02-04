@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author GDO
+ * @author Mohamed Rashed
  */
 public class SignupPage extends Application {
     private static double xOffset = 0;

@@ -10,9 +10,11 @@ import java.sql.Date;
 /**
  *
  * @author Salma
+ * Modified by Mohamed Rashed
  */
 public class GamePojo {
 
+    private int gameID;
     private int player1Id;
     private int player2Id;
     private long timeLength;
@@ -23,7 +25,16 @@ public class GamePojo {
     private Boolean visible;
 
    
-
+    public  GamePojo(){
+        this.player1Id = -1;
+        this.player2Id = -1;
+        this.timeLength = -1;
+        this.board = "";
+        this.complete = false;
+        this.winnerId = -1;
+        this.date_time = new Date(1);
+        this.visible=false;
+    }
     public GamePojo(int player1Id, int player2Id, long timeLength, String board, Boolean complete, int winnerId, Date date_time,Boolean visible) {
         this.player1Id = player1Id;
         this.player2Id = player2Id;
@@ -34,7 +45,25 @@ public class GamePojo {
         this.date_time = date_time;
         this.visible=visible;
     }
-    
+    public GamePojo(int gameID,int player1Id, int player2Id, long timeLength, String board, Boolean complete, int winnerId, Date date_time,Boolean visible) {
+        this.gameID = gameID;
+        this.player1Id = player1Id;
+        this.player2Id = player2Id;
+        this.timeLength = timeLength;
+        this.board = board;
+        this.complete = complete;
+        this.winnerId = winnerId;
+        this.date_time = date_time;
+        this.visible=visible;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
 
     public int getPlayer1Id() {
         return player1Id;
