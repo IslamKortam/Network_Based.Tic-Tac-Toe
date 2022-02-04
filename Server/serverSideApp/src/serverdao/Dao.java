@@ -14,6 +14,9 @@ import java.sql.SQLException;
 /**
  *
  * @author Salma // using my sql queries
+ * @author Salma
+ * Add new methods and modified by Mohamed Rashed
+ * // using my sql queries 
  */
 public class Dao {
 
@@ -105,9 +108,13 @@ public class Dao {
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where ID=?");
         selectStatement.setInt(1, ID);
         ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        PlayerPojo player=new PlayerPojo();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+            
+        }
         return player;
     }
     
@@ -115,9 +122,12 @@ public class Dao {
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
         selectStatement.setString(1, Email);
         ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        PlayerPojo player=new PlayerPojo();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        }
         return player;
     }
 }
