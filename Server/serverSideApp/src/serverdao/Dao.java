@@ -39,8 +39,8 @@ public class Dao {
         PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO Users (FullName ,UserName "
                 + ",Email ,Password ,Avatar ,Score ,LastVisit,visible )\n"
                 + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
-        insertStatement.setString(1, p.getUserName());
-        insertStatement.setString(2, p.getNickName());
+        insertStatement.setString(1, p.getNickName());
+        insertStatement.setString(2, p.getUserName());
         insertStatement.setString(3, p.getEmail());
         insertStatement.setString(4, p.getPassword());
         insertStatement.setInt(5, p.getPicture());
@@ -65,34 +65,39 @@ public class Dao {
         insertStatement.execute();
     }
 
-    public static void UpdateScore(int userId, int score) throws SQLException {
+    public static void updateScore(int userId, int score) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET Score=? WHERE ID=?");
         updateStatement.setInt(1, score);
         updateStatement.setInt(2, userId);
+        updateStatement.execute();
     }
 
-    public static void UpdateLastVisit(String lastVisit, int userId) throws SQLException {
+    public static void updateLastVisit(String lastVisit, int userId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET LastVisit=? WHERE ID=?");
         updateStatement.setString(1, lastVisit);
         updateStatement.setInt(2, userId);
+        updateStatement.execute();
     }
 
     public static void updatePlayerVisibility(int vStatus, int userId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET visible=? WHERE ID=?");
         updateStatement.setInt(1, vStatus);
         updateStatement.setInt(2, userId);
+        updateStatement.execute();
     }
 
     public static void updateGameVisibility(int vStatus, int gameId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Visible=? WHERE ID=?");
         updateStatement.setInt(1, vStatus);
         updateStatement.setInt(2, gameId);
+        updateStatement.execute();
     }
 
     public static void updateGameCompletion(int cStatus, int gameId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Complete=? WHERE ID=?");
         updateStatement.setInt(1, cStatus);
         updateStatement.setInt(2, gameId);
+        updateStatement.execute();
     }
 
     
