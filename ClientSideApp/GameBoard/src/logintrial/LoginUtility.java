@@ -6,6 +6,7 @@ package logintrial;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,11 +30,16 @@ public class LoginUtility {
     }
 
     public static void displayLoginError(int ch) {
-        if (ch == 1) {
-            errorMsg.setText("Success");
-        } else {
-            errorMsg.setText("Invalid username or password.");
-        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (ch == 1) {
+                    errorMsg.setText("Success");
+                } else {
+                    errorMsg.setText("Invalid username or password.");
+                }
+            }
+        });
     }
 
     public static void initScene() throws IOException {

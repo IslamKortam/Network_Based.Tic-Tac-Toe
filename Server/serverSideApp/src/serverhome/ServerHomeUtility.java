@@ -79,12 +79,9 @@ public class ServerHomeUtility {
        
    } 
     public static void showPlayerList(Event e) throws IOException{
-<<<<<<< HEAD
             Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
             Scene scene = new Scene(root);
-=======
             PlayersOnServerUtility.initScene();
->>>>>>> master
             Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
              Vector<Player> PlayersVector = new Vector<>();
         Player p1 = new Player(0, "Islam", "ISLAM KORTAM", "imkortam@gmail.com", 100, 1, PlayerStatus.ONLINE);

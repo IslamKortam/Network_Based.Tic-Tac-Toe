@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import stagemanager.StageManager;
 
 
 /**
@@ -19,23 +20,12 @@ public class LoginTrial extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        
-        LoginUtility.initScene();
-        stage.setScene(LoginUtility.getScene());
-        stage.show();
+        StageManager stageManger = new StageManager(stage);
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
-        launch(args);
-        System.out.println("4334565");
-
-Thread.sleep(5000);
-LoginUtility.displayLoginError(0);
-
-        System.out.println("trttgtr");
-    }
+    
     
 }

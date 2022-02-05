@@ -23,6 +23,7 @@ import playersListScene.PlayersSceneUtility;
  * @author Salma
  */
 public class StageManager {
+    private static StageManager stageManger;
     //  private Vector<Scene> scenes;
     public enum SceneName {
         SIGNIN,
@@ -34,9 +35,15 @@ public class StageManager {
     private final Stage stage;
     private SceneName currentSceneName;
 
-    public StageManager(Stage stage) {
+    public StageManager(Stage stage) throws IOException {
 
         this.stage = stage;
+        stageManger = this;
+        displayScene(SceneName.SIGNIN);
+    }
+
+    public static StageManager getStageManger() {
+        return stageManger;
     }
 
     public SceneName getCurrentSceneName() {
@@ -59,8 +66,8 @@ public class StageManager {
                         stage.show();
                         break;
                     case SIGNIN:
-                        SignUpUtility.initScene();
-                        stage.setScene(SignUpUtility.getScene());
+                        LoginUtility.initScene();
+                        stage.setScene(LoginUtility.getScene());
                         stage.show();
                         currentSceneName = SceneName.SIGNUP;
                         break;

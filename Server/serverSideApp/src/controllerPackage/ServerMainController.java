@@ -15,7 +15,7 @@ import serverdao.Dao;
  */
 public class ServerMainController {
     
-    public static void main() throws SQLException{
+    public static void main(String[] args) throws SQLException{
         Dao.startConnection();
         ServerMulti server = ServerMulti.getRef();
         server.startServer();
