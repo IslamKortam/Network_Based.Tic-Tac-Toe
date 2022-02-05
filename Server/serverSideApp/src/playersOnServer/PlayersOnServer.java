@@ -6,10 +6,13 @@ package playersOnServer;
 
 import controllerPackage.Player;
 import controllerPackage.PlayerStatus;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Vector;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
+import serverdao.Dao;
 
 /**
  *
@@ -27,8 +30,7 @@ public class PlayersOnServer extends Application {
         PlayersVector.add(p1);
         PlayersVector.add(p2);
         PlayersVector.add(p3);
-        
-        
+           
         PlayersOnServerUtility.appendNewPlayer(PlayersVector);
         stage.setScene(PlayersOnServerUtility.getScene());
     
@@ -39,8 +41,10 @@ public class PlayersOnServer extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        
         launch(args);
+ 
     }
     
 }

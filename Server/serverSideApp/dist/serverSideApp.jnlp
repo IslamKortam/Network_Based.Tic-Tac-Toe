@@ -8,7 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
+    <jar href="lib\mysql-connector-java-8.0.28.jar" size="2476480" download="eager" />
+    <jar href="serverSideApp.jar" size="235831" download="eager" />
+=======
     <jar href="serverSideApp.jar" size="236713" download="eager" />
+>>>>>>> e716872dee566a22054884b2da3387245f4244f7
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="serverSideApp" >
     <param name="requiredFXVersion" value="8.0+"/>
