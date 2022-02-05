@@ -26,6 +26,7 @@ public class GamePojo {
 
    
     public  GamePojo(){
+        this.gameID = -1;
         this.player1Id = -1;
         this.player2Id = -1;
         this.timeLength = -1;
