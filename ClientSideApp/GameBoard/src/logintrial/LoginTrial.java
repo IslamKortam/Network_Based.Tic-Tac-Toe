@@ -4,6 +4,7 @@
  */
 package logintrial;
 
+import controllerPackage.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ public class LoginTrial extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         StageManager stageManger = new StageManager(stage);
+        MainController.getRef().setStageMagner(stageManger);
     }
 
     /**
