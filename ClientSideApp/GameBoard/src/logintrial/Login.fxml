@@ -9,40 +9,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logintrial.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logintrial.LoginController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <ImageView fitHeight="348.0" fitWidth="196.0" layoutX="66.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/11.jpeg" />
-         </image>
-      </ImageView>
-      <AnchorPane id="form" layoutX="280.0" layoutY="56.0" prefHeight="295.0" prefWidth="285.0" style=" -fx-border-radius: 50px;" stylesheets="@Login.css">
+      <AnchorPane id="form" layoutX="20.0" layoutY="35.0" prefHeight="530.0" prefWidth="378.0" style=" -fx-border-radius: 50px;" stylesheets="@Login.css">
          <children>
-            <TextField id="nameField" fx:id="UserNameTextField" layoutX="79.0" layoutY="58.0" prefHeight="40.0" prefWidth="182.0" promptText="Enter Your User Name" />
-            <PasswordField id="passwdField" fx:id="passwordTextField" layoutX="79.0" layoutY="128.0" prefHeight="40.0" prefWidth="182.0" promptText="Enter Your Password" />
-            <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="21.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+            <TextField id="nameField" fx:id="UserNameTextField" layoutX="114.0" layoutY="136.0" prefHeight="50.0" prefWidth="230.0" promptText="Enter Your User Name">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <PasswordField id="passwdField" fx:id="passwordTextField" layoutX="115.0" layoutY="240.0" prefHeight="50.0" prefWidth="230.0" promptText="Enter Your Password">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+            <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="28.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/user2.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="49.0" layoutX="26.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="81.0" layoutX="33.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/password.png" />
                </image>
             </ImageView>
-            <Button id="signinbtn" layoutX="103.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="31.0" prefWidth="134.0" style="-fx-background-radius: 20px; -fx-background-color: #ffcf70;" text="Sign in" textFill="WHITE">
+            <Button id="signinbtn" fx:id="signInBtn" layoutX="91.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="189.0" style="-fx-background-radius: 20px; -fx-background-color: #ffa370; -fx-font-size: 18; -fx-font-weight: bold;" stylesheets="@Login.css" text="Sign In" textFill="#a12525">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font></Button>
-            <Label layoutX="36.0" layoutY="256.0" prefHeight="18.0" prefWidth="174.0" text="Don't have account?" textFill="#f2d190" />
-            <Label layoutX="186.0" layoutY="256.0" prefHeight="18.0" prefWidth="100.0" text="Sign up here" textFill="#f2d190" underline="true" />
+            <Label layoutX="16.0" layoutY="411.0" prefHeight="40.0" prefWidth="182.0" text="Don't have account?" textFill="#f2d190">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
             <Label fx:id="errorMsg" alignment="CENTER" layoutY="183.0" prefHeight="18.0" prefWidth="286.0" textFill="#e46a29">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="signUpBtn" alignment="CENTER" layoutX="229.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleButtonAction2" style="-fx-background-color: noun; -fx-font-weight: bold;" stylesheets="@Login.css" text="Sign Up here" textAlignment="CENTER" textFill="#b5ad2a">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="136.0" layoutY="25.0" prefHeight="38.0" prefWidth="98.0" style="-fx-font-weight: bold; -fx-font-size: 24px;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="513.0" fitWidth="286.0" layoutX="451.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/11.jpeg" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

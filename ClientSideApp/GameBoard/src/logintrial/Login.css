@@ -18,5 +18,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 #nameField , #passwdField
 {
-   -fx-background-radius: 10px; 
+   -fx-background-radius: 14px; 
+}
+#signUpBtn {
+    -fx-background-color: none;
+    -fx-text-fill: #f2d190;
+    -fx-font-size: 18px;
+}
+
+#signInBtn {
+    -fx-font-size: 18px;
 }

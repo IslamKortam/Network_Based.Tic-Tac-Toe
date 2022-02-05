@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameboard.GameBoardController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameboard.GameBoardController">
     <children>
       <FlowPane layoutX="246.0" layoutY="182.0" prefHeight="240.0" prefWidth="240.0">
          <children>
-            <Button fx:id="button1" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+            <Button fx:id="button1" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textFill="#ef0101" />
             <Button fx:id="button2" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
             <Button fx:id="button3" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
             <Button fx:id="button4" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
