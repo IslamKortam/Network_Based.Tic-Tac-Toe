@@ -6,6 +6,7 @@
 package serverdao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,30 +76,30 @@ public class Dao {
         updateStatement.execute();
     }
 
-    public static void updateLastVisit(String lastVisit, int userId) throws SQLException {
+    public static void updateLastVisit(Date lastVisit, int userId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET LastVisit=? WHERE ID=?");
-        updateStatement.setString(1, lastVisit);
+        updateStatement.setDate(1, lastVisit);
         updateStatement.setInt(2, userId);
         updateStatement.execute();
     }
 
-    public static void updatePlayerVisibility(int vStatus, int userId) throws SQLException {
+    public static void updatePlayerVisibility(Boolean vStatus, int userId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET visible=? WHERE ID=?");
-        updateStatement.setInt(1, vStatus);
+        updateStatement.setBoolean(1, vStatus);
         updateStatement.setInt(2, userId);
         updateStatement.execute();
     }
 
-    public static void updateGameVisibility(int vStatus, int gameId) throws SQLException {
+    public static void updateGameVisibility(Boolean vStatus, int gameId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Visible=? WHERE ID=?");
-        updateStatement.setInt(1, vStatus);
+        updateStatement.setBoolean(1, vStatus);
         updateStatement.setInt(2, gameId);
         updateStatement.execute();
     }
 
-    public static void updateGameCompletion(int cStatus, int gameId) throws SQLException {
+    public static void updateGameCompletion(Boolean cStatus, int gameId) throws SQLException {
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Complete=? WHERE ID=?");
-        updateStatement.setInt(1, cStatus);
+        updateStatement.setBoolean(1, cStatus);
         updateStatement.setInt(2, gameId);
         updateStatement.execute();
     }
@@ -113,7 +114,6 @@ public class Dao {
             player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
                     query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                     query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
-            
         }
         return player;
     }
