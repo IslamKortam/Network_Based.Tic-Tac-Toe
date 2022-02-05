@@ -10,10 +10,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  *
- * @author Salma // using my sql queries
+ * @author Salma
+ * Add new methods and modified by Mohamed Rashed
+ * // using my sql queries 
  */
 public class Dao {
 
@@ -103,9 +106,13 @@ public class Dao {
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where ID=?");
         selectStatement.setInt(1, ID);
         ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        PlayerPojo player=new PlayerPojo();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+            
+        }
         return player;
     }
     
@@ -113,9 +120,69 @@ public class Dao {
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
         selectStatement.setString(1, Email);
         ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player = new PlayerPojo( query.getString("UserName"), query.getString("FullName"),
+        PlayerPojo player=new PlayerPojo();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        }
+        return player;
+    }
+
+    public static PlayerPojo selectPlayerByUsername(String username) throws SQLException{
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where UserName = ? and visible = 1");
+        selectStatement.setString(1, username);
+        PlayerPojo player = new PlayerPojo();
+        ResultSet query = selectStatement.executeQuery();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
+                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
+        }
+        return player;
+    }
+
+    public static Vector<GamePojo> selectGameByPlayerID(int playerID) throws SQLException {
+        Vector<GamePojo> games = new Vector<GamePojo>(); 
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from game where Player1ID = ? or Player2ID = ?");
+        selectStatement.setInt(1, playerID);
+        selectStatement.setInt(2, playerID);
+        ResultSet query = selectStatement.executeQuery();
+        while(query.next()){
+                GamePojo game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
+                games.add(game);
+        }
+        return games;
+    }
+    
+    public static Vector<PlayerPojo> selectAllPlayers(){
+        Vector<PlayerPojo> players = new Vector<PlayerPojo>();
+        try {
+            PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where visible=1");
+            ResultSet query = selectStatement.executeQuery();
+            while(query.next()){
+                PlayerPojo player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
                 query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                 query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+                players.add(player);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error in SelectAllPlayers");
+        }
+        return players;
+    }
+    
+    public static PlayerPojo selectPlayerByCredential(String email, String password) throws SQLException{
+        PlayerPojo player = new PlayerPojo();
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email = ? and Password = ? and visible = 1");
+        selectStatement.setString(1, email);
+        selectStatement.setString(2, password);
+        ResultSet query = selectStatement.executeQuery();
+        if(query.next()){
+            player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
+                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
+        }
         return player;
     }
 }

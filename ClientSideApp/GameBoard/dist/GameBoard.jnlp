@@ -8,9 +8,19 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="GameBoard.jar" size="3556739" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="gameboard.GameBoard"  name="GameBoard" />
+=======
+    <jar href="GameBoard.jar" size="3651402" download="eager" />
+    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="GameBoard" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="logintrial.LoginTrial"  name="GameBoard" />
+>>>>>>> bf8fbdcefacbaa23ffae91941076809e6e84f71a
   <update check="always"/>
 </jnlp>
