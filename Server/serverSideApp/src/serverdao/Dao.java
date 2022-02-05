@@ -21,9 +21,9 @@ import java.util.Vector;
  */
 public class Dao {
 
-    private static String dataBaseUrl="jdbc:mysql://uiva61xx4xcpxpjo:6oI5Bi8mbQitgbNAeT7c@bbjhbbhoug8jo9hqqoeb-mysql.services.clever-cloud.com:3306/bbjhbbhoug8jo9hqqoeb";
-    private static String dataBaseName="uiva61xx4xcpxpjo";
-    private static String dataBasePassword="wLHJZ4eFn5RiwU3LkSbA ";
+  private static String dataBaseUrl="jdbc:mysql://uiva61xx4xcpxpjo:6oI5Bi8mbQitgbNAeT7c@bbjhbbhoug8jo9hqqoeb-mysql.services.clever-cloud.com:3306/bbjhbbhoug8jo9hqqoeb";
+    private static String dataBaseName="bbjhbbhoug8jo9hqqoeb";
+    private static String dataBasePassword="6oI5Bi8mbQitgbNAeT7c";
     private static Connection connection = null;
 
     public static void startConnection() throws SQLException {
@@ -144,13 +144,14 @@ public class Dao {
 
     public static Vector<GamePojo> selectGameByPlayerID(int playerID) throws SQLException {
         Vector<GamePojo> games = new Vector<GamePojo>(); 
-        PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from game where Player1ID = ? or Player2ID = ?");
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where Player1ID = ? or Player2ID = ?");
         selectStatement.setInt(1, playerID);
         selectStatement.setInt(2, playerID);
         ResultSet query = selectStatement.executeQuery();
         while(query.next()){
                 GamePojo game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
                 games.add(game);
+                
         }
         return games;
     }
