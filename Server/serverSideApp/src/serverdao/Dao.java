@@ -17,15 +17,13 @@ import java.sql.SQLException;
  */
 public class Dao {
 
-    private static String dataBaseUrl;//enter values here
-    //private static String driver; // according to database used
-    private static String dataBaseName;//enter values here
-    private static String dataBasePassword;//enter values here
+    private static String dataBaseUrl="jdbc:mysql://uiva61xx4xcpxpjo:6oI5Bi8mbQitgbNAeT7c@bbjhbbhoug8jo9hqqoeb-mysql.services.clever-cloud.com:3306/bbjhbbhoug8jo9hqqoeb";
+    private static String dataBaseName="uiva61xx4xcpxpjo";
+    private static String dataBasePassword="wLHJZ4eFn5RiwU3LkSbA ";
     private static Connection connection = null;
 
     public static void startConnection() throws SQLException {
-
-        // DriverManager.registerDriver(new org.postgresql.Driver());  //according to database used
+          DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
         System.out.println("successfully connected");
     }
