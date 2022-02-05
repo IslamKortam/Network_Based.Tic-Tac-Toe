@@ -5,6 +5,8 @@
  */
 package controllerPackage;
 
+import serverdao.PlayerPojo;
+
 /**
  *
  * @author imkor
@@ -39,6 +41,16 @@ public class Player {
         this.email = "";
         this.score = 0;
         this.iconIndex = 0;
+        this.status = PlayerStatus.OFFLINE;
+    }
+    
+    public Player(PlayerPojo playerPojo){
+        this.id = playerPojo.getID();
+        this.userName = playerPojo.getUserName();
+        this.fullName = playerPojo.getNickName();
+        this.email = playerPojo.getEmail();
+        this.score = playerPojo.getScore();
+        this.iconIndex = playerPojo.getPicture();
         this.status = PlayerStatus.OFFLINE;
     }
 

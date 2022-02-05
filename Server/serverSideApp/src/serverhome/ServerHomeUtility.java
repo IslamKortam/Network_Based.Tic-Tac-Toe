@@ -75,7 +75,7 @@ public class ServerHomeUtility {
        
    } 
     public static void showPlayerList(Event e) throws IOException{
-        Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
+            Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
             stage.setScene(scene);
