@@ -5,7 +5,10 @@
  */
 package serverhome;
 
+import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.io.IOException;
+import java.util.Vector;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import playersOnServer.PlayersOnServerUtility;
 import serverhome.ServerHomeController;
 
 /**
@@ -75,10 +79,23 @@ public class ServerHomeUtility {
        
    } 
     public static void showPlayerList(Event e) throws IOException{
+<<<<<<< HEAD
             Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
             Scene scene = new Scene(root);
+=======
+            PlayersOnServerUtility.initScene();
+>>>>>>> master
             Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+             Vector<Player> PlayersVector = new Vector<>();
+        Player p1 = new Player(0, "Islam", "ISLAM KORTAM", "imkortam@gmail.com", 100, 1, PlayerStatus.ONLINE);
+        Player p2 = new Player(1, "Alaa", "Alaa KORTAM", "Alaa@gmail.com", 200, 0, PlayerStatus.OFFLINE);
+        Player p3 = new Player(2, "Ahmed", "Ahmed KORTAM", "Ahmed@gmail.com", 300, 2, PlayerStatus.IN_MULTIPLAYER_GAME);
+        PlayersVector.add(p1);
+        PlayersVector.add(p2);
+        PlayersVector.add(p3);
+           
+        PlayersOnServerUtility.appendNewPlayer(PlayersVector);
+            stage.setScene(PlayersOnServerUtility.getScene());
             stage.show();
         }
     
