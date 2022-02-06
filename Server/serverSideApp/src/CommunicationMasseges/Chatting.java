@@ -7,12 +7,15 @@ package CommunicationMasseges;
 
 /**
  *
- * @author imkor
+ * @author Salma
  */
-public enum CommunicationMassegeType {
-    SIGN_IN_REQUEST,
-    SIGN_IN_REQUEST_STATUS,
-    GameMove,
-    GAME_STATUS,
-    CHAT,
+public class Chatting {
+    int receiver;
+    String message;
+
+    public Chatting(int receiver, String message) {
+        this.receiver = receiver;
+        this.message = message;
+    }
+    
 }
