@@ -33,6 +33,10 @@ public class UserHandler extends Thread{
         startListening();
         //outputStream.println("Your are Connected");
     }
+
+    public UserHandler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @Override
     public void run(){

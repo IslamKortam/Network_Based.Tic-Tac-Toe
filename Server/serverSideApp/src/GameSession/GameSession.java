@@ -4,6 +4,7 @@
  */
 package GameSession;
 
+import controllerPackage.PlayerHandler;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,18 @@ public class GameSession {
     private static ArrayList arrayOfMoves = new ArrayList(9);
     private static char[] XOBoard = new char[]{'.','.','.','.','.','.','.','.','.'};
     private static char[] playerMark = new char[]{'X','O'};
+
+    public static void requestSave(int playerId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void acceptSave(int playerId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void quitGame(int playerId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private enum GameResult{
         INCOMPLETE,
         TIE,

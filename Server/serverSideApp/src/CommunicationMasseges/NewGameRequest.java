@@ -9,14 +9,24 @@ package CommunicationMasseges;
  *
  * @author imkor
  */
-public class NewGamRequest {
+public class NewGameRequest {
     private int playerID;
+    private int gameReqId;
 
-    public NewGamRequest(int playerID) {
+    public NewGameRequest(int playerID, int gameReqId) {
         this.playerID = playerID;
+        this.gameReqId = gameReqId;
     }
-    
-    public NewGamRequest() {
+
+   
+    public void setGameReqId(int gameReqId) {
+        this.gameReqId = gameReqId;
+    }
+
+    public int getGameReqId() {
+        return gameReqId;
+    }  
+    public NewGameRequest() {
         this.playerID = -1;
     }
 
@@ -28,6 +38,6 @@ public class NewGamRequest {
         this.playerID = playerID;
     }
     
-    
+    public void accept(){}
     
 }
