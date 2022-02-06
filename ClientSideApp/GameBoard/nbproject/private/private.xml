@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoard.java</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/playercontainer.css</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/modes/ModesUtility.java</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/modes/style.css</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/Login.css</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/nbproject/build-impl.xml</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/modes/ModesController.java</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginController.java</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/stagemanager/StageManager.java</file>
+            <file>file:/E:/ITI/Telecome%20Application%20Development/Java/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginUtility.java</file>
+        </group>
+=======
         <group/>
+>>>>>>> master
     </open-files>
 </project-private>

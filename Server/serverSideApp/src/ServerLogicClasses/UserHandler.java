@@ -61,6 +61,7 @@ public class UserHandler extends Thread{
                         s = Parser.gson.toJson(comm);
                         sendToClient(s);
                     }
+                    //else if(comm.getType() == CommunicationMassegeType)
                     
                 }
                 
@@ -71,10 +72,15 @@ public class UserHandler extends Thread{
             }
         }
     }
-    public void sendToClient(String s){
+    private void sendToClient(String s){
         outputStream.println(s);
-        
     }
+    
+    public void sendCommMsgToClient(CommunicationMassege commMsg){
+        String s = Parser.gson.toJson(commMsg);
+        sendToClient(s);
+    }
+    
     public void startListening(){
         this.start();
     }

@@ -20,40 +20,44 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable {
-    
-    @FXML
-    private Label label;
+
     @FXML
     private Label errorMsg;
-    
+
     @FXML
     private TextField UserNameTextField;
     @FXML
     private PasswordField passwordTextField;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LoginUtility.setErrorLabel(errorMsg);
-        
+
     }
-    
+
     @FXML
     void handleButtonAction(ActionEvent event) {
-        
+
         if (UserNameTextField.getText().equals("") && passwordTextField.getText().equals("")) {
-            
+
             errorMsg.setText("Please Enter username and password.");
         } else if (UserNameTextField.getText().equals("")) {
             errorMsg.setText("Please Enter username");
-            
+
         } else if (passwordTextField.getText().equals("")) {
             errorMsg.setText("Please Enter password");
         } else {
             errorMsg.setText("");
             MainController.getRef().sendSignInRequest(UserNameTextField.getText(), passwordTextField.getText());
             System.out.println(UserNameTextField.getText() + "\n" + passwordTextField.getText());
-            
+
         }
     }
-    
+
+    @FXML
+    void handleButtonAction2(ActionEvent event) {
+
+        System.out.println("sign Up");
+    }
+
 }
