@@ -5,24 +5,38 @@
  */
 package serverdao;
 
+import java.sql.Date;
+
 /**
  *
  * @author Salma
+ * Modified by Mohamed Rashed
  */
 public class GamePojo {
 
+    private int gameID;
     private int player1Id;
     private int player2Id;
     private long timeLength;
     private String board;
-    private int complete;
+    private Boolean complete;
     private int winnerId;
-    private String date_time;
-    private int visible;
+    private Date date_time;
+    private Boolean visible;
 
    
-
-    public GamePojo(int player1Id, int player2Id, long timeLength, String board, int complete, int winnerId, String date_time,int visible) {
+    public  GamePojo(){
+        this.gameID = -1;
+        this.player1Id = -1;
+        this.player2Id = -1;
+        this.timeLength = -1;
+        this.board = "";
+        this.complete = false;
+        this.winnerId = -1;
+        this.date_time = new Date(1);
+        this.visible=false;
+    }
+    public GamePojo(int player1Id, int player2Id, long timeLength, String board, Boolean complete, int winnerId, Date date_time,Boolean visible) {
         this.player1Id = player1Id;
         this.player2Id = player2Id;
         this.timeLength = timeLength;
@@ -32,7 +46,25 @@ public class GamePojo {
         this.date_time = date_time;
         this.visible=visible;
     }
-    
+    public GamePojo(int gameID,int player1Id, int player2Id, long timeLength, String board, Boolean complete, int winnerId, Date date_time,Boolean visible) {
+        this.gameID = gameID;
+        this.player1Id = player1Id;
+        this.player2Id = player2Id;
+        this.timeLength = timeLength;
+        this.board = board;
+        this.complete = complete;
+        this.winnerId = winnerId;
+        this.date_time = date_time;
+        this.visible=visible;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
 
     public int getPlayer1Id() {
         return player1Id;
@@ -66,14 +98,6 @@ public class GamePojo {
         this.board = board;
     }
 
-    public int isComplete() {
-        return complete;
-    }
-
-    public void setComplete(int complete) {
-        this.complete = complete;
-    }
-
     public int getWinnerId() {
         return winnerId;
     }
@@ -82,20 +106,29 @@ public class GamePojo {
         this.winnerId = winnerId;
     }
 
-    public String getDate_time() {
+    public Boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
+    }
+
+    public Date getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(String date_time) {
+    public void setDate_time(Date date_time) {
         this.date_time = date_time;
     }
 
-   public int getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(int visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+    
     
 }

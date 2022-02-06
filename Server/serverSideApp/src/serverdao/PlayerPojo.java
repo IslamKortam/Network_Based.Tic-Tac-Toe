@@ -5,24 +5,38 @@
  */
 package serverdao;
 
+import java.sql.Date;
+
 /**
  *
  * @author Salma
+ * Modified by Mohamed Rashed
  */
 public class PlayerPojo {
 
+    private int ID;
     private String userName;
     private String nickName;
     private String email;
     private String password;
     private int picture;
     private int score;
-    private String lastVisit;
-    private int visible;
+    private Date lastVisit;
+    private Boolean visible;
 
    
-
-    public PlayerPojo(String userName, String nickName, String email, String password, int picture, int score, String lastVisit,int visible) {
+    public PlayerPojo() {
+        this.ID=-1;
+        this.userName = "";
+        this.nickName = "";
+        this.email = "";
+        this.password = "";
+        this.picture = -1;
+        this.score = -1;
+        this.lastVisit = new Date(1);
+        this.visible= false;
+    }
+    public PlayerPojo(String userName, String nickName, String email, String password, int picture, int score, Date lastVisit,Boolean visible) {
         this.userName = userName;
         this.nickName = nickName;
         this.email = email;
@@ -31,6 +45,25 @@ public class PlayerPojo {
         this.score = score;
         this.lastVisit = lastVisit;
         this.visible= visible;
+    }
+    public PlayerPojo(int ID,String userName, String nickName, String email, String password, int picture, int score, Date lastVisit,Boolean visible) {
+        this.ID=ID;
+        this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.picture = picture;
+        this.score = score;
+        this.lastVisit = lastVisit;
+        this.visible= visible;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getUserName() {
@@ -81,20 +114,19 @@ public class PlayerPojo {
         this.score = score;
     }
 
-    public String getLastVisit() {
+    public Date getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(String lastVisit) {
+    public void setLastVisit(Date lastVisit) {
         this.lastVisit = lastVisit;
     }
 
-   
-     public int getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(int visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
 

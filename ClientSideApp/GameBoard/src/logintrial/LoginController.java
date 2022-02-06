@@ -1,5 +1,6 @@
 package logintrial;
 
+import controllerPackage.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -47,7 +48,7 @@ public class LoginController implements Initializable {
             errorMsg.setText("Please Enter password");
         } else {
             errorMsg.setText("");
-
+            MainController.getRef().sendSignInRequest(UserNameTextField.getText(), passwordTextField.getText());
             System.out.println(UserNameTextField.getText() + "\n" + passwordTextField.getText());
 
         }

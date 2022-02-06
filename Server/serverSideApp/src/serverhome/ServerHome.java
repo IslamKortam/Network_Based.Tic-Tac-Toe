@@ -5,13 +5,17 @@
  */
 package serverhome;
 
+import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Vector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import playersOnServer.PlayersOnServerUtility;
 
 /**
  *
@@ -24,7 +28,7 @@ public class ServerHome extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("serverHome.fxml"));
-        
+       
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

@@ -63,7 +63,7 @@ public class PlayersOnServerUtility {
         playersElementsArray.add(newPlayer);
         
     }
-    static void appendNewPlayer(Vector<Player> PlayersVector) throws IOException {
+   public  static void appendNewPlayer(Vector<Player> PlayersVector) throws IOException {
         Players = PlayersVector;
         System.out.println(Players.size());
         for (Player p : Players) {

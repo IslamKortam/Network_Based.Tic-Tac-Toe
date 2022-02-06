@@ -13,14 +13,10 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -39,11 +35,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javax.imageio.ImageIO;
-//import mainPkg.*;
 
 /**
  *
- * @author GDO
+ * @author Mohamed Rashed
  */
 public class SignupController implements Initializable {
     ScheduledThreadPoolExecutor th;
