@@ -26,6 +26,10 @@ public class PlayerHandler extends Player {
     GameSession currentGame;
       private static Vector<NewGameRequest> sentReq=new Vector<NewGameRequest>();
      private static Vector<NewGameRequest> receivedReq=new Vector<NewGameRequest>();
+
+    public static Vector<PlayerHandler> getPlayers() {
+        return players;
+    }
  
        
  

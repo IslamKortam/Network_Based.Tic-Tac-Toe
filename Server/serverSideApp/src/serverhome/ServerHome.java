@@ -6,6 +6,7 @@
 package serverhome;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -30,19 +31,28 @@ public class ServerHome extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("serverHome.fxml"));
        
         Scene scene = new Scene(root);
-        
+        ServerHomeUtility.setScene(scene);
+        PlayersOnServerUtility.setMainStage(stage);
         stage.setScene(scene);
         stage.show();
+        logPlayers();
         
+    }
+    
+    private void logPlayers(){
+        for(PlayerHandler player : PlayerHandler.getPlayers()){
+            ServerHomeUtility.updateLogs("+ Added: " + player.getUserName() + ":" + player.getStatus());
+        }
     }
 
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String[] args) {
         launch(args);
     }
 
-    
+    */
     
 }

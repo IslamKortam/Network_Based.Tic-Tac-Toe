@@ -5,6 +5,7 @@
 package playersOnServer;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,13 +22,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 /**
  *
  * @author Bahaa eldin
  */
 public class PlayersOnServerUtility {
     static ArrayList<PlayerElements> playersElementsArray = new ArrayList<PlayerElements>();
-    static Vector<Player> Players;
+    static Vector<PlayerHandler> Players;
     private static Scene scene;
     private static Label name;
     private static ImageView playerImg;
@@ -35,12 +37,22 @@ public class PlayersOnServerUtility {
     private static Label status;
     private static VBox area;
     private static ArrayList<Node> nodes;
+    private static Stage mainStage;
+
+    public static Stage getMainStage() {
+        return mainStage;
+    }
+
+    public static void setMainStage(Stage mainStage) {
+        PlayersOnServerUtility.mainStage = mainStage;
+    }
 
 
-    public static void setPlayers(Vector<Player> Players) {
+    public static void setPlayers(Vector<PlayerHandler> Players) {
         PlayersOnServerUtility.Players = Players;
     }
     static void goSceneBack(){
+        getMainStage().setScene(serverhome.ServerHomeUtility.getScene());
         System.out.println("Back Button Pressed.....");
     }
 
@@ -63,7 +75,7 @@ public class PlayersOnServerUtility {
         playersElementsArray.add(newPlayer);
         
     }
-   public  static void appendNewPlayer(Vector<Player> PlayersVector) throws IOException {
+   public  static void appendNewPlayer(Vector<PlayerHandler> PlayersVector) throws IOException {
         Players = PlayersVector;
         System.out.println(Players.size());
         for (Player p : Players) {
@@ -78,7 +90,7 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
         PlayersOnServerUtility.status = status;
     }
 
-    static void setParentContainer(ArrayList<Node> nodes, Vector<Player> playersVector, VBox area) {
+    static void setParentContainer(ArrayList<Node> nodes, Vector<PlayerHandler> playersVector, VBox area) {
         PlayersOnServerUtility.Players = playersVector;
         PlayersOnServerUtility.area = area;
         PlayersOnServerUtility.nodes = nodes;

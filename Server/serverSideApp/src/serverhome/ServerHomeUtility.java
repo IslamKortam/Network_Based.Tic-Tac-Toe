@@ -6,6 +6,7 @@
 package serverhome;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.util.Vector;
@@ -30,10 +31,12 @@ import serverhome.ServerHomeController;
  * @author Salma
  */
 public class ServerHomeUtility {
-   static TextArea logs;
-   static Button startServer;
-   static Button stopServer;
-   static Text status;
+
+    private static Scene scene;
+    static TextArea logs;
+    static Button startServer;
+    static Button stopServer;
+    static Text status;
     static ImageView statusImg;
 
     public ServerHomeUtility(TextArea logs, Button startServer, Button stopServer, Text status, ImageView statusImg) {
@@ -43,64 +46,65 @@ public class ServerHomeUtility {
         ServerHomeUtility.status = status;
         ServerHomeUtility.statusImg = statusImg;
     }
-    
-    
-    
-   public static  void changeStatusToOnline(){
-       
-       
-       Platform.runLater(new Runnable() {
-           @Override
-           public void run() {
-               status.setText("server is online");
-               status.setFill(Color.GREEN);
-               Image online = new Image(ServerHomeController.class.getResourceAsStream("/resources/online.png"));
-               statusImg.setImage(online);
-               logs.appendText("--------- server is now live ------\n");
-           }
-       });
-       
-         
-   } 
-   public static void changeStatusToOffline(){
-          
-        Platform.runLater(new Runnable(){
-        
+
+    public static void changeStatusToOnline() {
+
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                 status.setText("server is offline");
-         status.setFill(Color.RED);
-           Image offline = new Image(ServerHomeController.class.getResourceAsStream("/resources/offline.png"));
-               statusImg.setImage(offline);
-         logs.appendText("\n------- server is turned off ------\n");
+                status.setText("server is online");
+                status.setFill(Color.GREEN);
+                Image online = new Image(ServerHomeController.class.getResourceAsStream("/resources/online.png"));
+                statusImg.setImage(online);
+                logs.appendText("--------- server is now live ------\n");
+            }
+        });
+
+    }
+
+    public static void changeStatusToOffline() {
+
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                status.setText("server is offline");
+                status.setFill(Color.RED);
+                Image offline = new Image(ServerHomeController.class.getResourceAsStream("/resources/offline.png"));
+                statusImg.setImage(offline);
+                logs.appendText("\n------- server is turned off ------\n");
 
             }
-       });
-       
-   } 
-    public static void showPlayerList(Event e) throws IOException{
-            Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
-            Scene scene = new Scene(root);
-            PlayersOnServerUtility.initScene();
-            Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-             Vector<Player> PlayersVector = new Vector<>();
-        Player p1 = new Player(0, "Islam", "ISLAM KORTAM", "imkortam@gmail.com", 100, 1, PlayerStatus.ONLINE);
-        Player p2 = new Player(1, "Alaa", "Alaa KORTAM", "Alaa@gmail.com", 200, 0, PlayerStatus.OFFLINE);
-        Player p3 = new Player(2, "Ahmed", "Ahmed KORTAM", "Ahmed@gmail.com", 300, 2, PlayerStatus.IN_MULTIPLAYER_GAME);
-        PlayersVector.add(p1);
-        PlayersVector.add(p2);
-        PlayersVector.add(p3);
-           
+        });
+
+    }
+
+    public static void showPlayerList(Event e) throws IOException {
+        Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
+        Scene scene = new Scene(root);
+        PlayersOnServerUtility.initScene();
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Vector<PlayerHandler> PlayersVector = PlayerHandler.getPlayers();
+
         PlayersOnServerUtility.appendNewPlayer(PlayersVector);
-            stage.setScene(PlayersOnServerUtility.getScene());
-            stage.show();
-        }
-    
-    public static void updateLogs(String update){
-         logs.appendText("\n"+update);
+        stage.setScene(PlayersOnServerUtility.getScene());
+        stage.show();
     }
-    public static void resetLogs(){
-      logs.setText("");
+
+    public static void updateLogs(String update) {
+        logs.appendText("\n" + update);
     }
-    
+
+    public static void resetLogs() {
+        logs.setText("");
+    }
+
+    public static void setScene(Scene scene) {
+        ServerHomeUtility.scene = scene;
+    }
+
+    public static Scene getScene() {
+        return scene;
+    }
+
 }

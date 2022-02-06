@@ -1,6 +1,7 @@
 package playersOnServer;
 
 import controllerPackage.Player;
+import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,12 +24,12 @@ public class PlayersOnServerController implements Initializable{
 
     @FXML
     private Button backBtn;
-    Vector<Player> playersVector;
+    Vector<PlayerHandler> playersVector;
    ArrayList<Node> nodes;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-        playersVector = new Vector<Player>();
+        playersVector = new Vector<PlayerHandler>();
         nodes = new ArrayList<>();
         PlayersOnServerUtility.setParentContainer(nodes, playersVector, area);
         
