@@ -40,6 +40,7 @@ public class PlayersSceneUtility {
     private static Label status;
     private static VBox area;
     private static ArrayList<Node> nodes;
+    public static Parent ref;
 
     static void goSceneBack() {
         System.out.println("Back Button Pressed.....");
@@ -78,6 +79,7 @@ public class PlayersSceneUtility {
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((playersListScene.PlayersScene.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
+        ref=root;
     }
 
     public static Scene getScene() {

@@ -25,7 +25,7 @@ import javafx.scene.layout.BorderPane;
  * @author Bahaa eldin
  */
 public class GameBoardController implements Initializable {
-    
+    static GameBoardController ref;
     @FXML
     private Button button4;
 
@@ -98,6 +98,7 @@ public class GameBoardController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ref=this;
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
         GameBoardUtility.setButtons(buttons);
          GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img);
@@ -117,6 +118,11 @@ public class GameBoardController implements Initializable {
     void viewChatBox(MouseEvent event) {
         GameBoardUtility.changeVisibility(ChatBox);
     }
+
+    public static GameBoardController getRef() {
+        return ref;
+    }
+    
     
 //    public void setPlayerSymbol(Button button){
 //        if(playerTurn%2==0){
@@ -128,43 +134,7 @@ public class GameBoardController implements Initializable {
 //        playerTurn =0;
 //        }
 //    }
-    String[] line;
-    public String[] checkIfGameOver(){
-        for(int i =0 ; i < 8; i++){
-            line = null;
-            switch(i){
-            //horizontal cases
-                case 0:
-                line[i] = button1.getText() + button2.getText() + button3.getText();
-                break;
-                case 1:
-                line[i] = button4.getText() + button5.getText() + button6.getText();
-                break;
-                case 2:
-                line[i] = button4.getText() + button5.getText() + button6.getText();
-                break;
-            //vertical cases
-                case 3:
-                line[i] = button1.getText() + button4.getText() + button7.getText();
-                break;
-                case 4:
-                line[i] = button2.getText() + button5.getText() + button8.getText();
-                break;
-                case 5:
-                line[i] = button3.getText() + button6.getText() + button9  .getText();
-                break;
-            //Diagonal cases
-                case 6:
-                line[i] = button1.getText() + button5.getText() + button9.getText();
-                break;
-                case 7:
-                line[i] = button3.getText() + button5.getText() + button7.getText();
-                break;
-                default: line =null;
-            }
-        }
-        return line;
-    } 
+    
     
 }
 

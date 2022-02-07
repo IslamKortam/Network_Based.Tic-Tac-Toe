@@ -5,7 +5,9 @@
  */
 package xoSignupPkg;
 
+import controllerPackage.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,39 +15,32 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+import stagemanager.StageManager;
 
 /**
  *
  * @author Mohamed Rashed
  */
 public class SignupPage extends Application {
-    private static double xOffset = 0;
-    private static double yOffset = 0;
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+        StageManager stageManger = new StageManager(stage);
+        MainController.getRef().setStageMagner(stageManger);
+        /*
         Parent root = FXMLLoader.load(getClass().getResource("FXMLSignup.fxml"));
         stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
-        
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = stage.getX() - event.getScreenX();
-                yOffset = stage.getY() - event.getScreenY();
-            }
-        });
-
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() + xOffset);
-                stage.setY(event.getScreenY() + yOffset);
-            }
-        });
-        
         stage.setScene(scene);
         stage.show();
-        
+        */
     }
 
     /**

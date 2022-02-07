@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 import java.net.URI;
@@ -55,9 +56,8 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void handleButtonAction2(ActionEvent event) {
-
-        System.out.println("sign Up");
+    void handleButtonAction2(ActionEvent event) throws IOException {
+        MainController.getRef().navigateToSignUpPage();
     }
 
 }

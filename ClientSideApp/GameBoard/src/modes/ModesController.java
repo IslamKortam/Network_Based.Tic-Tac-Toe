@@ -4,6 +4,8 @@
  */
 package modes;
 
+import controllerPackage.MainController;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,8 +21,9 @@ public class ModesController {
     private Label label;
 
     @FXML
-    private void handleSinglePlayerButtonAction(ActionEvent event) {
+    private void handleSinglePlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Single Player");
+        MainController.getRef().initSinglePlayerGame();
     }
 
     @FXML

@@ -5,6 +5,7 @@
  */
 package gameboard;
 
+import controllerPackage.ClientSideGameController;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Platform;
@@ -31,6 +32,7 @@ public class GameBoardUtility {
     static Label player2Score;
     static ImageView img1;
     static ImageView img2;
+    public static Parent ref;
 
     public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2) {
         GameBoardUtility.player1Name = player1;
@@ -106,8 +108,7 @@ public class GameBoardUtility {
         // event occurs here, button index = i
         Button button = buttons.get(boxNumer);
         button.setOnMouseClicked(mouseEvent -> {
-//            setBox(boxNumer  , "x");
-            System.out.println("button pressed " + boxNumer);
+            ClientSideGameController.getRef().makeAMove(boxNumer);
         });
     }
 
@@ -160,6 +161,7 @@ public class GameBoardUtility {
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
         scene = new Scene(root);
+        ref=root;
     }
 
     public static Scene getScene() {

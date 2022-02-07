@@ -32,6 +32,7 @@ public class LoginTrial extends Application {
         });
         StageManager stageManger = new StageManager(stage);
         MainController.getRef().setStageMagner(stageManger);
+        
     }
 
     /**

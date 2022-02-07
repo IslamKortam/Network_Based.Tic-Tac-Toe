@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 public class SignUpUtility {
     private static Scene scene;
     static SignupController signUpControllerReference;
+    public static Parent ref;
     
     static void setSignUpControllerReference(SignupController ref){
         signUpControllerReference = ref;
@@ -31,6 +32,7 @@ public class SignUpUtility {
     public static void initScene() throws IOException{
         Parent root = FXMLLoader.load((xoSignupPkg.SignUpUtility.class).getResource("FXMLSignup.fxml"));
         scene = new Scene(root);
+        ref=root;
     }
     public static Scene getScene(){
         return scene;

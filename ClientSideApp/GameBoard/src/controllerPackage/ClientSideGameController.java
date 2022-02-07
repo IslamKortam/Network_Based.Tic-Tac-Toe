@@ -16,25 +16,28 @@ import java.util.Random;
  */
 public class ClientSideGameController {
     
-    public static ClientSideGameController ref;
-    private final GameBoardController currentGame;
+    private static ClientSideGameController ref;
     private boolean isMultiplayer;
     private boolean yourTurn;
     private int playerNumber;
     private static ArrayList<Integer> gameMoves = new ArrayList<Integer>();
-    final char[] playerSymbole={'x','o'};
+    final char[] playerSymbole={'X','O'};
     private int winnerNumber=-1;
+    private String[] board = {"a","a","a","a","a","a","a","a","a"};
 
-    public ClientSideGameController(boolean isMultiplayer, int plNumber,GameBoardController currGame) {
+    public ClientSideGameController(boolean isMultiplayer, int plNumber) {
         this.isMultiplayer = isMultiplayer;
         this.playerNumber = plNumber;
         if(playerNumber==0)
             yourTurn=true;
         else
             yourTurn=false;
-        this.currentGame=currGame;
         GameBoardUtility.resetAllBoxes();
         ref=this;
+    }
+
+    public static ClientSideGameController getRef() {
+        return ref;
     }
     
     public boolean isIsMultiplayer() {
@@ -100,13 +103,14 @@ public class ClientSideGameController {
     
     public void admitMove(int boxID,int plrNumber ){
         GameBoardUtility.setBox(boxID,""+playerSymbole[plrNumber]);
+        board[boxID] = playerSymbole[plrNumber]+"";
     }
     
     private boolean checkEndOfGame(){
         //winner 0=> x is winner
         //winner 1=> o is winner
         //winner 2=> Tie
-        String[] line = currentGame.checkIfGameOver();
+        String[] line = checkIfGameOver();
         for (String msg:line) {
             if(msg.equals("XXX")){
                 winnerNumber=0;
@@ -116,14 +120,12 @@ public class ClientSideGameController {
                 winnerNumber=1;
                 return true;
             }
-            else{
-                if(gameMoves.size()<9){
-                    return false;
-                }
-                winnerNumber=2;
-                return true;
-            }
         }
+        if(gameMoves.size()==9){
+            winnerNumber=2;
+            return true;
+        }
+            
         return false;
     } 
     
@@ -145,5 +147,42 @@ public class ClientSideGameController {
                 random = rand.nextInt(end-start) + start;
         }
         return random;
+    } 
+    
+    String[] line = new String[8];
+    public String[] checkIfGameOver(){
+        for(int i =0 ; i < 8; i++){
+            switch(i){
+            //horizontal cases
+                case 0:
+                line[i] = board[0] + board[1] + board[2];
+                break;
+                case 1:
+                line[i] = board[3] + board[4] + board[5];
+                break;
+                case 2:
+                line[i] = board[6] + board[7] + board[8];
+                break;
+            //vertical cases
+                case 3:
+                line[i] = board[0] + board[3] + board[6];
+                break;
+                case 4:
+                line[i] = board[1] + board[4] + board[7];
+                break;
+                case 5:
+                line[i] = board[2] + board[5] +board[8];
+                break;
+            //Diagonal cases
+                case 6:
+                line[i] = board[0] + board[4] + board[8];
+                break;
+                case 7:
+                line[i] = board[2] + board[4] + board[6];
+                break;
+            }
+        }
+        
+        return line;
     } 
 }
