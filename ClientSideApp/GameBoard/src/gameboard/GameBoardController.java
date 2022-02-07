@@ -128,48 +128,43 @@ public class GameBoardController implements Initializable {
 //        playerTurn =0;
 //        }
 //    }
-//    public void checkIfGameOver(){
-//        for(int i =0 ; i < 8; i++){
-//            String line = null;
-//            switch(i){
-//            //horizontal cases
-//                case 0:
-//                line = button1.getText() + button2.getText() + button3.getText();
-//                break;
-//                case 1:
-//                line = button4.getText() + button5.getText() + button6.getText();
-//                break;
-//                case 2:
-//                line = button4.getText() + button5.getText() + button6.getText();
-//                break;
-//            //vertical cases
-//                case 3:
-//                line = button1.getText() + button4.getText() + button7.getText();
-//                break;
-//                case 4:
-//                line = button2.getText() + button5.getText() + button8.getText();
-//                break;
-//                case 5:
-//                line = button3.getText() + button6.getText() + button9  .getText();
-//                break;
-//            //Diagonal cases
-//                case 6:
-//                line = button1.getText() + button5.getText() + button9.getText();
-//                break;
-//                case 7:
-//                line = button3.getText() + button5.getText() + button7.getText();
-//                break;
-//                default: line =null;
-//            }
-//            if(line.equals("XXX")){
-//                label.setText("The winner is X");
-//            }
-//            else if(line.equals("OOO")){
-//                label.setText("The winner is O");
-//            }
-//        }
-//
-//    } 
+    String[] line;
+    public String[] checkIfGameOver(){
+        for(int i =0 ; i < 8; i++){
+            line = null;
+            switch(i){
+            //horizontal cases
+                case 0:
+                line[i] = button1.getText() + button2.getText() + button3.getText();
+                break;
+                case 1:
+                line[i] = button4.getText() + button5.getText() + button6.getText();
+                break;
+                case 2:
+                line[i] = button4.getText() + button5.getText() + button6.getText();
+                break;
+            //vertical cases
+                case 3:
+                line[i] = button1.getText() + button4.getText() + button7.getText();
+                break;
+                case 4:
+                line[i] = button2.getText() + button5.getText() + button8.getText();
+                break;
+                case 5:
+                line[i] = button3.getText() + button6.getText() + button9  .getText();
+                break;
+            //Diagonal cases
+                case 6:
+                line[i] = button1.getText() + button5.getText() + button9.getText();
+                break;
+                case 7:
+                line[i] = button3.getText() + button5.getText() + button7.getText();
+                break;
+                default: line =null;
+            }
+        }
+        return line;
+    } 
     
 }
 

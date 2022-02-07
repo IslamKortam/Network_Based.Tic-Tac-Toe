@@ -80,7 +80,7 @@ public class GameBoardUtility {
             System.out.println("button pressed " +boxNumer);
             });
         }
-        static void setBox(int boxNumber  , String text){
+        public static void setBox(int boxNumber  , String text){
         // set the text on the buitton by String symbol and set "disable" feature of the buttons 
             buttons.get(boxNumber).setText(text);
             buttons.get(boxNumber).setDisable(true);
@@ -91,10 +91,10 @@ public class GameBoardUtility {
             buttons.get(boxNumber).setDisable(false);
             buttons.get(boxNumber).setText("");
         }
-        static void resetAllBoxes(){
+        public static void resetAllBoxes(){
             for(int i =0; i<buttons.size();i++)
             {
-            resetBox(i);
+                resetBox(i);
             }
         }
         static void changeVisibility(BorderPane ChatBox){
