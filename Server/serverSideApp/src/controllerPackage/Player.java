@@ -53,6 +53,18 @@ public class Player {
         this.iconIndex = playerPojo.getPicture();
         this.status = PlayerStatus.OFFLINE;
     }
+    
+    public Player(PlayerHandler playerHandler) {
+        this.id = playerHandler.getId();
+        this.userName = playerHandler.getUserName();
+        this.fullName = playerHandler.getFullName();
+        this.email = playerHandler.getEmail();
+        this.score = playerHandler.getScore();
+        this.iconIndex = playerHandler.getIconIndex();
+        this.status = playerHandler.getStatus();
+    }
+    
+    
 
     /* Setters */
     public void setId(int id) {

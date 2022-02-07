@@ -39,7 +39,7 @@ public class StageManager {
 
         this.stage = stage;
         stageManger = this;
-        displayScene(SceneName.SIGNUP);
+        displayScene(SceneName.SIGNIN);
     }
 
     public static StageManager getStageManger() {

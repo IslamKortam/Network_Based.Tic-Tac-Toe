@@ -16,6 +16,7 @@ import java.util.Vector;
 import GameSession.*;
 import ParserPackage.Parser;
 import serverdao.PlayerPojo;
+import serverhome.ServerHomeUtility;
 /**
  *
  * @author Salma
@@ -26,9 +27,37 @@ public class PlayerHandler extends Player {
     GameSession currentGame;
       private static Vector<NewGameRequest> sentReq=new Vector<NewGameRequest>();
      private static Vector<NewGameRequest> receivedReq=new Vector<NewGameRequest>();
+     
+     
+     public void sendMeCommMsg(CommunicationMassege commMsg){
+         if(getStatus() == PlayerStatus.ONLINE){
+             userHandler.sendCommMsgToClient(commMsg);
+         }
+     }
+     
+     public void sendMeAllPlayers(){
+         for(PlayerHandler playerHandler : players){
+             CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.PLAYER, Parser.gson.toJson(new Player(playerHandler)));
+             sendMeCommMsg(commMsg);
+         }
+     }
 
     public static Vector<PlayerHandler> getPlayers() {
         return players;
+    }
+
+    public void setUserHandler(UserHandler userHandler) {
+        this.userHandler = userHandler;
+    }
+    
+    public static PlayerHandler getPlayerHandlerByID(int id){
+        PlayerHandler p = null;
+        for(PlayerHandler player : players){
+            if(player.getId() == id){
+                p = player;
+            }
+        }
+        return p;
     }
  
        
@@ -92,6 +121,11 @@ public class PlayerHandler extends Player {
    
   }
   
+  public void changeStatus(PlayerStatus st){
+      this.setStatus(st);
+      System.err.println("Notify The Others");
+      ServerHomeUtility.updateLogs("Player: " + getUserName() + "'s Status changed to: " + st);
+  }
   
 
  public void sendMsg(int player2Id,String message){

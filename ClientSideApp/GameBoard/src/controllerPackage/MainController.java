@@ -62,6 +62,13 @@ public class MainController {
         stageMagner.displayScene(SceneName.SIGNUP);
     }
     
+    public void handle(CommunicationMassege commMsg){
+        if(commMsg.getType() == CommunicationMassegeType.PLAYER){
+            Player p = Parser.gson.fromJson(commMsg.getMsgBody(), Player.class);
+            System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
+        }
+    }
+    
 
     public static MainController getRef() {
         return ref;

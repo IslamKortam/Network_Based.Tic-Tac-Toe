@@ -8,7 +8,9 @@ package controllerPackage;
 import ServerLogicClasses.ServerMulti;
 import java.sql.SQLException;
 import java.util.Vector;
+import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.stage.Stage;
 import serverdao.Dao;
 import serverdao.PlayerPojo;
 
@@ -16,7 +18,7 @@ import serverdao.PlayerPojo;
  *
  * @author imkor
  */
-public class ServerMainController {
+public class ServerMainController extends Application {
     
     public static void main(String[] args) throws SQLException{
         Dao.startConnection();
@@ -29,6 +31,11 @@ public class ServerMainController {
         ServerMulti server = ServerMulti.getRef();
         server.startServer();
         launch(serverhome.ServerHome.class ,args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        
     }
     
 }

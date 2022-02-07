@@ -14,6 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ParserPackage.Parser;
 import CommunicationMasseges.*;
+import controllerPackage.PlayerHandler;
+import static controllerPackage.PlayerHandler.getPlayerHandlerByID;
+import controllerPackage.PlayerStatus;
 import java.sql.SQLException;
 /**
  *
@@ -25,6 +28,7 @@ public class UserHandler extends Thread{
     private DataInputStream inputStream;
     private PrintStream outputStream;
     private Boolean authrized = false;
+    private PlayerHandler connectedPlayer;
     public UserHandler(Socket sc) throws IOException{
         this.socket = sc;
         inputStream = new DataInputStream(sc.getInputStream());
@@ -53,7 +57,11 @@ public class UserHandler extends Thread{
                         SignInStatus status = NotAuthrizedUsersHandler.ref.handleSignInAttempt(req);
                         if(status.getStatus() == AcceptedDinedStatus.ACCEPTED){
                             System.out.println("Accepted Client");
+                            connectedPlayer = getPlayerHandlerByID(status.getPlayerData().getId());
+                            connectedPlayer.setUserHandler(this);
+                            connectedPlayer.changeStatus(PlayerStatus.ONLINE);
                             authrized = true;
+                            connectedPlayer.sendMeAllPlayers();
                         }else{
                             System.out.println("Denied Client");
                         }
@@ -66,9 +74,25 @@ public class UserHandler extends Thread{
                 }
                 
             } catch (IOException ex) {
-                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Player Disconnected");
+                if(authrized){
+                    authrized = false;
+                    connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
+                    connectedPlayer.setUserHandler(null);
+                    this.stop();
+                    try {
+                        inputStream.close();
+                    } catch (IOException ex1) {
+                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
+                        System.out.println("iN Catch");
+                    }
+                    outputStream.close();
+                    UserHandler.connectedUsersHandelers.remove(this);
+                    this.stop();
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

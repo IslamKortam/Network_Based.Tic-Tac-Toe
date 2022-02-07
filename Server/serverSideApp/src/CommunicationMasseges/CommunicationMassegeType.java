@@ -15,4 +15,5 @@ public enum CommunicationMassegeType {
     GameMove,
     GAME_STATUS,
     CHAT,
+    PLAYER
 }

@@ -6,21 +6,30 @@ package logintrial;
 
 import controllerPackage.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import stagemanager.StageManager;
-
 
 /**
  *
  * @author Bahaa eldin
  */
 public class LoginTrial extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
         StageManager stageManger = new StageManager(stage);
         MainController.getRef().setStageMagner(stageManger);
     }
@@ -28,6 +37,4 @@ public class LoginTrial extends Application {
     /**
      * @param args the command line arguments
      */
-    
-    
 }

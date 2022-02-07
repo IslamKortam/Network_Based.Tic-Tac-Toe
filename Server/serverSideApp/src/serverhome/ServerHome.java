@@ -12,10 +12,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import playersOnServer.PlayersOnServerUtility;
 
 /**
@@ -36,6 +39,13 @@ public class ServerHome extends Application {
         stage.setScene(scene);
         stage.show();
         logPlayers();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
         
     }
     

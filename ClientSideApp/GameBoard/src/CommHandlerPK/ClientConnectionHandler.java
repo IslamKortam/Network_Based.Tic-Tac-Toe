@@ -51,6 +51,10 @@ public class ClientConnectionHandler extends Thread{
                         SignInStatus parsedStatus = Parser.gson.fromJson(msg.getMsgBody(), SignInStatus.class);
                         MainController.getRef().handleIncomingSignInRequsetStatus(parsedStatus);
                         break;
+                        
+                }
+                if(msg.getType() != CommunicationMassegeType.SIGN_IN_REQUEST_STATUS){
+                    MainController.getRef().handle(msg);
                 }
                 System.out.println("CommHandler:"+s);
             } catch (IOException ex) {

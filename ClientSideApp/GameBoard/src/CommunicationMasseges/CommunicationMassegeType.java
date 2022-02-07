@@ -11,5 +11,9 @@ package CommunicationMasseges;
  */
 public enum CommunicationMassegeType {
     SIGN_IN_REQUEST,
-    SIGN_IN_REQUEST_STATUS
+    SIGN_IN_REQUEST_STATUS,
+    GameMove,
+    GAME_STATUS,
+    CHAT,
+    PLAYER
 }
