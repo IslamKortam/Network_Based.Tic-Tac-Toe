@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  *
- * @author GDO
+ * @author Mohamed Rashed
  */
 public class ClientSideGameController {
     
