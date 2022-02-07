@@ -21,8 +21,9 @@ public class ModesController {
     private Label label;
 
     @FXML
-    private void handleSinglePlayerButtonAction(ActionEvent event) {
+    private void handleSinglePlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Single Player");
+        MainController.getRef().initSinglePlayerGame();
     }
 
     @FXML

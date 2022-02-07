@@ -16,11 +16,12 @@ import javafx.scene.Scene;
  */
 public class ModesUtility {
     private static Scene scene;
-    
+    public static Parent ref;
     
     public static void initScene() throws IOException{
         Parent root = FXMLLoader.load((modes.ModesUtility.class).getResource("Modes.fxml"));
         scene = new Scene(root);
+        ref=root;
     }
     
     public static Scene getScene(){

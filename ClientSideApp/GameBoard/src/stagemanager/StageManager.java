@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import modes.ModesUtility;
 import playersListScene.PlayersSceneUtility;
 
@@ -65,34 +68,38 @@ public class StageManager {
     public void displayScene(SceneName name) throws IOException {
         Platform.runLater(() -> {
             try {
-
                 switch (name) {
                     case SIGNUP:
 //                        SignUpUtility.initScene();
                         stage.setScene(SignUpUtility.getScene());
+                        moveScreen(SignUpUtility.ref,stage);
                         stage.show();
                         break;
                     case SIGNIN:
 //                        LoginUtility.initScene();
                         stage.setScene(LoginUtility.getScene());
+                        moveScreen(LoginUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.SIGNUP;
                         break;
                     case GAMEMODE:
 //                        ModesUtility.initScene();
                         stage.setScene(ModesUtility.getScene());
+                        moveScreen(ModesUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.GAMEMODE;
                         break;
                     case PLAYERLIST:
 //                        PlayersSceneUtility.initScene();
                         stage.setScene(PlayersSceneUtility.getScene());
+                        moveScreen(PlayersSceneUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.PLAYERLIST;
                         break;
                     case GAMEBOARD:
 //                        GameBoardUtility.initScene();
                         stage.setScene(GameBoardUtility.getScene());
+                        moveScreen(GameBoardUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.GAMEBOARD;
                 }
@@ -102,5 +109,24 @@ public class StageManager {
         });
 
     }
+    
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+    static void moveScreen(Parent root,Stage stg){
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = stg.getX() - event.getScreenX();
+                yOffset = stg.getY() - event.getScreenY();
+            }
+        });
 
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stg.setX(event.getScreenX() + xOffset);
+                stg.setY(event.getScreenY() + yOffset);
+            }
+        });
+    }
 }

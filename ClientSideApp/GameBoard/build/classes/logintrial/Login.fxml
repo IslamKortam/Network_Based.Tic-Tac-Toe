@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logintrial.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logintrial.LoginController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <AnchorPane id="form" layoutX="20.0" layoutY="35.0" prefHeight="530.0" prefWidth="378.0" style=" -fx-border-radius: 50px;" stylesheets="@Login.css">
@@ -40,7 +40,7 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            <Label fx:id="errorMsg" alignment="CENTER" layoutY="183.0" prefHeight="18.0" prefWidth="286.0" textFill="#e46a29">
+            <Label fx:id="errorMsg" alignment="CENTER" layoutX="46.0" layoutY="305.0" prefHeight="18.0" prefWidth="286.0" textFill="#e46a29">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

@@ -58,9 +58,8 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void handleButtonAction2(ActionEvent event) {
-
-        System.out.println("sign Up");
+    void handleButtonAction2(ActionEvent event) throws IOException {
+        MainController.getRef().navigateToSignUpPage();
     }
 
 }

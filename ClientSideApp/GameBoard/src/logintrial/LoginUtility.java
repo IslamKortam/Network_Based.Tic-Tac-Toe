@@ -24,7 +24,8 @@ public class LoginUtility {
 
     private static Scene scene;
     private static Label errorMsg;
-
+    
+    public static Parent ref;
     static void setErrorLabel(Label error) {
         errorMsg = error;
     }
@@ -44,6 +45,7 @@ public class LoginUtility {
 
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((logintrial.LoginUtility.class).getResource("Login.fxml"));
+        ref=root;
         scene = new Scene(root);
     }
 

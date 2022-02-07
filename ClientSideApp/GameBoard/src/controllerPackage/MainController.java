@@ -61,7 +61,8 @@ public class MainController {
     }
     
     public void navigateToSignUpPage() throws IOException{
-        stageMagner.displayScene(SceneName.SIGNIN);
+        //stageMagner.displayScene(SceneName.SIGNIN);
+        stageMagner.displayScene(SceneName.SIGNUP);
     }
     
     public void handle(CommunicationMassege commMsg) throws IOException{
@@ -86,7 +87,7 @@ public class MainController {
 
     public void initSinglePlayerGame() throws IOException{
         stageMagner.displayScene(SceneName.GAMEBOARD);
-
+        new ClientSideGameController(false,0);
     }
     
     public static void main(String[] args){
