@@ -4,38 +4,37 @@
  */
 package logintrial;
 
+import controllerPackage.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.stage.WindowEvent;
+import stagemanager.StageManager;
 
 /**
  *
  * @author Bahaa eldin
  */
 public class LoginTrial extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-        
-        LoginUtility.initScene();
-        stage.setScene(LoginUtility.getScene());
-        stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+        StageManager stageManger = new StageManager(stage);
+        MainController.getRef().setStageMagner(stageManger);
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
-        launch(args);
-        System.out.println("4334565");
-
-Thread.sleep(5000);
-LoginUtility.displayLoginError(0);
-
-        System.out.println("trttgtr");
-    }
-    
 }
