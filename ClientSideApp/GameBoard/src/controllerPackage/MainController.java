@@ -59,7 +59,7 @@ public class MainController {
     }
     
     public void navigateToSignUpPage() throws IOException{
-        stageMagner.displayScene(SceneName.SIGNUP);
+        stageMagner.displayScene(SceneName.SIGNIN);
     }
     
     public void handle(CommunicationMassege commMsg){
@@ -76,7 +76,7 @@ public class MainController {
 
     public void initSinglePlayerGame(){
         stageMagner.displayScene(SceneName.GAMEBOARD);
-        
+
     }
     
     public static void main(String[] args){
