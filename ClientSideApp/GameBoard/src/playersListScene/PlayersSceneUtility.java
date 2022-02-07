@@ -31,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class PlayersSceneUtility {
 
     static ArrayList<PlayerElements> playersElementsArray = new ArrayList<PlayerElements>();
-    static Vector<Player> Players;
+    static Vector<Player> Players ;
     private static Scene scene;
     private static Button invite;
     private static Label name;
@@ -41,6 +41,7 @@ public class PlayersSceneUtility {
     private static VBox area;
     private static ArrayList<Node> nodes;
 
+    
     static void goSceneBack() {
         System.out.println("Back Button Pressed.....");
     }
@@ -51,7 +52,7 @@ public class PlayersSceneUtility {
         for (Player p : Players) {
             createNodes(p);
         }
-        System.out.println(nodes.size());
+//        System.out.println(nodes.size());
     }
     static void createNodes(Player p) throws IOException{
         Image img = new Image(playersListScene.PlayersScene.class.getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(p.getIconIndex()) + ".png"));
@@ -122,6 +123,12 @@ public class PlayersSceneUtility {
             }
         }
     }
+    public static void addPlayerToVector(Player p) throws IOException{
+        Players.add(p);
+        System.out.println(Players.size() + "vector size");
+        addNewPlayer(p.getId());
+//        appendNewPlayer(Players);
+    }
 //may cause problems
     static void addNewPlayer(int userID) throws IOException {
         for (Player p : Players) {
@@ -134,6 +141,7 @@ public class PlayersSceneUtility {
 
     public static void setPlayers(Vector<Player> Players) {
         PlayersSceneUtility.Players = Players;
+        System.out.println(Players.size());
     }
 
 }

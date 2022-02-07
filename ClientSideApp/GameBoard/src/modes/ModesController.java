@@ -4,6 +4,8 @@
  */
 package modes;
 
+import controllerPackage.MainController;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -24,8 +26,9 @@ public class ModesController {
     }
 
     @FXML
-    private void handleMultiPlayerButtonAction(ActionEvent event) {
+    private void handleMultiPlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Multi Player");
-
+        MainController ref= MainController.getRef();
+        ref.navigateToplayerScene();
     }
 }

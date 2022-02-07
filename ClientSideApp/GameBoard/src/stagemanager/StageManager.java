@@ -36,13 +36,20 @@ public class StageManager {
     private SceneName currentSceneName;
 
     public StageManager(Stage stage) throws IOException {
-
+SignUpUtility.initScene();
+LoginUtility.initScene();
+ModesUtility.initScene();
+ModesUtility.initScene();
+PlayersSceneUtility.initScene();
+GameBoardUtility.initScene();
         this.stage = stage;
         stageManger = this;
         displayScene(SceneName.SIGNIN);
     }
 
-    public static StageManager getStageManger() {
+    public static StageManager getStageManger() throws IOException {
+
+
         return stageManger;
     }
 
@@ -61,30 +68,30 @@ public class StageManager {
 
                 switch (name) {
                     case SIGNUP:
-                        SignUpUtility.initScene();
+//                        SignUpUtility.initScene();
                         stage.setScene(SignUpUtility.getScene());
                         stage.show();
                         break;
                     case SIGNIN:
-                        LoginUtility.initScene();
+//                        LoginUtility.initScene();
                         stage.setScene(LoginUtility.getScene());
                         stage.show();
                         currentSceneName = SceneName.SIGNUP;
                         break;
                     case GAMEMODE:
-                        ModesUtility.initScene();
+//                        ModesUtility.initScene();
                         stage.setScene(ModesUtility.getScene());
                         stage.show();
                         currentSceneName = SceneName.GAMEMODE;
                         break;
                     case PLAYERLIST:
-                        PlayersSceneUtility.initScene();
+//                        PlayersSceneUtility.initScene();
                         stage.setScene(PlayersSceneUtility.getScene());
                         stage.show();
                         currentSceneName = SceneName.PLAYERLIST;
                         break;
                     case GAMEBOARD:
-                        GameBoardUtility.initScene();
+//                        GameBoardUtility.initScene();
                         stage.setScene(GameBoardUtility.getScene());
                         stage.show();
                         currentSceneName = SceneName.GAMEBOARD;

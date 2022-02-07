@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 import java.net.URI;
@@ -36,7 +37,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void handleButtonAction(ActionEvent event) {
+    void handleButtonAction(ActionEvent event) throws IOException {
 
         if (UserNameTextField.getText().equals("") && passwordTextField.getText().equals("")) {
 
@@ -52,6 +53,8 @@ public class LoginController implements Initializable {
             System.out.println(UserNameTextField.getText() + "\n" + passwordTextField.getText());
 
         }
+            MainController ref= MainController.getRef();
+            ref.navigateToModes();
     }
 
     @FXML
