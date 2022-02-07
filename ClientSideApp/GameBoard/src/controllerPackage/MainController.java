@@ -74,7 +74,7 @@ public class MainController {
         return ref;
     }
 
-    public void initSinglePlayerGame(){
+    public void initSinglePlayerGame() throws IOException{
         stageMagner.displayScene(SceneName.GAMEBOARD);
 
     }

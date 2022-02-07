@@ -129,8 +129,8 @@ public class PlayerHandler extends Player {
   
 
  public void sendMsg(int player2Id,String message){
-        Chatting chat = new Chatting(player2Id,message);
-         CommunicationMassege chatMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, Parser.gson.toJson(chat));
+        Chatting chat = new Chatting(player2Id,this.getId(),message);
+        CommunicationMassege chatMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, Parser.gson.toJson(chat));
       userHandler.sendCommMsgToClient(chatMsg);
   }
 
