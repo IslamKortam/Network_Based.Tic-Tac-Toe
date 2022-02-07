@@ -36,12 +36,12 @@ public class StageManager {
     private SceneName currentSceneName;
 
     public StageManager(Stage stage) throws IOException {
-SignUpUtility.initScene();
-LoginUtility.initScene();
-ModesUtility.initScene();
-ModesUtility.initScene();
-PlayersSceneUtility.initScene();
-GameBoardUtility.initScene();
+        SignUpUtility.initScene();
+        LoginUtility.initScene();
+        ModesUtility.initScene();
+        ModesUtility.initScene();
+        PlayersSceneUtility.initScene();
+        GameBoardUtility.initScene();
         this.stage = stage;
         stageManger = this;
         displayScene(SceneName.SIGNIN);
