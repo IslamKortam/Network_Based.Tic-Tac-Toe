@@ -5,23 +5,20 @@
 package playersListScene;
 
 import controllerPackage.Player;
-import controllerPackage.PlayerStatus;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Vector;
-import javafx.fxml.FXML;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -31,7 +28,7 @@ import javafx.scene.layout.VBox;
 public class PlayersSceneUtility {
 
     static ArrayList<PlayerElements> playersElementsArray = new ArrayList<PlayerElements>();
-    static Vector<Player> Players;
+    static Vector<Player> Players ;
     private static Scene scene;
     private static Button invite;
     private static Label name;
@@ -42,6 +39,7 @@ public class PlayersSceneUtility {
     private static ArrayList<Node> nodes;
     public static Parent ref;
 
+    
     static void goSceneBack() {
         System.out.println("Back Button Pressed.....");
     }
@@ -52,28 +50,37 @@ public class PlayersSceneUtility {
         for (Player p : Players) {
             createNodes(p);
         }
-        System.out.println(nodes.size());
+//        System.out.println(nodes.size());
     }
-    static void createNodes(Player p) throws IOException{
-        Image img = new Image(playersListScene.PlayersScene.class.getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(p.getIconIndex()) + ".png"));
-        Node n = FXMLLoader.load(playersListScene.PlayersSceneController.class.getResource("playerContainer.fxml"));
-        name.setText(p.getUserName());
-        score.setText(Integer.toString(p.getScore()));
-        status.setText(p.getStatus().toString());
-        playerImg.setImage(img);
-        nodes.add(n);
-        area.getChildren().add(n);
-        PlayerElements newPlayer = new PlayerElements();
-        newPlayer.setImg(img);
-        newPlayer.setImgView(playerImg);
-        newPlayer.setUsrName(name);
-        newPlayer.setScore(score);
-        newPlayer.setStatus(status);
-        newPlayer.setInviteBtn(invite);
-        newPlayer.setUserId(p.getId());
-        playersElementsArray.add(newPlayer);
-        inviteBtnHandler();
-        
+    
+    static void createNodes(Player p){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Image img = new Image(playersListScene.PlayersScene.class.getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(p.getIconIndex()) + ".png"));
+                try {
+                    Node n = FXMLLoader.load(playersListScene.PlayersSceneController.class.getResource("playerContainer.fxml"));
+                    name.setText(p.getUserName());
+                    score.setText(Integer.toString(p.getScore()));
+                    status.setText(p.getStatus().toString());
+                    playerImg.setImage(img);
+                    nodes.add(n);
+                    area.getChildren().add(n);
+                    PlayerElements newPlayer = new PlayerElements();
+                    newPlayer.setImg(img);
+                    newPlayer.setImgView(playerImg);
+                    newPlayer.setUsrName(name);
+                    newPlayer.setScore(score);
+                    newPlayer.setStatus(status);
+                    newPlayer.setInviteBtn(invite);
+                    newPlayer.setUserId(p.getId());
+                    playersElementsArray.add(newPlayer);
+                    inviteBtnHandler();
+                } catch (IOException ex) {
+                    Logger.getLogger(PlayersSceneUtility.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     public static void initScene() throws IOException {
@@ -109,20 +116,32 @@ public class PlayersSceneUtility {
     }
 
     static void updatePlayer(int userID) {
-        PlayerElements playerElement;
-        for (PlayerElements element : playersElementsArray) {
-            if (element.getUserId() == userID) {
-                playerElement = element;
-                for (Player Player : Players) {
-                    if (Player.getId() == userID) {
-                        playerElement.getScore().setText(Integer.toString(Player.getScore()));
-                        System.out.println(playerElement.getScore().getText());
-                        playerElement.getStatus().setText(Player.getStatus().toString());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                PlayerElements playerElement;
+                for (PlayerElements element : playersElementsArray) {
+                    if (element.getUserId() == userID) {
+                        playerElement = element;
+                        for (Player Player : Players) {
+                            if (Player.getId() == userID) {
+                                playerElement.getScore().setText(Integer.toString(Player.getScore()));
+                                System.out.println(playerElement.getScore().getText());
+                                playerElement.getStatus().setText(Player.getStatus().toString());
 
+                            }
+                        }
                     }
                 }
             }
-        }
+        });
+        
+    }
+    public static void addPlayerToVector(Player p) throws IOException{
+        Players.add(p);
+        System.out.println(Players.size() + "vector size");
+        addNewPlayer(p.getId());
+//        appendNewPlayer(Players);
     }
 //may cause problems
     static void addNewPlayer(int userID) throws IOException {
@@ -136,6 +155,7 @@ public class PlayersSceneUtility {
 
     public static void setPlayers(Vector<Player> Players) {
         PlayersSceneUtility.Players = Players;
+        System.out.println(Players.size());
     }
 
 }

@@ -13,10 +13,12 @@ import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
 import ParserPackage.Parser;
 import java.io.IOException;
+import java.util.Vector;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import logintrial.LoginTrial;
 import logintrial.LoginUtility;
+import playersListScene.PlayersSceneUtility;
 import stagemanager.*;
 import stagemanager.StageManager.SceneName;
 
@@ -63,13 +65,21 @@ public class MainController {
         stageMagner.displayScene(SceneName.SIGNUP);
     }
     
-    public void handle(CommunicationMassege commMsg){
+    public void handle(CommunicationMassege commMsg) throws IOException{
         if(commMsg.getType() == CommunicationMassegeType.PLAYER){
             Player p = Parser.gson.fromJson(commMsg.getMsgBody(), Player.class);
             System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
+            PlayersSceneUtility.addPlayerToVector(p);
+
         }
     }
-    
+
+    public void navigateToplayerScene() throws IOException{
+        stageMagner.displayScene(SceneName.PLAYERLIST);
+    }
+    public void navigateToModes() throws IOException{
+        stageMagner.displayScene(SceneName.GAMEMODE);
+    }
 
     public static MainController getRef() {
         return ref;
@@ -81,6 +91,8 @@ public class MainController {
     }
     
     public static void main(String[] args){
+System.out.println("................................");
+        PlayersSceneUtility.setPlayers(new Vector<Player>());
         Application.launch(LoginTrial.class, args);
     }
     
