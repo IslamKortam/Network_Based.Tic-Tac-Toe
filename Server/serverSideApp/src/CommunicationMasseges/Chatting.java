@@ -11,10 +11,12 @@ package CommunicationMasseges;
  */
 public class Chatting {
     int receiver;
+    int senderID;
     String message;
 
-    public Chatting(int receiver, String message) {
+    public Chatting(int receiver, int senderID, String message) {
         this.receiver = receiver;
+        this.senderID = senderID;
         this.message = message;
     }
     

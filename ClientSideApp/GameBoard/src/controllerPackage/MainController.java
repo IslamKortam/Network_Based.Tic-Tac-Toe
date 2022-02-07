@@ -73,6 +73,11 @@ public class MainController {
     public static MainController getRef() {
         return ref;
     }
+
+    public void initSinglePlayerGame(){
+        stageMagner.displayScene(SceneName.GAMEBOARD);
+        
+    }
     
     public static void main(String[] args){
         Application.launch(LoginTrial.class, args);
