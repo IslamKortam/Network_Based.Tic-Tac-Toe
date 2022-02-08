@@ -10,6 +10,7 @@ import CommunicationMasseges.AcceptedDinedStatus;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameMove;
+import CommunicationMasseges.GameStatusUpdate;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
 import CommunicationMasseges.SignInRequest;
@@ -94,6 +95,20 @@ public class MainController {
             GameMove move = Parser.gson.fromJson(commMsg.getMsgBody(), GameMove.class);
             
             ClientSideGameController.getRef().makeOpponentMove(move.getBoxID());
+        }else if(commMsg.getType() == CommunicationMassegeType.GAME_STATUS){
+            GameStatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), GameStatusUpdate.class);
+            handleGameStatus(update);
+        }
+    }
+    
+    public void handleGameStatus(GameStatusUpdate update){
+        
+        if(update.getStatus() == GameStatusUpdate.GameStatus.WINNER){
+            ClientSideGameController.getRef().declareWinner();
+        }else if(update.getStatus() == GameStatusUpdate.GameStatus.LOSER){
+             ClientSideGameController.getRef().declareLooser();
+        }else{
+             ClientSideGameController.getRef().declareTie();
         }
     }
     
