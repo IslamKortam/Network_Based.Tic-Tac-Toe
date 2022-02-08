@@ -74,6 +74,7 @@ public class ClientSideGameController {
             updateGameMovesArray(boxID);
             if(isMultiplayer){
                 //sendToServer(boxID);
+                MainController.getRef().sendMoveToServer(boxID);
                 System.out.println("Multi player game move need to be send" + boxID);
             }
             else{

@@ -130,4 +130,15 @@ public class UserHandler extends Thread{
         socket.close();
         UserHandler.connectedUsersHandelers.remove(this);
     }
+    
+    private void stopThisUser() throws IOException{
+        socket.close();
+        
+    }
+    
+    public void stopAllUsers(){
+        for(UserHandler userHandler : connectedUsersHandelers){
+            
+        }
+    }
 }

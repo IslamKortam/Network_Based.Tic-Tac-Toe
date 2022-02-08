@@ -17,13 +17,13 @@ public class GameSession {
 //    private static PlayerHandler player1 = new PlayerHandler(1);
 //    private static PlayerHandler[] players = new PlayerHandler[]{player0,player1};
 //    private static int turn=0;
-    private static PlayerHandler player0;
-    private static PlayerHandler player1;
-    private static PlayerHandler[] players;
-    private static int turn;
-    private static ArrayList arrayOfMoves = new ArrayList(9);
-    private static char[] XOBoard = new char[]{'.','.','.','.','.','.','.','.','.'};
-    private static char[] playerMark = new char[]{'X','O'};
+    private PlayerHandler player0;
+    private PlayerHandler player1;
+    private PlayerHandler[] players;
+    private int turn;
+    private ArrayList arrayOfMoves = new ArrayList(9);
+    private char[] XOBoard = new char[]{'.','.','.','.','.','.','.','.','.'};
+    private char[] playerMark = new char[]{'X','O'};
 
     public static void requestSave(int playerId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -42,6 +42,15 @@ public class GameSession {
         PLAYER_1_WON,
         PLAYER_2_WON
     }
+    
+    public GameSession (PlayerHandler player_0 , PlayerHandler player_1){
+        player0 = player_0;
+        player1 = player_1;
+        players=new PlayerHandler[]{player0,player1};
+        turn = 0;
+        player0.startNewMultiPlayerGame(0, player_1.getId());
+        player1.startNewMultiPlayerGame(1, player_0.getId());
+    }
 
     public GameSession(PlayerHandler player_0 , PlayerHandler player_1 , int playerTurn){
         player0 = player_0;
@@ -50,7 +59,7 @@ public class GameSession {
         turn = playerTurn;
     }
 
-    public static void makeMove(int buttonId , int playerId)
+    public void makeMove(int buttonId , int playerId)
     {
 //System.out.println(turn);
         if(players[turn].getId() == playerId)
@@ -67,6 +76,7 @@ public class GameSession {
 //            System.out.println(arrayOfMoves);
 //            System.out.println(XOBoard);
             changeTurn();
+            players[turn].receiveAmove(buttonId);
         }
         else{
         System.out.println("Not your turn");
@@ -74,7 +84,7 @@ public class GameSession {
 
     }
 
-    public static GameResult checkEndOfGame(){
+    public GameResult checkEndOfGame(){
         GameResult result =GameResult.INCOMPLETE;
         String line = null;
         for(int i =0 ; i < 8; i++){
@@ -123,18 +133,29 @@ public class GameSession {
             return result;
     }
 
-    public static void changeTurn(){
+    public void changeTurn(){
         if(turn ==0)
             turn =1;
         else if(turn ==1)
             turn =0;
     }
 
-    public static void declareWinner(int turn){
+    public void declareWinner(int turn){
         System.out.println("Player "+turn+" Won ^__^");
+        players[turn].win();
+        players[1 - turn].lose();
+        endGame();
+        
     }
 
-    public static void declareTie(){
+    public void declareTie(){
         System.out.println("Tie ....");
+        players[0].tie();
+        players[1].tie();
+        endGame();
     }    
+    private void endGame(){
+        players[0].setCurrentGame(null);
+        players[1].setCurrentGame(null);
+    }
 }
