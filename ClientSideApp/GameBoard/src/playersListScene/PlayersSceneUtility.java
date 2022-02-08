@@ -64,7 +64,7 @@ public class PlayersSceneUtility {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Image img = new Image(playersListScene.PlayersScene.class.getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(p.getIconIndex()) + ".png"));
+                Image img = new Image(playersListScene.PlayersSceneUtility.class.getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(p.getIconIndex()) + ".png"));
                 try {
                     Node n = FXMLLoader.load(playersListScene.PlayersSceneController.class.getResource("playerContainer.fxml"));
                     name.setText(p.getUserName());
@@ -98,7 +98,7 @@ public class PlayersSceneUtility {
     }
 
     public static void initScene() throws IOException {
-        Parent root = FXMLLoader.load((playersListScene.PlayersScene.class).getResource("PlayersSceneFXML.fxml"));
+        Parent root = FXMLLoader.load((playersListScene.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
         ref=root;
     }

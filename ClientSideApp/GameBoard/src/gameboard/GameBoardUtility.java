@@ -159,7 +159,7 @@ public class GameBoardUtility {
     }
 
     public static void initScene() throws IOException {
-        Parent root = FXMLLoader.load((gameboard.GameBoard.class).getResource("GameBoard.fxml"));
+        Parent root = FXMLLoader.load((gameboard.GameBoardUtility.class).getResource("GameBoard.fxml"));
         scene = new Scene(root);
         ref=root;
     }

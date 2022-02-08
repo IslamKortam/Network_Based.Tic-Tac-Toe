@@ -15,20 +15,47 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameboard.GameBoardController">
     <children>
-      <FlowPane layoutX="246.0" layoutY="182.0" prefHeight="240.0" prefWidth="240.0">
+      <FlowPane layoutX="230.0" layoutY="182.0" prefHeight="300.0" prefWidth="300.0">
          <children>
-            <Button fx:id="button1" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textFill="#ef0101" />
-            <Button fx:id="button2" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button3" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button4" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button5" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button6" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button7" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button8" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
-            <Button fx:id="button9" focusTraversable="false" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" />
+            <Button fx:id="button1" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button2" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button3" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button4" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-font-weight: bold;" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font></Button>
+            <Button fx:id="button5" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-font-weight: bold;" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font></Button>
+            <Button fx:id="button6" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button7" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button8" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
+            <Button fx:id="button9" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font></Button>
          </children>
       </FlowPane>
-      <Pane layoutX="142.0" layoutY="61.0" prefHeight="98.0" prefWidth="429.0" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;">
+      <Pane layoutX="160.0" layoutY="61.0" prefHeight="98.0" prefWidth="429.0" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);;">
          <children>
             <Pane layoutX="14.0" layoutY="20.0" prefHeight="59.0" prefWidth="165.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                <children>

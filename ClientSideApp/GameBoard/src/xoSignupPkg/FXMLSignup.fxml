@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="764.0" prefHeight="600.0" prefWidth="764.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xoSignupPkg.SignupController">
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="765.0" prefHeight="600.0" prefWidth="765.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xoSignupPkg.SignupController">
    <children>
-      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="403.0" layoutY="81.0" pickOnBounds="true">
+      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="400.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/logo.jpeg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="17.0" layoutY="9.0" prefHeight="574.0" prefWidth="364.0" style="-fx-background-color: #8425E1;" styleClass="borderRadius" stylesheets="@Style.css">
+      <AnchorPane layoutX="17.0" layoutY="10.0" prefHeight="575.0" prefWidth="365.0" style="-fx-background-color: #8425E1;" styleClass="borderRadius" stylesheets="@Style.css">
          <children>
             <Label id="hedding" layoutX="134.0" layoutY="7.0" stylesheets="@Style.css" text="SignUp" textFill="White" />
             <JFXTextField id="txtFullName" fx:id="txtFullName" focusColor="BLUE" layoutX="63.0" layoutY="181.0" minWidth="100.0" prefWidth="220.0" promptText="Full Name" style="-fx-background-color: #FFFFFF;" stylesheets="@Style.css" unFocusColor="#00c800" />
