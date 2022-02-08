@@ -36,8 +36,7 @@ public class ModesController implements Initializable{
     @FXML
     private void handleMultiPlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Multi Player");
-        MainController ref= MainController.getRef();
-        ref.navigateToplayerScene();
+        MainController.getRef().navigateToplayerScene();
     }
     
     @Override
