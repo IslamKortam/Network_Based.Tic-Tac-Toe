@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/GDO/Desktop/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/ClientSideGameController.java</file>
-            <file>file:/C:/Users/GDO/Desktop/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/BestMove.java</file>
-=======
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/MainController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/stagemanager/StageManager.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/CommunicationMassege.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginTrial.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/CommunicationMassegeType.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommHandlerPK/ClientConnectionHandler.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/Player.java</file>
->>>>>>> master
-        </group>
+        <group/>
     </open-files>
 </project-private>

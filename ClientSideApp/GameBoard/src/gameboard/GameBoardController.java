@@ -7,11 +7,14 @@ package gameboard;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -121,6 +124,21 @@ public class GameBoardController implements Initializable {
 
     public static GameBoardController getRef() {
         return ref;
+    }
+    
+    @FXML
+    public Boolean showAlert(String msg) {
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Alert");
+        a.setContentText(msg);
+        boolean ans = false;
+        Optional<ButtonType> result = a.showAndWait();
+        if(result.get() == ButtonType.OK)
+            ans = true;
+        else
+            ans = false;
+        return ans;
     }
     
     

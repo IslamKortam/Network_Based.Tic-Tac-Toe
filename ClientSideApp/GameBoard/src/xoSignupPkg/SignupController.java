@@ -8,6 +8,7 @@ package xoSignupPkg;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controllerPackage.MainController;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -28,12 +29,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 /**
@@ -48,7 +51,7 @@ public class SignupController implements Initializable {
     @FXML
     private Label AvatarID,alertContentMsg;
     @FXML
-    private JFXButton btnChooseAvatar,btnSignUp;
+    private JFXButton btnChooseAvatar,btnSignUp,btnMinimize;
     @FXML
     private JFXTextField txtFullName,txtUsername,txtEmail;
     @FXML
@@ -76,6 +79,12 @@ public class SignupController implements Initializable {
         else
             flwAvatars.setVisible(true);
     }
+    @FXML
+    private void handleBtnMinimize(MouseEvent event) {
+        Stage stage = (Stage) btnMinimize.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
     
     @FXML
     private void btnSignUp(ActionEvent event) throws SQLException {
@@ -101,6 +110,11 @@ public class SignupController implements Initializable {
     @FXML
     private void btnClose(ActionEvent event) {
         System.exit(0);
+    }
+    
+    @FXML
+    void handleButtonAlreadyHaveAcc(ActionEvent event) throws IOException {
+        MainController.getRef().navigateToSignInPage();
     }
     
     @Override

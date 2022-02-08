@@ -18,6 +18,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 import modes.ModesUtility;
 import playersListScene.PlayersSceneUtility;
 
@@ -47,6 +48,7 @@ public class StageManager {
         GameBoardUtility.initScene();
         this.stage = stage;
         stageManger = this;
+        stage.initStyle(StageStyle.UNDECORATED);
         displayScene(SceneName.SIGNIN);
     }
 
