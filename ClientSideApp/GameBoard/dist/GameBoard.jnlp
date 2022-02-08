@@ -8,14 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3730490" download="eager" />
-=======
-    <jar href="GameBoard.jar" size="3730098" download="eager" />
->>>>>>> master
+    <jar href="GameBoard.jar" size="3736624" download="eager" />
     <jar href="lib\gson-2.8.0.jar" size="231952" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="GameBoard" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="logintrial.LoginTrial"  name="GameBoard" />
   <update check="always"/>
 </jnlp>

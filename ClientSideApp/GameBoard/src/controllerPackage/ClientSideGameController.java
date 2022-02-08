@@ -5,6 +5,7 @@
  */
 package controllerPackage;
 
+import controllerPackage.BestMove.Move;
 import gameboard.GameBoardController;
 import gameboard.GameBoardUtility;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class ClientSideGameController {
     final char[] playerSymbole={'X','O'};
     private int winnerNumber=-1;
     private String[] board = {"a","a","a","a","a","a","a","a","a"};
+    private char xoBoard[][]= new char[3][3];
+    private boolean isHardGame=false;
 
     public ClientSideGameController(boolean isMultiplayer, int plNumber) {
         this.isMultiplayer = isMultiplayer;
@@ -64,9 +67,6 @@ public class ClientSideGameController {
         this.playerNumber = playerNumber;
     }
 
-    
-    
-    
     public void makeAMove(int boxID){
         if(yourTurn && chkValidChosen(boxID)){
             admitMove(boxID,playerNumber);
@@ -78,7 +78,12 @@ public class ClientSideGameController {
             }
             else{
                 if(!checkEndOfGame()){
-                    makeOpponentMove(generateRandomMove());
+                    if(isHardGame){
+                        makeOpponentMove(generateBestMove());
+                    }
+                    else{
+                        makeOpponentMove(generateRandomMove());
+                    }
                 }
                 else{
                     System.out.println("Game Ended" + winnerNumber);
@@ -182,7 +187,41 @@ public class ClientSideGameController {
                 break;
             }
         }
-        
         return line;
     } 
+    
+    private void fillXOBoardArray(String[] myBoard){
+        int currentIndex=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                xoBoard[i][j]=myBoard[currentIndex].charAt(0);
+                currentIndex++;
+            }
+        }
+    }
+    
+    private int generateBestMove(){
+        fillXOBoardArray(board);
+        Move bestMove = BestMove.findBestMove(xoBoard);
+        if     (bestMove.row==0 && bestMove.col==0)
+            return 0;
+        else if(bestMove.row==0 && bestMove.col==1)
+            return 1;
+        else if(bestMove.row==0 && bestMove.col==2)
+            return 2;
+        else if(bestMove.row==1 && bestMove.col==0)
+            return 3;
+        else if(bestMove.row==1 && bestMove.col==1)
+            return 4;
+        else if(bestMove.row==1 && bestMove.col==2)
+            return 5;
+        else if(bestMove.row==2 && bestMove.col==0)
+            return 6;
+        else if(bestMove.row==2 && bestMove.col==1)
+            return 7;
+        else if(bestMove.row==2 && bestMove.col==2)
+            return 8;
+        else 
+            return -1;
+    }
 }
