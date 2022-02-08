@@ -92,7 +92,18 @@ public class ClientSideGameController {
                     }
                 }
                 else{
-                    System.out.println("Game Ended" + winnerNumber);
+                    if(winnerNumber == 0){
+                        System.out.println("Winner");
+                        declareWinner();
+                        
+                    }else if(winnerNumber == 1){
+                        System.out.println("Looser");
+                        declareLooser();
+                    }else{
+                        System.out.println("Tie");
+                        //Tie
+                        declareTie();
+                    }
                 }
             }
         }
@@ -229,5 +240,19 @@ public class ClientSideGameController {
             return 8;
         else 
             return -1;
+    }
+    
+    public void declareWinner(){
+        gameboard.GameBoardController.getRef().declareEndOfGame("You Win");
+        ref = null;
+        
+    }
+    public void declareLooser(){
+        gameboard.GameBoardController.getRef().declareEndOfGame("You Loose");
+        ref = null;
+    }
+    public void declareTie(){
+        gameboard.GameBoardController.getRef().declareEndOfGame("You Tie");
+        ref = null;
     }
 }

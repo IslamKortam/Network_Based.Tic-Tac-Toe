@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import stagemanager.StageManager;
 
 /**
  *
@@ -129,18 +133,23 @@ public class GameBoardController implements Initializable {
     }
     
     @FXML
-    public Boolean showAlert(String msg) {
-        Alert a = new Alert(Alert.AlertType.NONE);
-        a.setAlertType(Alert.AlertType.CONFIRMATION);
-        a.setHeaderText("Alert");
-        a.setContentText(msg);
-        boolean ans = false;
-        Optional<ButtonType> result = a.showAndWait();
-        if(result.get() == ButtonType.OK)
-            ans = true;
-        else
-            ans = false;
-        return ans;
+    public void declareEndOfGame(String msg) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert a = new Alert(Alert.AlertType.NONE);
+                a.setAlertType(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("Game Ended!");
+                a.setContentText(msg);
+                boolean ans = false;
+                Optional<ButtonType> result = a.showAndWait();
+                try {
+                    stagemanager.StageManager.getStageManger().displayScene(StageManager.SceneName.GAMEMODE);
+                } catch (IOException ex) {
+                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
     
     
