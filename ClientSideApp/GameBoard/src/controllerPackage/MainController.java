@@ -63,8 +63,11 @@ public class MainController {
     }
     
     public void navigateToSignUpPage() throws IOException{
-        //stageMagner.displayScene(SceneName.SIGNIN);
         stageMagner.displayScene(SceneName.SIGNUP);
+    }
+    
+    public void navigateToSignInPage() throws IOException{
+        stageMagner.displayScene(SceneName.SIGNIN);
     }
     
     public void handle(CommunicationMassege commMsg) throws IOException{
