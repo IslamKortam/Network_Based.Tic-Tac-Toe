@@ -9,10 +9,12 @@ import CommHandlerPK.ClientConnectionHandler;
 import CommunicationMasseges.AcceptedDinedStatus;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.GameMove;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
 import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
+import CommunicationMasseges.StartMultiPlayerGame;
 import ParserPackage.Parser;
 import java.io.IOException;
 import java.util.Vector;
@@ -83,6 +85,27 @@ public class MainController {
             Invitation inv = Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class);
             handleRecievedInvitation(inv);
         }
+        else if(commMsg.getType() == CommunicationMassegeType.START_NEW_MULTIPLAYER_GAME){
+            System.out.println("Starting Multiplayer Game");
+            StartMultiPlayerGame order = Parser.gson.fromJson(commMsg.getMsgBody(), StartMultiPlayerGame.class);
+            startNewMultiPlayerGame(order);
+        }
+        else if(commMsg.getType() == CommunicationMassegeType.GameMove){
+            GameMove move = Parser.gson.fromJson(commMsg.getMsgBody(), GameMove.class);
+            
+            ClientSideGameController.getRef().makeOpponentMove(move.getBoxID());
+        }
+    }
+    
+    public void sendMoveToServer(int boxID){
+        GameMove move = new GameMove(boxID);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameMove, Parser.gson.toJson(move));
+        ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
+    }
+    
+    private void startNewMultiPlayerGame(StartMultiPlayerGame order) throws IOException{
+        stageMagner.displayScene(SceneName.GAMEBOARD);
+        new ClientSideGameController(true, order.getTurn());
     }
 
     private void handleRecievingNewPlayer(Player p) throws IOException {

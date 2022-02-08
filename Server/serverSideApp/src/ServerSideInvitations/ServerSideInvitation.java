@@ -5,7 +5,10 @@
  */
 package ServerSideInvitations;
 import CommunicationMasseges.*;
+import CommunicationMasseges.Invitation.InvitationType;
 import controllerPackage.PlayerHandler;
+import GameSession.GameSession;
+import controllerPackage.PlayerStatus;
 
 /**
  *
@@ -31,7 +34,13 @@ public class ServerSideInvitation extends Invitation{
     }
     
     public void accept(){
-        
+        if(getType() == InvitationType.NEW_GAME){
+            if(sender.getStatus() == PlayerStatus.ONLINE && reciever.getStatus() == PlayerStatus.ONLINE){
+                GameSession newGameSession = new GameSession(sender, reciever);
+                sender.setCurrentGame(newGameSession);
+                reciever.setCurrentGame(newGameSession);
+            }
+        }
     }
     
     

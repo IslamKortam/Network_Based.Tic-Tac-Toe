@@ -86,6 +86,9 @@ public class PlayerHandler extends Player {
         }else if(commMsg.getType() == CommunicationMassegeType.INVITATION_RESPONSE){
             InvitationResponse response = Parser.gson.fromJson(commMsg.getMsgBody(), InvitationResponse.class);
             handleInvitationResponse(response);
+        }else if(commMsg.getType() == CommunicationMassegeType.GameMove){
+            GameMove move = Parser.gson.fromJson(commMsg.getMsgBody(), GameMove.class);
+            makeAMove(move);
         }
     }
     
@@ -132,8 +135,8 @@ public class PlayerHandler extends Player {
         }*/
     }
 
-    public void makeAMove(int boxId, int playerId) {
-        currentGame.makeMove(boxId, playerId);
+    public void makeAMove(GameMove move) {
+        currentGame.makeMove(move.getBoxID(), getId());
     }
 
     public void receiveAmove(int boxId) {
@@ -186,5 +189,17 @@ public class PlayerHandler extends Player {
         CommunicationMassege chatMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, Parser.gson.toJson(chat));
         userHandler.sendCommMsgToClient(chatMsg);
     }
+    public void startNewMultiPlayerGame(int turn, int oponentID){
+        StartMultiPlayerGame order = new StartMultiPlayerGame(turn, oponentID);
+        String s = Parser.gson.toJson(order);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.START_NEW_MULTIPLAYER_GAME, s);
+        sendMeCommMsg(commMsg);
+    }
 
+    public void setCurrentGame(GameSession currentGame) {
+        this.currentGame = currentGame;
+    }
+    
+    
+    
 }

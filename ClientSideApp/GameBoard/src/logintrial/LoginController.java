@@ -53,8 +53,8 @@ public class LoginController implements Initializable {
             System.out.println(UserNameTextField.getText() + "\n" + passwordTextField.getText());
 
         }
-            MainController ref= MainController.getRef();
-            ref.navigateToModes();
+            //MainController ref= MainController.getRef();
+            //ref.navigateToModes();
     }
 
     @FXML
