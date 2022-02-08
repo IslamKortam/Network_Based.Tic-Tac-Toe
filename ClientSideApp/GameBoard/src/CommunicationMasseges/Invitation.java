@@ -7,7 +7,7 @@ package CommunicationMasseges;
 
 /**
  *
- * @author GDO
+ * @author Mohamed Rashed
  */
 public class Invitation {
     private int invitID,senderID,receiverID;

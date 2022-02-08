@@ -5,12 +5,15 @@
  */
 package controllerPackage;
 
+import java.util.Vector;
+
 /**
  *
  * @author imkor
  */
 public class Player {
     
+    public static Vector<Player> allPlayers;
     /* Member Data */
     private int id;
     private String userName;
@@ -102,5 +105,14 @@ public class Player {
         return status;
     }
     
-    
+    public static Player getPlayerByID(int id){
+        Player plr = null;
+        for(int i=0;i<allPlayers.size();i++){
+            if(id == allPlayers.get(i).getId()){
+               plr = allPlayers.elementAt(i);
+               break;
+            }
+        }
+        return plr;
+    }
 }
