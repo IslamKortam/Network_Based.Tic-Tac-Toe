@@ -12,7 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controllerPackage.MainController;
-import controllerPackage.Player;
+import controllerPackage.PlayerPojo;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -102,8 +102,8 @@ public class SignupController implements Initializable {
                     System.out.println("Data submited successfully");
                    /* DataFromDB.addNewUser(txtFullName.getText(), txtUsername.getText(), txtEmail.getText(),
                             txtPassword.getText(), Integer.valueOf(AvatarID.getText()));*/
-                   Player plr = new Player(txtUsername.getText().toLowerCase(),txtFullName.getText(), txtEmail.getText().toLowerCase(),
-                            txtPassword.getText(), Integer.valueOf(AvatarID.getText()),0,true);
+                   PlayerPojo plr = new PlayerPojo(txtUsername.getText().toLowerCase(),txtFullName.getText(), txtEmail.getText().toLowerCase(),
+                            txtPassword.getText(), Integer.valueOf(AvatarID.getText()));
                    SignUpRequest signUp = new SignUpRequest(plr);
                    CommunicationMassege com = new CommunicationMassege(CommunicationMassegeType.SIGN_UP_REQUEST,ParserPackage.Parser.gson.toJson(signUp));
                 }

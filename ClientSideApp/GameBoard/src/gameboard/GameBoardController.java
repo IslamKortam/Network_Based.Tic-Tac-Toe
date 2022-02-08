@@ -119,7 +119,7 @@ public class GameBoardController implements Initializable {
     }
     @FXML
     void backToHome(ActionEvent event) throws IOException {
-        //MainController.getRef().navigateToModes();
+        MainController.getRef().navigateToModes();
     }
 
     

@@ -4,25 +4,27 @@
  * and open the template in the editor.
  */
 package CommunicationMasseges;
-import controllerPackage.Player;
+import controllerPackage.PlayerPojo;
 
 /**
  *
  * @author Mohamed Rashed
  */
 public class SignUpRequest {
-    Player newPlayer;
+    PlayerPojo newPlayer;
 
-    public SignUpRequest(Player newPlayer) {
+    public SignUpRequest(PlayerPojo newPlayer) {
         this.newPlayer = newPlayer;
     }
 
-    public Player getNewPlayer() {
+    public PlayerPojo getNewPlayer() {
         return newPlayer;
     }
 
-    public void setNewPlayer(Player newPlayer) {
+    public void setNewPlayer(PlayerPojo newPlayer) {
         this.newPlayer = newPlayer;
     }
+
+    
     
 }
