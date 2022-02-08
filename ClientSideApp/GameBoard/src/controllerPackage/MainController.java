@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Vector;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.stage.Stage;
 import logintrial.LoginTrial;
 import logintrial.LoginUtility;
 import modes.AlertType;
@@ -33,7 +34,7 @@ import stagemanager.StageManager.SceneName;
  *
  * @author imkor
  */
-public class MainController {
+public class MainController extends Application{
 
     private static MainController ref = new MainController();
     private static ClientConnectionHandler connectionHandler;
@@ -173,17 +174,15 @@ public class MainController {
 
     public static void main(String[] args) throws IOException {
         System.out.println("................................");
-//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
-//Vector<Player> vector =new Vector<Player>();
-//vector.add(p);
+
 
         Player.allPlayers = new Vector<Player>();
-//PlayersSceneUtility.addPlayerToVector(p);
-//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
-//PlayersSceneUtility.addPlayerToVector(p);
-//Player p1= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_SINGLE_PLAYER_GAME);
-//PlayersSceneUtility.addPlayerToVector(p1);
+
         Application.launch(LoginTrial.class, args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
     }
 
 }
