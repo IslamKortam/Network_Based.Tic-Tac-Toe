@@ -140,11 +140,22 @@ public class GameSession {
             turn =0;
     }
 
-    public static void declareWinner(int turn){
+    public void declareWinner(int turn){
         System.out.println("Player "+turn+" Won ^__^");
+        players[turn].win();
+        players[1 - turn].lose();
+        endGame();
+        
     }
 
-    public static void declareTie(){
+    public void declareTie(){
         System.out.println("Tie ....");
+        players[0].tie();
+        players[1].tie();
+        endGame();
     }    
+    private void endGame(){
+        players[0].setCurrentGame(null);
+        players[1].setCurrentGame(null);
+    }
 }

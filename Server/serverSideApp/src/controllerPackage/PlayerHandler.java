@@ -165,16 +165,19 @@ public class PlayerHandler extends Player {
 
     public void win() {
         status(GameStatusUpdate.GameStatus.WINNER);
+        changeStatus(PlayerStatus.ONLINE);
 
     }
 
     public void lose() {
         status(GameStatusUpdate.GameStatus.LOSER);
+        changeStatus(PlayerStatus.ONLINE);
 
     }
 
-    public void Tie() {
+    public void tie() {
         status(GameStatusUpdate.GameStatus.TIE);
+        changeStatus(PlayerStatus.ONLINE);
 
     }
 

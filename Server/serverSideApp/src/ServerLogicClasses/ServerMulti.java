@@ -46,6 +46,7 @@ public class ServerMulti extends Thread{
     }
     public void stopServer(){
         this.runningStatus = false;
+        
         this.stop();
     }
 
