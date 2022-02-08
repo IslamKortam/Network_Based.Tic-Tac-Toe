@@ -15,6 +15,7 @@ import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
 import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
+import CommunicationMasseges.SignUpResponse;
 import CommunicationMasseges.StartMultiPlayerGame;
 import ParserPackage.Parser;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import modes.ModesController;
 import playersListScene.PlayersSceneUtility;
 import stagemanager.*;
 import stagemanager.StageManager.SceneName;
+import xoSignupPkg.SignUpUtility;
 
 /**
  *
@@ -99,7 +101,25 @@ public class MainController extends Application{
         }else if(commMsg.getType() == CommunicationMassegeType.GAME_STATUS){
             GameStatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), GameStatusUpdate.class);
             handleGameStatus(update);
+        }else if(commMsg.getType() == CommunicationMassegeType.SIGN_UP_REQUEST_STATUS){
+            SignUpResponse reply = Parser.gson.fromJson(commMsg.getMsgBody(), SignUpResponse.class);
+            handleSignUpReply(reply);
         }
+    }
+    
+    public void handleSignUpReply(SignUpResponse reply) throws IOException{
+               switch (reply.getSignup()){
+                case ACCEPT:
+                    SignUpUtility.displaySignUpErrorMsg(1, "Your data have been Successfully");
+                    stageMagner.displayScene(SceneName.SIGNIN);
+                    break;
+                case EMAIL_REPEATED:
+                    SignUpUtility.displaySignUpErrorMsg(1, "Error! \nRepeated Email");
+                    break;
+                case USERNAME_REPEATED:
+                    SignUpUtility.displaySignUpErrorMsg(1, "Error! \nRepeated UserName");
+                    break;
+            }
     }
     
     public void handleGameStatus(GameStatusUpdate update){
