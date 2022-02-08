@@ -70,7 +70,6 @@ public class MainController {
             Player p = Parser.gson.fromJson(commMsg.getMsgBody(), Player.class);
             System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
             PlayersSceneUtility.addPlayerToVector(p);
-
         }
     }
 
@@ -90,9 +89,17 @@ public class MainController {
         new ClientSideGameController(false,0);
     }
     
-    public static void main(String[] args){
-System.out.println("................................");
+    public static void main(String[] args) throws IOException{
+        System.out.println("................................");
+//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
+//Vector<Player> vector =new Vector<Player>();
+//vector.add(p);
         PlayersSceneUtility.setPlayers(new Vector<Player>());
+//PlayersSceneUtility.addPlayerToVector(p);
+//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
+//PlayersSceneUtility.addPlayerToVector(p);
+//Player p1= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_SINGLE_PLAYER_GAME);
+//PlayersSceneUtility.addPlayerToVector(p1);
         Application.launch(LoginTrial.class, args);
     }
     
