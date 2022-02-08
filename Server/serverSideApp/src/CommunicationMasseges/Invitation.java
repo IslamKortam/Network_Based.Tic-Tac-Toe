@@ -24,12 +24,7 @@ public class Invitation {
         this.gameID = -1;   //In case of new game
     }
 
-    public Invitation(int invitID, int senderID, int receiverID) {
-        this.invitID = invitID;
-        this.senderID = senderID;
-        this.receiverID = receiverID;
-        this.gameID = -1;   //In case of new game
-    }
+   
     
     public Invitation(int senderID, int receiverID, InvitationType type, int gameID) {
         this.type = type;
@@ -37,13 +32,15 @@ public class Invitation {
         this.receiverID = receiverID;
         this.gameID = gameID;   //In case of Load game
     }
-
-    public Invitation(int invitID, int senderID, int receiverID, int gameID) {
-        this.invitID = invitID;
-        this.senderID = senderID;
-        this.receiverID = receiverID;
-        this.gameID = gameID;   //In case of Load game
+    
+    public Invitation(Invitation other){
+        this.type = other.type;
+        this.senderID = other.senderID;
+        this.receiverID = other.receiverID;
+        this.gameID = other.gameID;
     }
+
+
 
     public int getInvitID() {
         return invitID;

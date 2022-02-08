@@ -6,17 +6,26 @@ package modes;
 
 import controllerPackage.MainController;
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
  *
  * @author a7med
  */
-public class ModesController {
+public class ModesController implements Initializable {
 
+    public static ModesController ref;
+    //Alert a ;
     @FXML
     private Label label;
 
@@ -29,7 +38,28 @@ public class ModesController {
     @FXML
     private void handleMultiPlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Multi Player");
-        MainController ref= MainController.getRef();
-        ref.navigateToplayerScene();
+        MainController.getRef().navigateToplayerScene();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //a   = new Alert(Alert.AlertType.NONE);
+        ref = this;
+    }
+
+    @FXML
+    public Boolean showAlert(String msg) {
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Alert");
+        a.setContentText(msg);
+        boolean ans = false;
+        Optional<ButtonType> result = a.showAndWait();
+        if(result.get() == ButtonType.OK)
+            ans = true;
+        else
+            ans = false;
+        return ans;
     }
 }
+

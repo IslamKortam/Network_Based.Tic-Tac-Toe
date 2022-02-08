@@ -47,8 +47,10 @@ public class UserHandler extends Thread{
         while(true){
             try {
                 String s = inputStream.readLine();
+                System.out.println("Recieved from client:" + s);
                 if(authrized){
-                    
+                    CommunicationMassege commMsg = Parser.gson.fromJson(s, CommunicationMassege.class);
+                    connectedPlayer.handle(commMsg);
                 }
                 else{
                     CommunicationMassege comm = Parser.gson.fromJson(s, CommunicationMassege.class);
@@ -69,7 +71,11 @@ public class UserHandler extends Thread{
                         s = Parser.gson.toJson(comm);
                         sendToClient(s);
                     }
-                    //else if(comm.getType() == CommunicationMassegeType)
+                    else{
+                        //Handle Sign UP here
+                    }
+                    
+                    
                     
                 }
                 
@@ -80,7 +86,18 @@ public class UserHandler extends Thread{
                     authrized = false;
                     connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
                     connectedPlayer.setUserHandler(null);
+                    //this.stop();
+                    try {
+                        inputStream.close();
+                    } catch (IOException ex1) {
+                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
+                        System.out.println("iN Catch");
+                    }
+                    outputStream.close();
+                    UserHandler.connectedUsersHandelers.remove(this);
                     this.stop();
+                }
+                else{
                     try {
                         inputStream.close();
                     } catch (IOException ex1) {

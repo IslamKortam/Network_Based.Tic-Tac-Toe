@@ -5,12 +5,16 @@
  */
 package controllerPackage;
 
+import java.util.Vector;
+
 /**
  *
  * @author imkor
  */
 public class Player {
     
+    public static Vector<Player> allPlayers;
+    private static Player thisPlayer;
     /* Member Data */
     private int id;
     private String userName;
@@ -100,6 +104,25 @@ public class Player {
 
     public PlayerStatus getStatus() {
         return status;
+    }
+    
+    public static Player getPlayerByID(int id){
+        Player plr = null;
+        for(Player player : allPlayers){
+            if(player.getId() == id){
+                plr = player;
+                break;
+            }
+        }
+        return plr;
+    }
+
+    public static Player getThisPlayer() {
+        return thisPlayer;
+    }
+
+    public static void setThisPlayer(Player thisPlayer) {
+        Player.thisPlayer = thisPlayer;
     }
     
     

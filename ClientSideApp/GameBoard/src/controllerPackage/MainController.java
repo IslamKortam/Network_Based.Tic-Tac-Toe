@@ -9,25 +9,29 @@ import CommHandlerPK.ClientConnectionHandler;
 import CommunicationMasseges.AcceptedDinedStatus;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.Invitation;
+import CommunicationMasseges.InvitationResponse;
 import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
 import ParserPackage.Parser;
 import java.io.IOException;
 import java.util.Vector;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import logintrial.LoginTrial;
 import logintrial.LoginUtility;
+import modes.AlertType;
+import modes.ModesController;
 import playersListScene.PlayersSceneUtility;
 import stagemanager.*;
 import stagemanager.StageManager.SceneName;
-
 
 /**
  *
  * @author imkor
  */
 public class MainController {
+
     private static MainController ref = new MainController();
     private static ClientConnectionHandler connectionHandler;
     private StageManager stageMagner;
@@ -35,52 +39,88 @@ public class MainController {
     public void setStageMagner(StageManager stageMagner) {
         this.stageMagner = stageMagner;
     }
-    
-    private MainController(){
+
+    private MainController() {
         System.out.println("Main Controller Created");
         connectionHandler = new ClientConnectionHandler();
     }
-    
-    public void handleIncomingSignInRequsetStatus(SignInStatus status) throws IOException{
-        if(status.getStatus() == AcceptedDinedStatus.ACCEPTED){
+
+    public void handleIncomingSignInRequsetStatus(SignInStatus status) throws IOException {
+        if (status.getStatus() == AcceptedDinedStatus.ACCEPTED) {
             System.out.println("Accepted");
             System.out.println(status.getPlayerData().getFullName());
             stageMagner.displayScene(SceneName.GAMEMODE);
-        }
-        else{
+            Player.setThisPlayer(status.getPlayerData());
+        } else {
             System.out.println("Denied");
             LoginUtility.displayLoginError(0);
         }
     }
-    
-    public void sendSignInRequest(String email, String password){
+
+    public void sendSignInRequest(String email, String password) {
         SignInRequest req = new SignInRequest(email, password);
         String parsedReq = ParserPackage.Parser.gson.toJson(req);
         CommunicationMassege comm = new CommunicationMassege(CommunicationMassegeType.SIGN_IN_REQUEST, parsedReq);
         connectionHandler.sendCommMsgToServer(comm);
     }
-    
-    public void navigateToSignUpPage() throws IOException{
+
+    public void navigateToSignUpPage() throws IOException {
         stageMagner.displayScene(SceneName.SIGNUP);
     }
-    
-    public void navigateToSignInPage() throws IOException{
+
+    public void navigateToSignInPage() throws IOException {
         stageMagner.displayScene(SceneName.SIGNIN);
     }
-    
-    public void handle(CommunicationMassege commMsg) throws IOException{
-        if(commMsg.getType() == CommunicationMassegeType.PLAYER){
-            Player p = Parser.gson.fromJson(commMsg.getMsgBody(), Player.class);
-            System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
-            PlayersSceneUtility.addPlayerToVector(p);
 
+    public void handle(CommunicationMassege commMsg) throws IOException {
+        if (commMsg.getType() == CommunicationMassegeType.PLAYER) {
+            Player p = Parser.gson.fromJson(commMsg.getMsgBody(), Player.class);
+            handleRecievingNewPlayer(p);
+
+        } else if (commMsg.getType() == CommunicationMassegeType.INVITATION) {
+            System.out.println("Invitation:");
+            System.out.println(commMsg.getMsgBody());
+            Invitation inv = Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class);
+            handleRecievedInvitation(inv);
         }
     }
 
-    public void navigateToplayerScene() throws IOException{
+    private void handleRecievingNewPlayer(Player p) throws IOException {
+        System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
+        Player.allPlayers.add(p);
+        PlayersSceneUtility.addNewPlayer(p.getId());
+    }
+
+    private void handleRecievedInvitation(Invitation inv) {
+        if (stageMagner.getCurrentSceneName() != SceneName.GAMEBOARD) {
+            //int invitID,senderID;
+            System.out.println(inv.getInvitID());
+            System.out.println(Player.allPlayers.size());
+            String playerName = Player.getPlayerByID(inv.getSenderID()).getUserName();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Boolean opinion = ModesController.ref.showAlert(playerName + " want to challenge you\nDo you accept this challenge?");
+                    InvitationResponse response = null;
+                    if (opinion) {
+                        response = new InvitationResponse(inv.getInvitID(), AcceptedDinedStatus.ACCEPTED);
+                    } else {
+                        response = new InvitationResponse(inv.getInvitID(), AcceptedDinedStatus.DENIED);
+                    }
+                    String s = Parser.gson.toJson(response);
+                    ClientConnectionHandler.ref.sendCommMsgToServer(new CommunicationMassege(CommunicationMassegeType.INVITATION_RESPONSE, s));
+                }
+            });
+        } else {
+            System.out.println("Player in another game");
+        }
+    }
+
+    public void navigateToplayerScene() throws IOException {
         stageMagner.displayScene(SceneName.PLAYERLIST);
     }
-    public void navigateToModes() throws IOException{
+
+    public void navigateToModes() throws IOException {
         stageMagner.displayScene(SceneName.GAMEMODE);
     }
 
@@ -88,15 +128,24 @@ public class MainController {
         return ref;
     }
 
-    public void initSinglePlayerGame() throws IOException{
+    public void initSinglePlayerGame() throws IOException {
         stageMagner.displayScene(SceneName.GAMEBOARD);
-        new ClientSideGameController(false,0);
+        new ClientSideGameController(false, 0);
     }
-    
-    public static void main(String[] args){
-System.out.println("................................");
-        PlayersSceneUtility.setPlayers(new Vector<Player>());
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("................................");
+//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
+//Vector<Player> vector =new Vector<Player>();
+//vector.add(p);
+
+        Player.allPlayers = new Vector<Player>();
+//PlayersSceneUtility.addPlayerToVector(p);
+//Player p= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME);
+//PlayersSceneUtility.addPlayerToVector(p);
+//Player p1= new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_SINGLE_PLAYER_GAME);
+//PlayersSceneUtility.addPlayerToVector(p1);
         Application.launch(LoginTrial.class, args);
     }
-    
+
 }

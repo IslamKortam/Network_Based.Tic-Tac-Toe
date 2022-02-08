@@ -45,6 +45,7 @@ public class ClientConnectionHandler extends Thread{
         while(true){
             try {
                 String s = inputStream.readLine();
+                System.out.println("Recieved From Server:" + s);
                 CommunicationMassege msg = Parser.gson.fromJson(s, CommunicationMassege.class);
                 switch(msg.getType()){
                     case SIGN_IN_REQUEST_STATUS:
@@ -69,6 +70,7 @@ public class ClientConnectionHandler extends Thread{
     }
     
     private void sendToServer(String s){
+        System.out.println("Sending To Server:" + s);
         outputStream.println(s);
     }
     
