@@ -102,7 +102,7 @@ public class SignupController implements Initializable {
                     System.out.println("Data submited successfully");
                    /* DataFromDB.addNewUser(txtFullName.getText(), txtUsername.getText(), txtEmail.getText(),
                             txtPassword.getText(), Integer.valueOf(AvatarID.getText()));*/
-                   Player plr = new Player(txtUsername.getText(),txtFullName.getText(), txtEmail.getText(),
+                   Player plr = new Player(txtUsername.getText().toLowerCase(),txtFullName.getText(), txtEmail.getText().toLowerCase(),
                             txtPassword.getText(), Integer.valueOf(AvatarID.getText()),0,true);
                    SignUpRequest signUp = new SignUpRequest(plr);
                    CommunicationMassege com = new CommunicationMassege(CommunicationMassegeType.SIGN_UP_REQUEST,ParserPackage.Parser.gson.toJson(signUp));

@@ -5,6 +5,8 @@
  */
 package controllerPackage;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Vector;
 
 /**
@@ -25,6 +27,7 @@ public class Player {
     private int score;
     private int iconIndex;
     private PlayerStatus status;
+    private Date lastVisit;
     
     
     /* Constructors */
@@ -37,12 +40,14 @@ public class Player {
         this.iconIndex = iconIndex;
         this.status = status;
     }
-    public Player(String userName, String fullName, String email,String password ,int iconIndex,int score,boolean visable) {
+    public Player(String userName, String fullName, String email,String password ,
+            int iconIndex,int score,boolean visable) {
         this.userName = userName;
         this.fullName = fullName;
         this.email = email;
         this.Password = password;
         this.score = score;
+        this.lastVisit = Date.valueOf(LocalDate.now());
         this.visible = visable;
         this.iconIndex = iconIndex;
     }
