@@ -67,16 +67,16 @@ public class GameSession {
             arrayOfMoves.add(buttonId);
             XOBoard[buttonId]=playerMark[turn];
             GameResult result = checkEndOfGame();
+            changeTurn();
+            players[turn].receiveAmove(buttonId);
             if(result == GameResult.PLAYER_1_WON || result == GameResult.PLAYER_2_WON){
-                declareWinner(turn);
+                declareWinner(1 - turn);
             }
             else if(result == GameResult.TIE){
                 declareTie();
             }
 //            System.out.println(arrayOfMoves);
 //            System.out.println(XOBoard);
-            changeTurn();
-            players[turn].receiveAmove(buttonId);
         }
         else{
         System.out.println("Not your turn");
