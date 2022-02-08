@@ -28,9 +28,9 @@ public class PlayersSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-        playersVector = new Vector<Player>();
+        //playersVector = new Vector<Player>();
         nodes = new ArrayList<>();
-        PlayersSceneUtility.setParentContainer(nodes, playersVector, area);
+        PlayersSceneUtility.setParentContainer(nodes, area);
 
     }
 

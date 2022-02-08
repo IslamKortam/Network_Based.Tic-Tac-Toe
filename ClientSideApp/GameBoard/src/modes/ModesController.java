@@ -8,6 +8,7 @@ import controllerPackage.MainController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,9 +22,10 @@ import javafx.scene.control.Label;
  *
  * @author a7med
  */
-public class ModesController implements Initializable{
+public class ModesController implements Initializable {
+
     public static ModesController ref;
-    Alert a ;
+    //Alert a ;
     @FXML
     private Label label;
 
@@ -38,50 +40,26 @@ public class ModesController implements Initializable{
         System.out.println("Multi Player");
         MainController.getRef().navigateToplayerScene();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        a   = new Alert(Alert.AlertType.NONE);
+        //a   = new Alert(Alert.AlertType.NONE);
         ref = this;
     }
-    
+
     @FXML
-    public void showAlert(String msg,AlertType type) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                a.setAlertType(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("Alert");
-                a.setContentText(msg);
-                a.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                        switch(type){
-                            case GameLoad:
-                                System.err.println("gameload");
-                                break;
-                            case GameSave:
-                                
-                                break;
-                            case InvitationRequest:
-                                
-                                break;
-                        }
-                    }
-                    else{
-                        switch(type){
-                                case GameLoad:
-                                    System.err.println("gameload false");
-                                    break;
-                                case GameSave:
-
-                                    break;
-                                case InvitationRequest:
-
-                                    break;
-                            }
-                    }
-                });
-            }
-        });
+    public Boolean showAlert(String msg) {
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Alert");
+        a.setContentText(msg);
+        boolean ans = false;
+        Optional<ButtonType> result = a.showAndWait();
+        if(result.get() == ButtonType.OK)
+            ans = true;
+        else
+            ans = false;
+        return ans;
     }
 }
+

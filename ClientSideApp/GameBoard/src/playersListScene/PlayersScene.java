@@ -49,7 +49,7 @@ public class PlayersScene extends Application {
 //PlayersSceneUtility.addNewPlayer(2);
 //PlayersSceneUtility.addNewPlayer(3);
 
-        PlayersSceneUtility.appendNewPlayer(PlayersVector);
+        //PlayersSceneUtility.appendNewPlayer(PlayersVector);
 
 //        PlayersSceneUtility.updatePlayer(1);
 

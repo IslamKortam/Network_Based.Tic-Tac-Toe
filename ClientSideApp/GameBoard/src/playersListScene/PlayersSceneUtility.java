@@ -34,7 +34,7 @@ import javafx.scene.layout.VBox;
 public class PlayersSceneUtility {
 
     static ArrayList<PlayerElements> playersElementsArray = new ArrayList<PlayerElements>();
-    static Vector<Player> Players ;
+    //static Vector<Player> Players ;
     private static Scene scene;
     private static Button invite;
     private static Label name;
@@ -44,15 +44,15 @@ public class PlayersSceneUtility {
     private static VBox area;
     private static ArrayList<Node> nodes;
     public static Parent ref;
-    private static ClientConnectionHandler handler;
+    //private static ClientConnectionHandler handler;
 
     
     static void goSceneBack() {
         System.out.println("Back Button Pressed.....");
     }
 
-    static void appendNewPlayer(Vector<Player> PlayersVector) throws IOException {
-        Players = PlayersVector;
+    static void appendNewPlayer() throws IOException {
+        Vector<Player> Players = Player.allPlayers;
         System.out.println(Players.size());
         for (Player p : Players) {
             createNodes(p);
@@ -115,8 +115,8 @@ public class PlayersSceneUtility {
         PlayersSceneUtility.invite = invite;
     }
 
-    static void setParentContainer(ArrayList<Node> nodes, Vector<Player> playersVector, VBox area) {
-        PlayersSceneUtility.Players = playersVector;
+    static void setParentContainer(ArrayList<Node> nodes, VBox area) {
+        
         PlayersSceneUtility.area = area;
         PlayersSceneUtility.nodes = nodes;
     }
@@ -127,13 +127,14 @@ public class PlayersSceneUtility {
                 -> player.getInviteBtn().setOnMouseClicked(mouseEvent -> {
 //                    System.out.println("user pressed " + player.getUserId());
 ////////// here we used a dummy senderID , 
-                Invitation invitation = new Invitation(0,player.getUserId());
+                Invitation invitation = new Invitation(Player.getThisPlayer().getId(),player.getUserId(), Invitation.InvitationType.NEW_GAME);
                 CommunicationMassege invitationmsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, Parser.gson.toJson(invitation));
-                handler.sendCommMsgToServer(invitationmsg);
+                ClientConnectionHandler.ref.sendCommMsgToServer(invitationmsg);
                 }));
     }
 
     static void updatePlayer(int userID) {
+        Vector<Player> Players = Player.allPlayers;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -155,15 +156,16 @@ public class PlayersSceneUtility {
         });
         
     }
-    public static void addPlayerToVector(Player p) throws IOException{
+    public static void addPlayerToVector(int id) throws IOException{
 //        Players.add(new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME));
-        Players.add(p);
-        System.out.println(Players.size() + "vector size");
-        addNewPlayer(p.getId());
+        //Players.add(p);
+        //System.out.println(Players.size() + "vector size");
+        //addNewPlayer(id);
 //        appendNewPlayer(Players);
     }
 //may cause problems
-    static void addNewPlayer(int userID) throws IOException {
+    public static void addNewPlayer(int userID) throws IOException {
+        Vector<Player> Players = Player.allPlayers;
         for (Player p : Players) {
             if (p.getId() == userID) {
                 createNodes(p);
@@ -171,11 +173,13 @@ public class PlayersSceneUtility {
             }
         }
     }
-
+/*
     public static void setPlayers(Vector<Player> Players) {
         PlayersSceneUtility.Players = Players;
         System.out.println(Players.size());
     }
+    
+    */
 
 }
 

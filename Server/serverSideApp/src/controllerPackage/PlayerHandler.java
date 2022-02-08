@@ -17,6 +17,7 @@ import GameSession.*;
 import ParserPackage.Parser;
 import serverdao.PlayerPojo;
 import serverhome.ServerHomeUtility;
+import ServerSideInvitations.*;
 
 /**
  *
@@ -27,11 +28,32 @@ public class PlayerHandler extends Player {
     private static Vector<PlayerHandler> players = new Vector<PlayerHandler>();
     UserHandler userHandler;
     GameSession currentGame;
-    private Vector<GameInvitation> sentReq;
-    private Vector<GameInvitation> receivedReq;
+    private Vector<ServerSideInvitation> sentInvReq;
+    private Vector<ServerSideInvitation> receivedReq;
+    
+    private ServerSideInvitation getRecievedInvitationByID(int id){
+        ServerSideInvitation invitation = null;
+        for(ServerSideInvitation inv : receivedReq){
+            if(inv.getInvitID() == id){
+                invitation = inv;
+                break;
+            }
+        }
+        return invitation;
+    }
+        
 
-    public void addAnInvitation(GameInvitation invitation){
+    public void addARecievedInvitation(ServerSideInvitation invitation){
         receivedReq.add(invitation);
+        String s = Parser.gson.toJson(new Invitation(invitation));
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, s); 
+        if(getStatus() == PlayerStatus.ONLINE){
+            sendMeCommMsg(commMsg);
+        }
+    }
+    
+    public void addASentInvitation(ServerSideInvitation invitation){
+        sentInvReq.add(invitation);
     }
      
      public static PlayerHandler getPlayerHandlerByID(int id) {
@@ -46,7 +68,7 @@ public class PlayerHandler extends Player {
     }
 
     public void sendMeCommMsg(CommunicationMassege commMsg) {
-        if (getStatus() == PlayerStatus.ONLINE) {
+        if (getStatus() != PlayerStatus.OFFLINE) {
             userHandler.sendCommMsgToClient(commMsg);
         }
     }
@@ -55,6 +77,27 @@ public class PlayerHandler extends Player {
         for (PlayerHandler playerHandler : players) {
             CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.PLAYER, Parser.gson.toJson(new Player(playerHandler)));
             sendMeCommMsg(commMsg);
+        }
+    }
+    
+    public void handle(CommunicationMassege commMsg){
+        if(commMsg.getType() == CommunicationMassegeType.INVITATION){
+            new ServerSideInvitation(Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class));
+        }else if(commMsg.getType() == CommunicationMassegeType.INVITATION_RESPONSE){
+            InvitationResponse response = Parser.gson.fromJson(commMsg.getMsgBody(), InvitationResponse.class);
+            handleInvitationResponse(response);
+        }
+    }
+    
+    private void handleInvitationResponse(InvitationResponse response){
+        ServerSideInvitation inv = getRecievedInvitationByID(response.getInvitationID());
+        if(inv == null){
+            return;
+        }
+        if(response.getStatus() == AcceptedDinedStatus.ACCEPTED){
+            inv.accept();
+        }else{
+            inv.deny();
         }
     }
 
@@ -70,8 +113,8 @@ public class PlayerHandler extends Player {
 
         super(p);
         players.add(this);
-        sentReq = new Vector<GameInvitation>();
-        receivedReq = new Vector<GameInvitation>();
+        sentInvReq = new Vector<ServerSideInvitation>();
+        receivedReq = new Vector<ServerSideInvitation>();
 
     }
 
