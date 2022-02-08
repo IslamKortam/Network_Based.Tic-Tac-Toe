@@ -48,7 +48,7 @@ public class StageManager {
         GameBoardUtility.initScene();
         this.stage = stage;
         stageManger = this;
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
         displayScene(SceneName.SIGNIN);
     }
 

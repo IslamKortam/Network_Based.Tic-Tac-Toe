@@ -33,7 +33,6 @@ public class BestMove {
     }
 
     // This is the evaluation function as discussed
-    // in the previous article ( http://goo.gl/sJgv68 )
     static int evaluate(char b[][]) {
         // Checking for Rows for X or O victory.
         for (int row = 0; row < 3; row++) {

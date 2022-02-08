@@ -4,6 +4,8 @@
  */
 package gameboard;
 
+import controllerPackage.MainController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,9 +113,9 @@ public class GameBoardController implements Initializable {
             System.out.println(i);
         }        
     }
-     @FXML
-    void backToHome(ActionEvent event) {
-
+    @FXML
+    void backToHome(ActionEvent event) throws IOException {
+        //MainController.getRef().navigateToModes();
     }
 
     

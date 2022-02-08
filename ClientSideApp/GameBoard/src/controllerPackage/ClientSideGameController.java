@@ -67,6 +67,11 @@ public class ClientSideGameController {
         this.playerNumber = playerNumber;
     }
 
+    public void setIsHardGame(boolean isHardGame) {
+        this.isHardGame = isHardGame;
+    }
+    
+
     public void makeAMove(int boxID){
         if(yourTurn && chkValidChosen(boxID)){
             admitMove(boxID,playerNumber);
