@@ -21,7 +21,7 @@ public class ClientSideGameController {
     private boolean isMultiplayer;
     private boolean yourTurn;
     private int playerNumber;
-    private static ArrayList<Integer> gameMoves = new ArrayList<Integer>();
+    private ArrayList<Integer> gameMoves = new ArrayList<Integer>();
     final char[] playerSymbole={'X','O'};
     private int winnerNumber=-1;
     private String[] board = {"a","a","a","a","a","a","a","a","a"};
@@ -88,7 +88,7 @@ public class ClientSideGameController {
                         makeOpponentMove(generateBestMove());
                     }
                     else{
-                        makeOpponentMove(generateRandomMove());
+                        makeOpponentMove(generateRandomMove(gameMoves));
                     }
                 }
                 else{
@@ -157,7 +157,7 @@ public class ClientSideGameController {
         yourTurn=true; //EnableFreeButtons
     }
     
-    static int generateRandomMove() {
+    static int generateRandomMove(ArrayList<Integer> gameMoves) {
         int start=0,end = 8;
         Random rand = new Random();
         int random = rand.nextInt(end-start) + start;
