@@ -20,6 +20,8 @@ public class Player {
     private String userName;
     private String fullName;
     private String email;
+    private String Password;
+    private boolean visible;
     private int score;
     private int iconIndex;
     private PlayerStatus status;
@@ -34,6 +36,15 @@ public class Player {
         this.score = score;
         this.iconIndex = iconIndex;
         this.status = status;
+    }
+    public Player(String userName, String fullName, String email,String password ,int iconIndex,int score,boolean visable) {
+        this.userName = userName;
+        this.fullName = fullName;
+        this.email = email;
+        this.Password = password;
+        this.score = score;
+        this.visible = visable;
+        this.iconIndex = iconIndex;
     }
     
     public Player() {
