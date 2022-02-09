@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/CommunicationMassegeType.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverdao/GamePojo.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverdao/PlayerPojo.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerStatus.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/Player.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerHandler.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/CommunicationMassegeType.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/NotAuthrizedUsersHandler.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/UserHandler.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/GameStatusUpdate.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/GameSession/GameSession.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/ServerMulti.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/ServerMainController.java</file>
         </group>
     </open-files>
 </project-private>

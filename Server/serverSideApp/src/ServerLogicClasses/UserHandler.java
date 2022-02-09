@@ -71,8 +71,13 @@ public class UserHandler extends Thread{
                         s = Parser.gson.toJson(comm);
                         sendToClient(s);
                     }
-                    else{
-                        //Handle Sign UP here
+                    else if(comm.getType() == CommunicationMassegeType.SIGN_UP_REQUEST){
+                        SignUpRequest req = Parser.gson.fromJson(comm.getMsgBody(), SignUpRequest.class);
+                        SignUpResponse status = NotAuthrizedUsersHandler.ref.handleSignUpAttempt(req);
+                        System.out.println("SignUpResponse: " + status.getSignup());
+                        String res = Parser.gson.toJson(status);
+                        CommunicationMassege replyComm = new CommunicationMassege(CommunicationMassegeType.SIGN_UP_REQUEST_STATUS, res);
+                        sendCommMsgToClient(replyComm);
                     }
                     
                     

@@ -5,6 +5,7 @@
  */
 package xoSignupPkg;
 
+import CommHandlerPK.ClientConnectionHandler;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.SignUpRequest;
@@ -106,6 +107,7 @@ public class SignupController implements Initializable {
                             txtPassword.getText(), Integer.valueOf(AvatarID.getText()));
                    SignUpRequest signUp = new SignUpRequest(plr);
                    CommunicationMassege com = new CommunicationMassege(CommunicationMassegeType.SIGN_UP_REQUEST,ParserPackage.Parser.gson.toJson(signUp));
+                    ClientConnectionHandler.ref.sendCommMsgToServer(com);
                 }
             });
         }

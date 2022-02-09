@@ -24,6 +24,40 @@ public class PlayerPojo {
     private Date lastVisit;
     private Boolean visible;
 
+   
+    public PlayerPojo() {
+        this.ID=-1;
+        this.userName = "";
+        this.nickName = "";
+        this.email = "";
+        this.password = "";
+        this.picture = -1;
+        this.score = -1;
+        this.lastVisit = new Date(1);
+        this.visible= false;
+    }
+    public PlayerPojo(String userName, String nickName, String email, String password, int picture, int score, Date lastVisit,Boolean visible) {
+        this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.picture = picture;
+        this.score = score;
+        this.lastVisit = lastVisit;
+        this.visible= visible;
+    }
+    public PlayerPojo(int ID,String userName, String nickName, String email, String password, int picture, int score, Date lastVisit,Boolean visible) {
+        this.ID=ID;
+        this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.picture = picture;
+        this.score = score;
+        this.lastVisit = lastVisit;
+        this.visible= visible;
+    }
+    
     public PlayerPojo(String userName, String nickName, String email, String password, int picture) {
         this.userName = userName;
         this.nickName = nickName;
@@ -31,7 +65,7 @@ public class PlayerPojo {
         this.password = password;
         this.picture = picture;
         this.score = 0;
-        this.lastVisit = Date.valueOf(LocalDate.now());
+        //this.lastVisit = Date.valueOf(LocalDate.now());
         this.visible= true;
     }
 

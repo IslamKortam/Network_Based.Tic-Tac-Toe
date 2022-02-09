@@ -3,14 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/CommunicationMassegeType.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/Player.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/ClientSideGameController.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignupController.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginController.java</file>
-            <file>file:/D:/ITI/2022-1/JavaFX/Project/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/MainController.java</file>
-=======
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/modes/ModesController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/MainController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersSceneUtility.java</file>
@@ -18,17 +10,18 @@
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersSceneController.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignupController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/ClientSideGameController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersScene.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/AcceptedDinedStatus.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/Player.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardUtility.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/xoSignupPkg/SignUpUtility.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/CommunicationMassegeType.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginTrial.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/nbproject/jfx-impl.xml</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoard.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommHandlerPK/ClientConnectionHandler.java</file>
->>>>>>> master
         </group>
     </open-files>
 </project-private>

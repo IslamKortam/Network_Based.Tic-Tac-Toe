@@ -24,7 +24,7 @@ public class SignUpRequest {
     public void setNewPlayer(PlayerPojo newPlayer) {
         this.newPlayer = newPlayer;
     }
-
-    
     
 }
+
+

@@ -6,6 +6,7 @@
 package serverdao;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -56,6 +57,17 @@ public class PlayerPojo {
         this.score = score;
         this.lastVisit = lastVisit;
         this.visible= visible;
+    }
+    
+    public PlayerPojo(String userName, String nickName, String email, String password, int picture) {
+        this.userName = userName;
+        this.nickName = nickName;
+        this.email = email;
+        this.password = password;
+        this.picture = picture;
+        this.score = 0;
+        this.lastVisit = Date.valueOf(LocalDate.now());
+        this.visible= true;
     }
 
     public int getID() {
