@@ -35,6 +35,7 @@ public class ClientSideGameController {
         else
             yourTurn=false;
         GameBoardUtility.resetAllBoxes();
+        GameBoardUtility.changeImgPlayerTurn(yourTurn);
         ref=this;
     }
 
@@ -76,6 +77,7 @@ public class ClientSideGameController {
             admitMove(boxID,playerNumber);
             yourTurn=false; //disableAllButtons
             updateGameMovesArray(boxID);
+            GameBoardUtility.changeImgPlayerTurn(yourTurn);
             if(isMultiplayer){
                 //sendToServer(boxID);
                 MainController.getRef().sendMoveToServer(boxID);
@@ -160,6 +162,7 @@ public class ClientSideGameController {
                declareLooser();
            }
         }
+        GameBoardUtility.changeImgPlayerTurn(yourTurn);
     }
     
     static int generateRandomMove(ArrayList<Integer> gameMoves) {
