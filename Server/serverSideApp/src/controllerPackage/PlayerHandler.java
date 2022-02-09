@@ -75,8 +75,10 @@ public class PlayerHandler extends Player {
 
     public void sendMeAllPlayers() {
         for (PlayerHandler playerHandler : players) {
-            CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.PLAYER, Parser.gson.toJson(new Player(playerHandler)));
-            sendMeCommMsg(commMsg);
+            if(playerHandler.getId() != getId()){
+                CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.PLAYER, Parser.gson.toJson(new Player(playerHandler)));
+                sendMeCommMsg(commMsg);
+            }
         }
     }
     

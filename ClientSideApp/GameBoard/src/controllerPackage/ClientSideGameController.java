@@ -156,7 +156,8 @@ public class ClientSideGameController {
         admitMove(boxID,1-playerNumber);
         updateGameMovesArray(boxID);
         yourTurn=true; //EnableFreeButtons
-        if(checkEndOfGame()){
+        
+        if(checkEndOfGame() && !isIsMultiplayer()){
             if(winnerNumber == 1){
                System.out.println("Looser");
                declareLooser();
