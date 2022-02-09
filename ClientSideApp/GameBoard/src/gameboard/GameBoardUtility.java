@@ -83,7 +83,7 @@ public class GameBoardUtility {
                 imv.setImage(img);
             }
         });
-        
+
     }
 
     static void setPlayerName(Label l, String name) {
@@ -117,6 +117,11 @@ public class GameBoardUtility {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                if (text == "X") {
+                    buttons.get(boxNumber).setStyle("-fx-text-fill: #FF0000");
+                } else {
+                    buttons.get(boxNumber).setStyle("-fx-text-fill: #8425E1");
+                }
                 buttons.get(boxNumber).setText(text);
                 buttons.get(boxNumber).setDisable(true);
             }
@@ -139,8 +144,8 @@ public class GameBoardUtility {
             @Override
             public void run() {
                 for (int i = 0; i < buttons.size(); i++) {
-     resetBox(i);
-                }               
+                    resetBox(i);
+                }
             }
         });
     }
@@ -161,7 +166,7 @@ public class GameBoardUtility {
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((gameboard.GameBoardUtility.class).getResource("GameBoard.fxml"));
         scene = new Scene(root);
-        ref=root;
+        ref = root;
     }
 
     public static Scene getScene() {

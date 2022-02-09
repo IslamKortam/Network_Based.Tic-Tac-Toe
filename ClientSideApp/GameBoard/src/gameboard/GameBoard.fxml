@@ -31,11 +31,11 @@
                </font></Button>
             <Button fx:id="button4" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-font-weight: bold;" textAlignment="CENTER">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font></Button>
             <Button fx:id="button5" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-font-weight: bold;" textAlignment="CENTER">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="36.0" />
                </font></Button>
             <Button fx:id="button6" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
