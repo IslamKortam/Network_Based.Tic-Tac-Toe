@@ -36,6 +36,7 @@ public class ClientSideGameController {
             yourTurn=false;
         GameBoardUtility.resetAllBoxes();
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
+        GameBoardUtility.showBtnSave(isMultiplayer);
         ref=this;
     }
 
