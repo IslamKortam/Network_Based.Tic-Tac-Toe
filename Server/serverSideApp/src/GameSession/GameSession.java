@@ -66,6 +66,7 @@ public class GameSession {
                 XOBoard[arrayOfMoves.get(i)]='O';
             }
         }
+        turn = arrayOfmoves.size() % 2;        
     }
 
 
