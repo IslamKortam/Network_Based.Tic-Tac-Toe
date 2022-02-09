@@ -21,7 +21,7 @@ public class GameSession {
     private PlayerHandler player1;
     private PlayerHandler[] players;
     private int turn;
-    private ArrayList arrayOfMoves = new ArrayList(9);
+    private ArrayList<Integer> arrayOfMoves = new ArrayList(9);
     private char[] XOBoard = new char[]{'.','.','.','.','.','.','.','.','.'};
     private char[] playerMark = new char[]{'X','O'};
 
@@ -52,12 +52,22 @@ public class GameSession {
         player1.startNewMultiPlayerGame(1, player_0.getId());
     }
 
-    public GameSession(PlayerHandler player_0 , PlayerHandler player_1 , int playerTurn){
+    public GameSession(PlayerHandler player_0 , PlayerHandler player_1 , ArrayList arrayOfmoves){
         player0 = player_0;
         player1 = player_1;
         players=new PlayerHandler[]{player0,player1};
-        turn = playerTurn;
+        arrayOfMoves = arrayOfmoves;
+        for(int i=0; i < arrayOfMoves.size(); i++)
+        {
+            if(i%2==0){
+                XOBoard[arrayOfMoves.get(i)]='X';
+            }
+            else if(i%2==1){
+                XOBoard[arrayOfMoves.get(i)]='O';
+            }
+        }
     }
+
 
     public void makeMove(int buttonId , int playerId)
     {
