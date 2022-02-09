@@ -5,6 +5,7 @@
  */
 package gameboard;
 
+import com.jfoenix.controls.JFXButton;
 import controllerPackage.ClientSideGameController;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class GameBoardUtility {
     static ImageView img1;
     static ImageView img2;
     public static Parent ref;
+    static JFXButton btnSave;
+    static ImageView imgPlayerTurn;
 
     public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2) {
         GameBoardUtility.player1Name = player1;
@@ -139,7 +142,7 @@ public class GameBoardUtility {
             @Override
             public void run() {
                 for (int i = 0; i < buttons.size(); i++) {
-     resetBox(i);
+                    resetBox(i);
                 }               
             }
         });
@@ -166,5 +169,47 @@ public class GameBoardUtility {
 
     public static Scene getScene() {
         return scene;
+    }
+
+    public static void setBtnSave(JFXButton btnSave) {
+        GameBoardUtility.btnSave = btnSave;
+    }
+
+    public static void setImgPlayerTurn(ImageView imgPlayerTurn) {
+        GameBoardUtility.imgPlayerTurn = imgPlayerTurn;
+    }
+
+    public static JFXButton getBtnSave() {
+        return btnSave;
+    }
+
+    public static ImageView getImgPlayerTurn() {
+        return imgPlayerTurn;
+    }
+
+
+    
+    public static void showBtnSave(boolean isVisible) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                btnSave.setVisible(isVisible);
+            }
+        });
+    }
+    public static void changeImgPlayerTurn(boolean isYourTurn) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Image img;
+                if(isYourTurn){
+                    img = new Image(GameBoardController.class.getResourceAsStream("/resources/online.png"));
+                }
+                else{
+                    img = new Image(GameBoardController.class.getResourceAsStream("/resources/offline.png"));
+                }
+                imgPlayerTurn.setImage(img);
+            }
+        });
     }
 }
