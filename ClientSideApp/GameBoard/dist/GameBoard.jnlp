@@ -8,19 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3753340" download="eager" />
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3750738" download="eager" />
-=======
-    <jar href="GameBoard.jar" size="3751623" download="eager" />
->>>>>>> master
-=======
-    <jar href="GameBoard.jar" size="3753100" download="eager" />
->>>>>>> e9726d48d2a756f784020f4f2d7b622caa168c0c
->>>>>>> modifyScenes
+    <jar href="GameBoard.jar" size="3754537" download="eager" />
     <jar href="lib\gson-2.8.0.jar" size="231952" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>

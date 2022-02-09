@@ -1,0 +1,505 @@
+[33mcommit abd83e6e4805b82599c32b555d805fe66bdf2ece[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mGUI[m[33m)[m
+Merge: 8872b3b e72df18
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 02:30:11 2022 +0200
+
+    Merging Branch
+
+[33mcommit e72df18f73b58551374ce309717bb6b8d3273709[m
+Merge: 1a21386 55448a9
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 02:29:36 2022 +0200
+
+    Merging Branch
+
+[33mcommit 55448a965d2ffb716b888cd9a25a559e2f92fffd[m[33m ([m[1;32mmodifyScenes[m[33m)[m
+Merge: 67d611f e9726d4
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 02:28:55 2022 +0200
+
+    Merging Branch
+
+[33mcommit 1a2138606c1709829f3ac1b1b640f9292c063b0d[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 02:27:41 2022 +0200
+
+    Implementing Sign up
+
+[33mcommit e9726d48d2a756f784020f4f2d7b622caa168c0c[m[33m ([m[1;31morigin/modifyScenes[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Wed Feb 9 02:26:37 2022 +0200
+
+    Modify all scenes
+
+[33mcommit 8872b3b97fd52ff16a0713dea27b2105ef1d962c[m[33m ([m[1;31morigin/GUI[m[33m)[m
+Author: Ahmed-Atef98 <a7medatef7@gmail.com>
+Date:   Wed Feb 9 02:17:24 2022 +0200
+
+    GUI Modification2
+
+[33mcommit ff9c269c1181cacca8e6daab296619ba771d16b8[m
+Author: Ahmed-Atef98 <a7medatef7@gmail.com>
+Date:   Wed Feb 9 01:54:11 2022 +0200
+
+    GUI Modification
+
+[33mcommit 67d611ffb73a400b897348592061168fb109df90[m
+Merge: 5904597 b55eb44
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 01:39:59 2022 +0200
+
+    Merging
+
+[33mcommit b55eb44e7eb474805aec2b8ae188c82642d0684a[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 01:35:08 2022 +0200
+
+    Solving not sending the last move in the multuplayer
+
+[33mcommit 5904597080add85ad29f7b26829edc2019441968[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Wed Feb 9 01:14:35 2022 +0200
+
+    Modify Player Class to PlayerPojo and modify signup requests and signup controller
+
+[33mcommit 5aea192d458cb16bdfdb4addcd87f0507c85a3dc[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 00:38:35 2022 +0200
+
+    Solving Bug after Finishing game
+
+[33mcommit 2bbe9edd510b0a8e9ca61b98e56fb913ca761cb3[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Wed Feb 9 00:33:38 2022 +0200
+
+    Changing Default Run Class
+
+[33mcommit ff962dfde04c01603fa19b236996d390f920f65c[m[33m ([m[1;31morigin/modifyGame[m[33m, [m[1;32mmodifyGame[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Wed Feb 9 00:15:35 2022 +0200
+
+    modify Signup Request
+
+[33mcommit 11ae20773a87b2df6e75ea6f5d85656f7f7ff68f[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Wed Feb 9 00:00:24 2022 +0200
+
+    Add Signup Requests
+
+[33mcommit bc3ddda93982318ffa3d518eb38bce0dceb88d3c[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 23:48:52 2022 +0200
+
+    Add Signup Request,status and Response
+
+[33mcommit 83b187c379b85b713a367031c80903e3e3f19147[m[33m ([m[1;32mmodifySingleGame[m[33m)[m
+Merge: 849955c 06a4889
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 23:23:45 2022 +0200
+
+    Merging
+
+[33mcommit 06a488969c1f312bd2b7c5b0b5250f98c87d98b5[m[33m ([m[1;32mModifyPlayerScene[m[33m)[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 23:21:41 2022 +0200
+
+    Ending the Game
+
+[33mcommit 849955cca614184ea8c9fd50dae4f0f71bd4ab27[m[33m ([m[1;31morigin/modifySingleGame[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 23:18:16 2022 +0200
+
+    Modify single game levels
+
+[33mcommit 777d6f434c92959f029ff65f1f5bb93fc43ef854[m[33m ([m[1;32mgameLevels[m[33m)[m
+Merge: 82f1eb3 e028f3f
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 22:34:31 2022 +0200
+
+    Merging
+
+[33mcommit e028f3fce3649d915cefe1259f8e43f5b9d70e91[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 22:33:14 2022 +0200
+
+    Modyfing Server Stop start
+
+[33mcommit 82f1eb393cc5e2fe52272bc18ec62c23db3ef23a[m[33m ([m[1;31morigin/gameLevels[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 22:28:37 2022 +0200
+
+    Adding Alert Game Board and modify signup page
+
+[33mcommit e2e018b36a8ea5566075fe7e2b2540343ba515ed[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 22:11:17 2022 +0200
+
+    Intiating Multiplayer
+
+[33mcommit 92b307e3133ba91ede2060be6188e4341828849e[m[33m ([m[1;32mreceiveInvitation[m[33m)[m
+Merge: d806ea4 d8524f6
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 21:16:25 2022 +0200
+
+    Merging
+
+[33mcommit d8524f64c4d723a6419ed287bf0a8387fcf72565[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 21:14:46 2022 +0200
+
+    Handling Acceptance of an Invitation
+
+[33mcommit d806ea410672192df79753ed5fa56a516ea3f18c[m[33m ([m[1;31morigin/receiveInvitation[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 21:07:16 2022 +0200
+
+    Adding AI to single player
+
+[33mcommit ab8342a1ccf783c4a90beef6aa78d3fe0736c297[m[33m ([m[1;32mMultiPlayers[m[33m)[m
+Merge: 6c9cd1a 7143b24
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 17:15:49 2022 +0200
+
+    Merging Commit
+
+[33mcommit 6c9cd1a2d1c0e6aa695ce417eb18569a251fdd71[m
+Merge: b93577a 4ac68f6
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 17:10:14 2022 +0200
+
+    Merging Commit
+
+[33mcommit b93577a48df19f53b25a78cc8e8a135515d18584[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 17:06:55 2022 +0200
+
+    Implementing Invitation delvry on Server
+
+[33mcommit 4ac68f6114b6cce68448cf6ddf72ae47707d3ee2[m
+Merge: 4350b12 8e9e675
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 15:31:09 2022 +0200
+
+    Merge branch 'receiveInvitation'
+
+[33mcommit 8e9e675040a6191c81670a4f724ba692972c5650[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 03:24:12 2022 +0200
+
+    Receive Invitation method in main controller
+
+[33mcommit 7143b242858a03df8cd2837a3f6314d3a33c535b[m[33m ([m[1;31morigin/MultiPlayers[m[33m)[m
+Author: Amany Bahaa Eldin <amany.mohamed98@eng-st.cu.edu.eg>
+Date:   Tue Feb 8 03:23:44 2022 +0200
+
+    Added invite button handler for sending invitation
+
+[33mcommit 4350b1291893189655fdc86df35c04e17e619341[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 03:17:58 2022 +0200
+
+    Receive Invitation method in main controller
+
+[33mcommit 0fa30c0c46dc677dae46cea111a134ccb072fdc4[m
+Merge: 46518c1 609f150
+Author: Amany Bahaa Eldin <amany.mohamed98@eng-st.cu.edu.eg>
+Date:   Tue Feb 8 00:56:12 2022 +0200
+
+    Merge branch 'master' of https://github.com/IslamKortam/Network_Based.Tic-Tac-Toe into MultiPlayers
+
+[33mcommit 46518c1bda4adaf02d3fea752a10e2d2663da331[m
+Author: Amany Bahaa Eldin <amany.mohamed98@eng-st.cu.edu.eg>
+Date:   Tue Feb 8 00:56:06 2022 +0200
+
+    Added updates on stagemanager and playerScene
+
+[33mcommit 609f1505acf0681cb42a0d7a52360bf59708660a[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 00:44:35 2022 +0200
+
+    Modifeing CommMsgs Types
+
+[33mcommit 694d95fd687e7271fc6e44d32711b0a8198f94b9[m[33m ([m[1;32mIntegrationSinglePlayer[m[33m)[m
+Merge: 7dd2cf9 fed38f0
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 00:42:52 2022 +0200
+
+    Merging Single Player Ingegeration
+
+[33mcommit 7dd2cf90e0cc5d38842bfd98da2e1eea465ce711[m[33m ([m[1;31morigin/IntegrationSinglePlayer[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 00:41:11 2022 +0200
+
+    Create Invitation Class
+
+[33mcommit 2a93c02846e946c4a6e3033f08a6ceaa785fcfaf[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Tue Feb 8 00:08:15 2022 +0200
+
+    Integration Single Player
+
+[33mcommit fed38f0afc68e8105db4514a3a39cebe61eca755[m
+Merge: fe1530b e037028
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 00:06:34 2022 +0200
+
+    Modyfing Player List Scene to work
+
+[33mcommit e037028dba4d6768fa455fdb2b59372f19b58ca3[m
+Merge: 9795593 2c185f5
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Tue Feb 8 00:03:49 2022 +0200
+
+    Merge branch 'master' into ModifyPlayerScene
+
+[33mcommit fe1530b57147e778d5d74bb58dc08b8fba856a91[m
+Author: Amany Bahaa Eldin <amany.mohamed98@eng-st.cu.edu.eg>
+Date:   Mon Feb 7 23:59:40 2022 +0200
+
+    Added updates on stagemanager and playerScene
+
+[33mcommit 65a85e1561719c82d590b9bb894547c1c69fa750[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Mon Feb 7 21:46:19 2022 +0200
+
+    Update chat message problem
+
+[33mcommit 2c185f5f5d815ec4cb474161759c164befedafd0[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 21:22:40 2022 +0200
+
+    Intiating with sign Scene
+
+[33mcommit 351cbd902119ff8a27db78da9444ee18225fb143[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 21:19:04 2022 +0200
+
+    Adding initSiglePlayer Method
+
+[33mcommit 9795593d0d47bba36619db00e9874ac3a961f271[m[33m ([m[1;31morigin/ModifyPlayerScene[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Mon Feb 7 20:30:17 2022 +0200
+
+    Modify Player Scene Utility
+
+[33mcommit 072a1ae1f35f4a7707c0cb5d93c4b93ec2b22fb3[m[33m ([m[1;32mClientSideGameController[m[33m)[m
+Merge: a806acc d124b47
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 19:56:30 2022 +0200
+
+    merging ClientSideGame Branch
+
+[33mcommit a806accc0a569e3ab5c192d59c18c69eecab9f8a[m[33m ([m[1;31morigin/ClientSideGameController[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Mon Feb 7 19:27:21 2022 +0200
+
+    Add Client Side Game Controller
+
+[33mcommit a9775b952c1574dbb3140cd82ac0df4f622d9a34[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Mon Feb 7 19:11:01 2022 +0200
+
+    Add Client Side Game Controller
+
+[33mcommit d124b478b9caf813220f59a264fd3b71dc55a852[m[33m ([m[1;32mServerInitiating[m[33m)[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 03:14:11 2022 +0200
+
+    Sending Players from server to clients
+
+[33mcommit bb8042176f0baa3cc6d1ba9d9eab9cc2f69b36a9[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 01:48:24 2022 +0200
+
+    Intializing Server done
+
+[33mcommit 2cc762965f7079f56522ebaf435c2452dd8ff029[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Mon Feb 7 00:12:01 2022 +0200
+
+    Solving some Errors regarding Gson lib
+
+[33mcommit 0eb0a044795f3cf22bb816d613537a0268dde71c[m
+Merge: c29c7f8 2cde428
+Author: Islam Kortam <eng.islam.kortam@gmail.com>
+Date:   Sun Feb 6 23:59:03 2022 +0200
+
+    Merge pull request #14 from IslamKortam/playerhandler
+    
+    Playerhandler
+
+[33mcommit 2cde42887590a8dfeb921fd97d53d73780b06847[m[33m ([m[1;31morigin/playerhandler[m[33m)[m
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sun Feb 6 19:58:11 2022 +0200
+
+    adding playerhandler
+
+[33mcommit 2e0cdf7ec47a4cc2e43c69a4556d6d69c4a1e026[m
+Merge: eafff94 c29c7f8
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sun Feb 6 17:15:11 2022 +0200
+
+    h
+
+[33mcommit c29c7f8d08bf2640f8f12eaf9264c6a273c35ed9[m
+Merge: 5b84622 d5d8052
+Author: Islam Kortam <eng.islam.kortam@gmail.com>
+Date:   Sun Feb 6 17:06:31 2022 +0200
+
+    Merge pull request #13 from IslamKortam/gameSession
+    
+    Added GameSession package
+
+[33mcommit 5b84622bc44df074105d31fbdbbc37850b4ff41c[m[33m ([m[1;32mSignIn[m[33m)[m
+Merge: 3078010 07feab2
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sun Feb 6 17:04:06 2022 +0200
+
+    Solving Signin branch conflicts
+
+[33mcommit 07feab24e7f62f1dcc81070e2f242301e04277d9[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sun Feb 6 16:57:32 2022 +0200
+
+    Adding GameMove and NewGameRequest Classes
+
+[33mcommit eafff94e0392047869ebbebbdfd4215fb9fae2fa[m
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sun Feb 6 16:56:29 2022 +0200
+
+    playerhandler
+
+[33mcommit d5d8052df5ad5e1d5d229bb644d5167ce454fb76[m[33m ([m[1;31morigin/gameSession[m[33m, [m[1;32mgameSession[m[33m)[m
+Author: Amany Bahaa Eldin <amany.mohamed98@eng-st.cu.edu.eg>
+Date:   Sun Feb 6 02:45:43 2022 +0200
+
+    Added GameSession package
+
+[33mcommit 3078010ba99e3de6b603c471101e4af8f8b739ae[m[33m ([m[1;31morigin/SignIn[m[33m)[m
+Author: Ahmed-Atef98 <a7medatef7@gmail.com>
+Date:   Sun Feb 6 00:32:29 2022 +0200
+
+    SignIn Scene Modifications
+
+[33mcommit d5b66a20d9ba3c1db8faadfb0bb4abcd5ea712e4[m[33m ([m[1;32mImplementingServerSocket[m[33m)[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 20:59:33 2022 +0200
+
+    asasd
+
+[33mcommit bd919453ec5914b6b63de7d0d82b01dd1293bc19[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 20:46:40 2022 +0200
+
+    Done with Sign in preceadure
+
+[33mcommit 491dee57c0ed6a406cd50af6c27279eaf4deb80a[m
+Merge: 398968b 4ebb4e9
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 18:03:15 2022 +0200
+
+    Merging with new Upadate of Dao
+
+[33mcommit 398968bf0da6166dfe1a4ae6ef5243b2d2adde93[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 17:50:41 2022 +0200
+
+    Implementing ServerSocket
+
+[33mcommit 4ebb4e946fac2357d555d5c8f6375eef081b4457[m[33m ([m[1;31morigin/dataandhome[m[33m, [m[1;32mdataandhome[m[33m)[m
+Merge: 9b94baf 413dcb3
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sat Feb 5 17:45:16 2022 +0200
+
+    change
+
+[33mcommit 9b94baf2e5f497ba2f6db1934c80c5b3f31279fc[m
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sat Feb 5 17:42:53 2022 +0200
+
+    some change
+
+[33mcommit 413dcb32652587fe43fac2146bab4be34babbc86[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 16:50:05 2022 +0200
+
+    Adding JDBC
+
+[33mcommit db2b1ba32a5f6df184a65ba60b510bfbb2b8d624[m[33m ([m[1;32mdao[m[33m)[m
+Merge: 90e37e7 c1db0ed
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 16:20:01 2022 +0200
+
+    Merging
+
+[33mcommit c1db0ed52f008882cb6d2eb4a718f88dc3343c18[m[33m ([m[1;31morigin/dao[m[33m)[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Sat Feb 5 14:24:06 2022 +0200
+
+    Modify variable data type
+
+[33mcommit 90e37e792433e54cda8414bcf69ea8c34ca43864[m
+Merge: e716872 ef0cf45
+Author: Islam Kortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 14:10:39 2022 +0200
+
+    Merge pull request #10 from IslamKortam/remoteDb
+    
+    Remote db
+
+[33mcommit ef0cf45c641e1c8dd0662e2cb52f96f88ba7e5c7[m[33m ([m[1;31morigin/remoteDb[m[33m)[m
+Merge: 7b3db0e e716872
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sat Feb 5 03:21:53 2022 +0200
+
+    remote db
+
+[33mcommit 7b3db0e0d5a583a5da50c1bf52ca354eb69010f3[m
+Author: salma <salma.moamed.abdelatty@gmail.com>
+Date:   Sat Feb 5 03:17:21 2022 +0200
+
+    remote db
+
+[33mcommit e716872dee566a22054884b2da3387245f4244f7[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 02:08:57 2022 +0200
+
+    Adding more select methods on Dao
+
+[33mcommit d6384abf72a632cf2027ff02a4fbdbf9e2d0f777[m
+Merge: 3981680 bf8fbdc
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Sat Feb 5 01:38:00 2022 +0200
+
+    Merging Dao
+
+[33mcommit bf8fbdcefacbaa23ffae91941076809e6e84f71a[m
+Author: Mohamed Rashed <mhmadrashd27@gmail.com>
+Date:   Sat Feb 5 01:15:20 2022 +0200
+
+    Modify DAO methods and Game,Player Pojo classes
+
+[33mcommit 39816802d902503923205d018b52f67242bce564[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Fri Feb 4 22:54:24 2022 +0200
+
+    Updating ignored files
+
+[33mcommit 0689f599f2ed2922ce294699f9b0d869aa459539[m
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Fri Feb 4 22:44:18 2022 +0200
+
+    Fixing some bugs in Dao Class
+
+[33mcommit be8d12fcbafa86eb6d99506a150892c66a685039[m
+Merge: 858f40f 6dafcaa
+Author: IslamKortam <eng.islam.kortam@gmail.com>
+Date:   Fri Feb 4 19:05:26 2022 +0200
+
+    Merging DAO
+
+[33mcommit 858f40f9ae54e25602f38fbfcdd8c0730be40c5f[m
+Author: Ahmed-Atef98 <a7medatef7@gmail.com>
+Date:   Fri Feb 4 01:02:37 2022 +0200
+
+    Add Visibility & Completion Functions

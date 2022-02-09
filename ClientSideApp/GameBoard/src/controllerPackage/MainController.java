@@ -114,10 +114,10 @@ public class MainController extends Application{
                     stageMagner.displayScene(SceneName.SIGNIN);
                     break;
                 case EMAIL_REPEATED:
-                    SignUpUtility.displaySignUpErrorMsg(1, "Error! \nRepeated Email");
+                    SignUpUtility.displaySignUpErrorMsg(0, "Error! \nRepeated Email");
                     break;
                 case USERNAME_REPEATED:
-                    SignUpUtility.displaySignUpErrorMsg(1, "Error! \nRepeated UserName");
+                    SignUpUtility.displaySignUpErrorMsg(0, "Error! \nRepeated UserName");
                     break;
             }
     }

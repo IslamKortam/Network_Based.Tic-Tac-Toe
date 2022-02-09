@@ -47,12 +47,15 @@ public class NotAuthrizedUsersHandler {
         Boolean userNameValid = true;
         String email = req.getNewPlayer().getEmail();
         String userName = req.getNewPlayer().getUserName();
+         System.out.println(email);
+         System.out.println(userName);
         for(PlayerHandler player : PlayerHandler.getPlayers()){
-            
-            if(email == player.getEmail()){
+            System.out.println(player.getEmail());
+            System.out.println(player.getUserName());
+            if(email.equals(player.getEmail())){
                 emailValid = false;
             }
-            if(userName == player.getUserName()){
+            if(userName.equals(player.getUserName())){
                 userNameValid = false;
             }
         }
