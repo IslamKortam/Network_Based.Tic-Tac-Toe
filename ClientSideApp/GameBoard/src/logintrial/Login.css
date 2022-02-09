@@ -15,6 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 #signinbtn 
 {
     -fx-background-color: white;
+    -fx-cursor: hand;
 }
 #nameField , #passwdField
 {
@@ -24,8 +25,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: none;
     -fx-text-fill: #f2d190;
     -fx-font-size: 18px;
+    -fx-cursor: hand;
 }
 
 #signInBtn {
     -fx-font-size: 18px;
+    -fx-cursor: hand;
 }

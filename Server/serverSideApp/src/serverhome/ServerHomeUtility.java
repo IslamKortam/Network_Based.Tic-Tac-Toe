@@ -5,9 +5,7 @@
  */
 package serverhome;
 
-import controllerPackage.Player;
 import controllerPackage.PlayerHandler;
-import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.util.Vector;
 import javafx.application.Platform;
