@@ -6,7 +6,6 @@
 package controllerPackage;
 
 import controllerPackage.BestMove.Move;
-import gameboard.GameBoardController;
 import gameboard.GameBoardUtility;
 import java.util.ArrayList;
 import java.util.Random;
@@ -155,6 +154,12 @@ public class ClientSideGameController {
         admitMove(boxID,1-playerNumber);
         updateGameMovesArray(boxID);
         yourTurn=true; //EnableFreeButtons
+        if(checkEndOfGame()){
+            if(winnerNumber == 1){
+               System.out.println("Looser");
+               declareLooser();
+           }
+        }
     }
     
     static int generateRandomMove(ArrayList<Integer> gameMoves) {

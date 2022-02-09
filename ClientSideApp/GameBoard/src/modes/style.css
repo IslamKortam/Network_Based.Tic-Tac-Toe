@@ -1,8 +1,9 @@
 #signlebtn{
 
 -fx-background-color:  linear-gradient(to right,#D391FA,#C364FA,#A230ED,#6B00D7,#3E00B3,#190087);
-
+-fx-cursor: hand;
 }
 #multibtn{
 -fx-background-color:  linear-gradient(to right,#ff606e,#ff8671,#ffa370,#ffbf70);
+-fx-cursor: hand;
 }

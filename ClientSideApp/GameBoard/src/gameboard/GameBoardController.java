@@ -23,7 +23,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -118,8 +117,21 @@ public class GameBoardController implements Initializable {
         }        
     }
     @FXML
-    void backToHome(ActionEvent event) throws IOException {
-        MainController.getRef().navigateToModes();
+    void backToHome(ActionEvent event)  {
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Exit Game?");
+        a.setContentText("If you pressed ok you will lost this game.");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    MainController.getRef().navigateToModes();
+                } catch (IOException ex) {
+                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
     }
 
     
