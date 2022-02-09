@@ -23,7 +23,7 @@ public class ClientConnectionHandler extends Thread{
     public static ClientConnectionHandler ref;
     private Socket clientSocket;
     private String serverIP = "127.0.0.1";
-    private int serverPort = 5005;
+    private int serverPort = 8083;
     private DataInputStream inputStream;
     private PrintStream outputStream;
     public ClientConnectionHandler(){

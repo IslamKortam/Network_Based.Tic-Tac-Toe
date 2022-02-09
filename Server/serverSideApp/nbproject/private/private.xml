@@ -8,11 +8,10 @@
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerStatus.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/Player.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerHandler.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/SignUpRequest.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/CommunicationMassegeType.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/NotAuthrizedUsersHandler.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/UserHandler.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/GameStatusUpdate.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/GameSession/GameSession.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/ServerMulti.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/ServerMainController.java</file>
         </group>

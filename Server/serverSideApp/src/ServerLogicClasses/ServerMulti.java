@@ -21,7 +21,7 @@ public class ServerMulti extends Thread{
     private ServerSocket serverSocket;
     private ServerMulti(){
         try {
-            serverSocket = new ServerSocket(5005);
+            serverSocket = new ServerSocket(8083);
             ref = this;
         } catch (IOException ex) {
             Logger.getLogger(ServerMulti.class.getName()).log(Level.SEVERE, null, ex);
