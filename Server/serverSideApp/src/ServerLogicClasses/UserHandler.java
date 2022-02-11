@@ -57,19 +57,20 @@ public class UserHandler extends Thread{
                     if(comm.getType() == CommunicationMassegeType.SIGN_IN_REQUEST){
                         SignInRequest req = Parser.gson.fromJson(comm.getMsgBody(), SignInRequest.class);
                         SignInStatus status = NotAuthrizedUsersHandler.ref.handleSignInAttempt(req);
+                        comm = new CommunicationMassege(CommunicationMassegeType.SIGN_IN_REQUEST_STATUS, Parser.gson.toJson(status));
                         if(status.getStatus() == AcceptedDinedStatus.ACCEPTED){
                             System.out.println("Accepted Client");
                             connectedPlayer = getPlayerHandlerByID(status.getPlayerData().getId());
                             connectedPlayer.setUserHandler(this);
                             connectedPlayer.changeStatus(PlayerStatus.ONLINE);
                             authrized = true;
+                            sendCommMsgToClient(comm);
                             connectedPlayer.sendMeAllPlayers();
                         }else{
                             System.out.println("Denied Client");
+                            sendCommMsgToClient(comm);
                         }
-                        comm = new CommunicationMassege(CommunicationMassegeType.SIGN_IN_REQUEST_STATUS, Parser.gson.toJson(status));
-                        s = Parser.gson.toJson(comm);
-                        sendToClient(s);
+                        
                     }
                     else if(comm.getType() == CommunicationMassegeType.SIGN_UP_REQUEST){
                         SignUpRequest req = Parser.gson.fromJson(comm.getMsgBody(), SignUpRequest.class);
