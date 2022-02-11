@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" depthTest="ENABLE" focusTraversable="true" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loadGame.LoadGameController">
+   <children>
+      <TableView fx:id="table" fixedCellSize="40.0" layoutX="63.0" layoutY="79.0" prefHeight="377.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="gameId" editable="false" prefWidth="59.0" sortable="false" text="Game ID" />
+          <TableColumn fx:id="date" prefWidth="113.0" text="Date" />
+            <TableColumn fx:id="player2Name" prefWidth="123.0" text="Player2 Name" />
+            <TableColumn fx:id="player2Status" editable="false" prefWidth="128.0" text="Player 2 Status" />
+        </columns>
+         <padding>
+            <Insets left="1.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets bottom="7.0" left="22.0" right="9.0" />
+         </opaqueInsets>
+      </TableView>
+      <Button fx:id="home" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHome" style="-fx-graphic: url('/resources/home.png'); -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);" />
+      <Button fx:id="reset" layoutX="694.0" layoutY="545.0" mnemonicParsing="false" onAction="#resetAction" style="-fx-graphic: url('/resources/reset.png'); -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);" />
+   </children>
+</AnchorPane>
