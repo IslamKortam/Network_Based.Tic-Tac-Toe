@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package serverdao;
+package controllerPackage;
 
 import java.sql.Date;
 import java.time.LocalDate;
 
 /**
  *
- * @author Salma
- * Modified by Mohamed Rashed
+ * @author by Mohamed Rashed
  */
 public class PlayerPojo {
 
@@ -66,7 +65,7 @@ public class PlayerPojo {
         this.password = password;
         this.picture = picture;
         this.score = 0;
-        this.lastVisit = Date.valueOf(LocalDate.now());
+        //this.lastVisit = Date.valueOf(LocalDate.now());
         this.visible= true;
     }
 

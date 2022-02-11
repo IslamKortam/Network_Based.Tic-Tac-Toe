@@ -4,7 +4,9 @@
  */
 package playersListScene;
 
+import controllerPackage.MainController;
 import controllerPackage.Player;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,6 +34,11 @@ public class PlayersSceneController implements Initializable{
         nodes = new ArrayList<>();
         PlayersSceneUtility.setParentContainer(nodes, area);
 
+    }
+    
+    @FXML
+    void backToHome(ActionEvent event) throws IOException {
+        MainController.getRef().navigateToModes();
     }
 
     @FXML

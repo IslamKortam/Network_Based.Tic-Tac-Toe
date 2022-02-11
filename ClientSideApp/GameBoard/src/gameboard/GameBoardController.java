@@ -4,6 +4,7 @@
  */
 package gameboard;
 
+import com.jfoenix.controls.JFXButton;
 import controllerPackage.MainController;
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +24,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +35,10 @@ import stagemanager.StageManager;
  */
 public class GameBoardController implements Initializable {
     static GameBoardController ref;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private ImageView imgPlayerTurn;
     @FXML
     private Button button4;
 
@@ -110,7 +114,9 @@ public class GameBoardController implements Initializable {
         ref=this;
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
         GameBoardUtility.setButtons(buttons);
-         GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img);
+        GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img);
+        GameBoardUtility.setBtnSave(btnSave);
+        GameBoardUtility.setImgPlayerTurn(imgPlayerTurn);
         for(int i=0; i < buttons.size(); i++)
         {
             GameBoardUtility.setBoxHandler(i);
@@ -118,8 +124,20 @@ public class GameBoardController implements Initializable {
         }        
     }
     @FXML
-    void backToHome(ActionEvent event) throws IOException {
-        //MainController.getRef().navigateToModes();
+    void backToHome(ActionEvent event)  {
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Exit Game?");
+        a.setContentText("If you pressed ok you will lost this game.");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    MainController.getRef().navigateToModes();
+                } catch (IOException ex) {
+                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     

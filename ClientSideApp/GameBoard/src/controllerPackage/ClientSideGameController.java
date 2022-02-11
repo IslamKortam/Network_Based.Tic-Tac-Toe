@@ -6,7 +6,6 @@
 package controllerPackage;
 
 import controllerPackage.BestMove.Move;
-import gameboard.GameBoardController;
 import gameboard.GameBoardUtility;
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,6 +35,8 @@ public class ClientSideGameController {
         else
             yourTurn=false;
         GameBoardUtility.resetAllBoxes();
+        GameBoardUtility.changeImgPlayerTurn(yourTurn);
+        GameBoardUtility.showBtnSave(isMultiplayer);
         ref=this;
     }
 
@@ -77,6 +78,7 @@ public class ClientSideGameController {
             admitMove(boxID,playerNumber);
             yourTurn=false; //disableAllButtons
             updateGameMovesArray(boxID);
+            GameBoardUtility.changeImgPlayerTurn(yourTurn);
             if(isMultiplayer){
                 //sendToServer(boxID);
                 MainController.getRef().sendMoveToServer(boxID);
@@ -155,6 +157,14 @@ public class ClientSideGameController {
         admitMove(boxID,1-playerNumber);
         updateGameMovesArray(boxID);
         yourTurn=true; //EnableFreeButtons
+        
+        if(checkEndOfGame() && !isIsMultiplayer()){
+            if(winnerNumber == 1){
+               System.out.println("Looser");
+               declareLooser();
+           }
+        }
+        GameBoardUtility.changeImgPlayerTurn(yourTurn);
     }
     
     static int generateRandomMove(ArrayList<Integer> gameMoves) {
