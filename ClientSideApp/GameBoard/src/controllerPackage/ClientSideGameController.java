@@ -5,6 +5,9 @@
  */
 package controllerPackage;
 
+import CommunicationMasseges.CommunicationMassege;
+import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.GameStatusUpdate;
 import controllerPackage.BestMove.Move;
 import gameboard.GameBoardUtility;
 import java.util.ArrayList;
@@ -25,11 +28,16 @@ public class ClientSideGameController {
     private int winnerNumber = -1;
     private String[] board = {"a", "a", "a", "a", "a", "a", "a", "a", "a"};
     private char xoBoard[][] = new char[3][3];
-    private boolean isHardGame = false;
+    private static boolean isHardGame = false;
+
+    public static boolean isIsHardGame() {
+        return isHardGame;
+    }
     
-    public ClientSideGameController(boolean isMultiplayer, int plNumber) {
+    public ClientSideGameController(boolean isMultiplayer, int plNumber, int opponentID) {
         this.isMultiplayer = isMultiplayer;
         this.playerNumber = plNumber;
+        Player.getThisPlayer().setStatus(isMultiplayer?PlayerStatus.IN_MULTIPLAYER_GAME : PlayerStatus.IN_SINGLE_PLAYER_GAME);
         if (playerNumber == 0) {
             yourTurn = true;
         } else {
@@ -39,6 +47,20 @@ public class ClientSideGameController {
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
         GameBoardUtility.showBtnSave(isMultiplayer);
         ref = this;
+        if(isMultiplayer){
+            Player player0, player1;
+            if(yourTurn){
+                player0 = Player.getThisPlayer();
+                player1 = Player.getPlayerByID(opponentID);
+            }else{
+                player0 = Player.getPlayerByID(opponentID);
+                player1 = Player.getThisPlayer();
+            }
+            GameBoardUtility.setPlyer(player0.getFullName(), player0.getScore() + "", player0.getIconIndex(), player1.getFullName(), player1.getScore() + "", player1.getIconIndex());
+        }else{  //Signle player
+            Player player0 = Player.getThisPlayer();
+            GameBoardUtility.setPlyer(player0.getFullName(), player0.getScore() + "", player0.getIconIndex(), (isHardGame? "Hard" : "Easy") + " Robot", (isHardGame? "500" : "100"), 100);
+        }
     }
     
     public static ClientSideGameController getRef() {
@@ -69,8 +91,8 @@ public class ClientSideGameController {
         this.playerNumber = playerNumber;
     }
     
-    public void setIsHardGame(boolean isHardGame) {
-        this.isHardGame = isHardGame;
+    public static void setIsHardGame(boolean isHardGame) {
+        ClientSideGameController.isHardGame = isHardGame;
     }
     
     public void makeAMove(int boxID) {
@@ -91,18 +113,24 @@ public class ClientSideGameController {
                         makeOpponentMove(generateRandomMove(gameMoves));
                     }
                 } else {
+                    
                     if (winnerNumber == 0) {
                         System.out.println("Winner");
+                        
                         declareWinner();
                         
                     } else if (winnerNumber == 1) {
                         System.out.println("Looser");
+                        
                         declareLooser();
                     } else {
                         System.out.println("Tie");
+                        
                         //Tie
                         declareTie();
                     }
+                    
+                    Player.getThisPlayer().setStatus(PlayerStatus.ONLINE);
                 }
             }
         }
@@ -132,22 +160,42 @@ public class ClientSideGameController {
         //winner 0=> x is winner
         //winner 1=> o is winner
         //winner 2=> Tie
+        Boolean result = false;
         String[] line = checkIfGameOver();
         for (String msg : line) {
             if (msg.equals("XXX")) {
                 winnerNumber = 0;
-                return true;
+                result =  true;
             } else if (msg.equals("OOO")) {
                 winnerNumber = 1;
-                return true;
+                result = true;
             }
         }
-        if (gameMoves.size() == 9) {
+        if (gameMoves.size() == 9 && result == false) {
             winnerNumber = 2;
-            return true;
+            result =  true;
         }
-        
-        return false;
+        if(result == true){
+            GameStatusUpdate update = new GameStatusUpdate(GameStatusUpdate.GameStatus.TIE);
+            switch(winnerNumber){
+                case 0:
+                    //Winner
+                    update.setStatus(GameStatusUpdate.GameStatus.WINNER);
+                    break;
+                case 1:
+                    //Loser
+                    update.setStatus(GameStatusUpdate.GameStatus.LOSER);
+                    break;
+                case 2:
+                    //Tie
+                    update.setStatus(GameStatusUpdate.GameStatus.TIE);
+                    break;
+            }
+            String s = ParserPackage.Parser.gson.toJson(update);
+            CommunicationMassege comMsg = new CommunicationMassege(CommunicationMassegeType.GAME_STATUS, s);
+            CommHandlerPK.ClientConnectionHandler.ref.sendCommMsgToServer(comMsg);
+        }
+        return result;
     }
     
     public void makeOpponentMove(int boxID) {
@@ -159,6 +207,8 @@ public class ClientSideGameController {
             if (winnerNumber == 1) {
                 System.out.println("Looser");
                 declareLooser();
+            }else{  //Tie
+                declareTie();
             }
         }
         GameBoardUtility.changeImgPlayerTurn(yourTurn);

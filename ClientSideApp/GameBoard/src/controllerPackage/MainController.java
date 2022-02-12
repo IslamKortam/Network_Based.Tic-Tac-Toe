@@ -13,6 +13,7 @@ import CommunicationMasseges.GameMove;
 import CommunicationMasseges.GameStatusUpdate;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
+import CommunicationMasseges.NewSinglePlayerGame;
 import CommunicationMasseges.ScoreUpdate;
 import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
@@ -164,7 +165,7 @@ public class MainController extends Application{
     
     private void startNewMultiPlayerGame(StartMultiPlayerGame order) throws IOException{
         stageMagner.displayScene(SceneName.GAMEBOARD);
-        new ClientSideGameController(true, order.getTurn());
+        new ClientSideGameController(true, order.getTurn(), order.getOponentID());    //Secont parmater is the turn
     }
 
     private void handleRecievingNewPlayer(Player p) throws IOException {
@@ -211,8 +212,13 @@ public class MainController extends Application{
     }
 
     public void initSinglePlayerGame() throws IOException {
+        
+        NewSinglePlayerGame update = new NewSinglePlayerGame((ClientSideGameController.isIsHardGame() ? NewSinglePlayerGame.Difficulty.HARD : NewSinglePlayerGame.Difficulty.EASY));
+        String s = Parser.gson.toJson(update);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.NEW_SINGLE_PLAYER_GAME, s);
+        ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
         stageMagner.displayScene(SceneName.GAMEBOARD);
-        new ClientSideGameController(false, 0);
+        new ClientSideGameController(false, 0, 0); //false for single palyer
     }
 
     public static void main(String[] args) throws IOException {

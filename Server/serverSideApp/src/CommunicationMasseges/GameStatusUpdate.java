@@ -10,17 +10,23 @@ package CommunicationMasseges;
  * @author Salma
  */
 public class GameStatusUpdate {
-  
-    
-      public enum GameStatus{
-      WINNER,
-      LOSER,
-      TIE}
-      
-      
-     private GameStatus status;
+
+    public enum GameStatus {
+        WINNER,
+        LOSER,
+        TIE
+    }
+    private GameStatus status;
+
     public GameStatusUpdate(GameStatus status) {
         this.status = status;
     }
     
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameStatus status) {
+        this.status = status;
+    }
 }

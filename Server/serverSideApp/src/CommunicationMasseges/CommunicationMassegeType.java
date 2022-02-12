@@ -22,5 +22,6 @@ public enum CommunicationMassegeType {
     SIGN_UP_REQUEST,
     SIGN_UP_REQUEST_STATUS,
     SCORE_UPDATE,
-    STATUS_UPDATE
+    STATUS_UPDATE,
+    NEW_SINGLE_PLAYER_GAME
 }
