@@ -28,8 +28,7 @@ public class ServerMainController extends Application {
             new PlayerHandler(player);
             //serverhome.ServerHomeUtility.updateLogs("+Added Player from DB: " + player.getUserName());
         }
-        ServerMulti server = ServerMulti.getRef();
-        server.startServer();
+        
         launch(serverhome.ServerHome.class ,args);
     }
 

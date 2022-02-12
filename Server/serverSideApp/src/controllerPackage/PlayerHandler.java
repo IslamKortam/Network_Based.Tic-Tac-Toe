@@ -10,6 +10,7 @@ import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameMove;
 import CommunicationMasseges.*;
 import CommunicationMasseges.GameStatusUpdate;
+import CommunicationMasseges.GameStatusUpdate.GameStatus;
 import CommunicationMasseges.NewGameRequest;
 import ServerLogicClasses.UserHandler;
 import java.util.Vector;
@@ -18,6 +19,8 @@ import ParserPackage.Parser;
 import serverdao.PlayerPojo;
 import serverhome.ServerHomeUtility;
 import ServerSideInvitations.*;
+import java.sql.SQLException;
+import serverdao.Dao;
 
 /**
  *
@@ -30,6 +33,15 @@ public class PlayerHandler extends Player {
     GameSession currentGame;
     private Vector<ServerSideInvitation> sentInvReq;
     private Vector<ServerSideInvitation> receivedReq;
+    
+    public static void notifyAllExcept(CommunicationMassege msg, int id){
+        for(PlayerHandler player : players){
+            if(player.getId() != id)
+                player.sendMeCommMsg(msg);
+        }
+    }
+    
+    
     
     private ServerSideInvitation getRecievedInvitationByID(int id){
         ServerSideInvitation invitation = null;
@@ -82,7 +94,7 @@ public class PlayerHandler extends Player {
         }
     }
     
-    public void handle(CommunicationMassege commMsg){
+    public void handle(CommunicationMassege commMsg) throws SQLException{
         if(commMsg.getType() == CommunicationMassegeType.INVITATION){
             new ServerSideInvitation(Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class));
         }else if(commMsg.getType() == CommunicationMassegeType.INVITATION_RESPONSE){
@@ -137,7 +149,7 @@ public class PlayerHandler extends Player {
         }*/
     }
 
-    public void makeAMove(GameMove move) {
+    public void makeAMove(GameMove move) throws SQLException {
         currentGame.makeMove(move.getBoxID(), getId());
     }
 
@@ -165,27 +177,57 @@ public class PlayerHandler extends Player {
         userHandler.sendCommMsgToClient(statusMsg);
     }
 
-    public void win() {
+    public void win() throws SQLException {
         status(GameStatusUpdate.GameStatus.WINNER);
         changeStatus(PlayerStatus.ONLINE);
-
+        updateScore(GameStatus.WINNER);
     }
 
-    public void lose() {
+    public void lose() throws SQLException {
         status(GameStatusUpdate.GameStatus.LOSER);
         changeStatus(PlayerStatus.ONLINE);
-
+        updateScore(GameStatus.LOSER);
     }
 
-    public void tie() {
+    public void tie() throws SQLException {
         status(GameStatusUpdate.GameStatus.TIE);
         changeStatus(PlayerStatus.ONLINE);
-
+        updateScore(GameStatus.TIE);
+    }
+    
+    public void updateScore(GameStatus gameStatus) throws SQLException{
+        final int WINNING_UPDATE = 50;
+        final int LOOSING_UPDATE = -50;
+        final int TIE_UPDATE = 20;
+        switch(gameStatus){
+            case TIE:
+                setScore(getScore() + TIE_UPDATE);
+                break;
+            case WINNER:
+                setScore(getScore() + WINNING_UPDATE);
+                break;
+                
+            case LOSER:
+                setScore(Math.max(getScore() + LOOSING_UPDATE, 0)); //Neglicting negative numbers
+                break;
+        }
+        Dao.updateScore(getId(), getScore());
+        
+        ScoreUpdate update = new ScoreUpdate(getId(), getScore());
+        String s = Parser.gson.toJson(update);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.SCORE_UPDATE, s);
+        notifyAllExcept(commMsg, -1);   //Notify all with me
     }
 
     public void changeStatus(PlayerStatus st) {
         this.setStatus(st);
-        System.err.println("Notify The Others");
+        //System.err.println("Notify The Others");
+        
+        StatusUpdate update = new StatusUpdate(getId(), st);
+        String s = Parser.gson.toJson(update);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.STATUS_UPDATE, s);
+        notifyAllExcept(commMsg, getId());  //Notify all except me
+        
         ServerHomeUtility.updateLogs("Player: " + getUserName() + "'s Status changed to: " + st);
     }
 

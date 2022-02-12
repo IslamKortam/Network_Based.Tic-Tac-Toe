@@ -13,10 +13,12 @@ import CommunicationMasseges.GameMove;
 import CommunicationMasseges.GameStatusUpdate;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
+import CommunicationMasseges.ScoreUpdate;
 import CommunicationMasseges.SignInRequest;
 import CommunicationMasseges.SignInStatus;
 import CommunicationMasseges.SignUpResponse;
 import CommunicationMasseges.StartMultiPlayerGame;
+import CommunicationMasseges.StatusUpdate;
 import ParserPackage.Parser;
 import java.io.IOException;
 import java.util.Vector;
@@ -104,6 +106,27 @@ public class MainController extends Application{
         }else if(commMsg.getType() == CommunicationMassegeType.SIGN_UP_REQUEST_STATUS){
             SignUpResponse reply = Parser.gson.fromJson(commMsg.getMsgBody(), SignUpResponse.class);
             handleSignUpReply(reply);
+        }else if(commMsg.getType() == CommunicationMassegeType.STATUS_UPDATE){
+            StatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), StatusUpdate.class);
+            handleStatusUpdate(update);
+        }else if(commMsg.getType() == CommunicationMassegeType.SCORE_UPDATE){
+            ScoreUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), ScoreUpdate.class);
+            handleScoreUpdate(update);
+        }
+    }
+    
+    private void handleStatusUpdate(StatusUpdate update){
+        Player.getPlayerByID(update.getPlayerID()).setStatus(update.getNewStatus());
+        PlayersSceneUtility.updatePlayer(update.getPlayerID());
+    }
+    
+    private void handleScoreUpdate(ScoreUpdate update){
+        if(update.getPlayerID() == Player.getThisPlayer().getId()){
+            Player.getThisPlayer().setScore(update.getScore());
+        }
+        else{
+            Player.getPlayerByID(update.getPlayerID()).setScore(update.getScore());
+            PlayersSceneUtility.updatePlayer(update.getPlayerID());
         }
     }
     

@@ -38,6 +38,7 @@ public class Invitation {
         this.senderID = other.senderID;
         this.receiverID = other.receiverID;
         this.gameID = other.gameID;
+        this.invitID = other.getInvitID();
     }
 
 

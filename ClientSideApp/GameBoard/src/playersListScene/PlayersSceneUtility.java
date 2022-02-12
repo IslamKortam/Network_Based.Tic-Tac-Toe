@@ -133,7 +133,7 @@ public class PlayersSceneUtility {
                 }));
     }
 
-    static void updatePlayer(int userID) {
+    public static void updatePlayer(int userID) {
         Vector<Player> Players = Player.allPlayers;
         Platform.runLater(new Runnable() {
             @Override
