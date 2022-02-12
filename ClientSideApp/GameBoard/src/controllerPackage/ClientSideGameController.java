@@ -21,25 +21,26 @@ public class ClientSideGameController {
     private boolean yourTurn;
     private int playerNumber;
     private ArrayList<Integer> gameMoves = new ArrayList<Integer>();
-    final char[] playerSymbole={'X','O'};
-    private int winnerNumber=-1;
-    private String[] board = {"a","a","a","a","a","a","a","a","a"};
-    private char xoBoard[][]= new char[3][3];
-    private boolean isHardGame=false;
-
+    final char[] playerSymbole = {'X', 'O'};
+    private int winnerNumber = -1;
+    private String[] board = {"a", "a", "a", "a", "a", "a", "a", "a", "a"};
+    private char xoBoard[][] = new char[3][3];
+    private boolean isHardGame = false;
+    
     public ClientSideGameController(boolean isMultiplayer, int plNumber) {
         this.isMultiplayer = isMultiplayer;
         this.playerNumber = plNumber;
-        if(playerNumber==0)
-            yourTurn=true;
-        else
-            yourTurn=false;
+        if (playerNumber == 0) {
+            yourTurn = true;
+        } else {
+            yourTurn = false;
+        }
         GameBoardUtility.resetAllBoxes();
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
         GameBoardUtility.showBtnSave(isMultiplayer);
-        ref=this;
+        ref = this;
     }
-
+    
     public static ClientSideGameController getRef() {
         return ref;
     }
@@ -47,61 +48,57 @@ public class ClientSideGameController {
     public boolean isIsMultiplayer() {
         return isMultiplayer;
     }
-
+    
     public void setIsMultiplayer(boolean isMultiplayer) {
         this.isMultiplayer = isMultiplayer;
     }
-
+    
     public boolean isYourTurn() {
         return yourTurn;
     }
-
+    
     public void setYourTurn(boolean yourTurn) {
         this.yourTurn = yourTurn;
     }
-
+    
     public int getPlayerNumber() {
         return playerNumber;
     }
-
+    
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }
-
+    
     public void setIsHardGame(boolean isHardGame) {
         this.isHardGame = isHardGame;
     }
     
-
-    public void makeAMove(int boxID){
-        if(yourTurn && chkValidChosen(boxID)){
-            admitMove(boxID,playerNumber);
-            yourTurn=false; //disableAllButtons
+    public void makeAMove(int boxID) {
+        if (yourTurn && chkValidChosen(boxID)) {
+            admitMove(boxID, playerNumber);
+            yourTurn = false; //disableAllButtons
             updateGameMovesArray(boxID);
             GameBoardUtility.changeImgPlayerTurn(yourTurn);
-            if(isMultiplayer){
+            if (isMultiplayer) {
                 //sendToServer(boxID);
                 MainController.getRef().sendMoveToServer(boxID);
                 System.out.println("Multi player game move need to be send" + boxID);
-            }
-            else{
-                if(!checkEndOfGame()){
-                    if(isHardGame){
+            } else {
+                if (!checkEndOfGame()) {
+                    if (isHardGame) {
                         makeOpponentMove(generateBestMove());
-                    }
-                    else{
+                    } else {
                         makeOpponentMove(generateRandomMove(gameMoves));
                     }
-                }
-                else{
-                    if(winnerNumber == 0){
+                } else {
+                    if (winnerNumber == 0) {
                         System.out.println("Winner");
                         declareWinner();
                         
-                    }else if(winnerNumber == 1){
+                    } else if (winnerNumber == 1) {
                         System.out.println("Looser");
                         declareLooser();
-                    }else{
+                    } else {
                         System.out.println("Tie");
                         //Tie
                         declareTie();
@@ -111,158 +108,163 @@ public class ClientSideGameController {
         }
     }
     
-    boolean chkValidChosen(int boxID){
-        if(gameMoves.contains(boxID)){
+    boolean chkValidChosen(int boxID) {
+        if (gameMoves.contains(boxID)) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
     
-    void updateGameMovesArray(int boxID){
+    void updateGameMovesArray(int boxID) {
         //updateArray of moves
-        if(gameMoves.size()<9)
+        if (gameMoves.size() < 9) {
             gameMoves.add(boxID);
+        }
     }
     
-    public void admitMove(int boxID,int plrNumber ){
-        GameBoardUtility.setBox(boxID,""+playerSymbole[plrNumber]);
-        board[boxID] = playerSymbole[plrNumber]+"";
+    public void admitMove(int boxID, int plrNumber) {
+        GameBoardUtility.setBox(boxID, "" + playerSymbole[plrNumber]);
+        board[boxID] = playerSymbole[plrNumber] + "";
     }
     
-    private boolean checkEndOfGame(){
+    private boolean checkEndOfGame() {
         //winner 0=> x is winner
         //winner 1=> o is winner
         //winner 2=> Tie
         String[] line = checkIfGameOver();
-        for (String msg:line) {
-            if(msg.equals("XXX")){
-                winnerNumber=0;
+        for (String msg : line) {
+            if (msg.equals("XXX")) {
+                winnerNumber = 0;
                 return true;
-            }
-            else if(msg.equals("OOO")){
-                winnerNumber=1;
+            } else if (msg.equals("OOO")) {
+                winnerNumber = 1;
                 return true;
             }
         }
-        if(gameMoves.size()==9){
-            winnerNumber=2;
+        if (gameMoves.size() == 9) {
+            winnerNumber = 2;
             return true;
         }
-            
-        return false;
-    } 
-    
-    public void makeOpponentMove(int boxID){
-        admitMove(boxID,1-playerNumber);
-        updateGameMovesArray(boxID);
-        yourTurn=true; //EnableFreeButtons
         
-        if(checkEndOfGame() && !isIsMultiplayer()){
-            if(winnerNumber == 1){
-               System.out.println("Looser");
-               declareLooser();
-           }
+        return false;
+    }
+    
+    public void makeOpponentMove(int boxID) {
+        admitMove(boxID, 1 - playerNumber);
+        updateGameMovesArray(boxID);
+        yourTurn = true; //EnableFreeButtons
+
+        if (checkEndOfGame() && !isIsMultiplayer()) {
+            if (winnerNumber == 1) {
+                System.out.println("Looser");
+                declareLooser();
+            }
         }
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
     }
     
     static int generateRandomMove(ArrayList<Integer> gameMoves) {
-        int start=0,end = 8;
+        int start = 0, end = 8;
         Random rand = new Random();
-        int random = rand.nextInt(end-start) + start;
-        while(true) {
+        int random = rand.nextInt(end - start) + start;
+        while (true) {
             
-            if(!gameMoves.contains(random))
+            if (!gameMoves.contains(random)) {
                 break;
-            else
-                random = rand.nextInt(end-start) + start;
+            } else {
+                random = rand.nextInt(end - start) + start;
+            }
         }
         return random;
-    } 
+    }
     
     String[] line = new String[8];
-    public String[] checkIfGameOver(){
-        for(int i =0 ; i < 8; i++){
-            switch(i){
-            //horizontal cases
+    
+    public String[] checkIfGameOver() {
+        for (int i = 0; i < 8; i++) {
+            switch (i) {
+                //horizontal cases
                 case 0:
-                line[i] = board[0] + board[1] + board[2];
-                break;
+                    line[i] = board[0] + board[1] + board[2];
+                    break;
                 case 1:
-                line[i] = board[3] + board[4] + board[5];
-                break;
+                    line[i] = board[3] + board[4] + board[5];
+                    break;
                 case 2:
-                line[i] = board[6] + board[7] + board[8];
-                break;
-            //vertical cases
+                    line[i] = board[6] + board[7] + board[8];
+                    break;
+                //vertical cases
                 case 3:
-                line[i] = board[0] + board[3] + board[6];
-                break;
+                    line[i] = board[0] + board[3] + board[6];
+                    break;
                 case 4:
-                line[i] = board[1] + board[4] + board[7];
-                break;
+                    line[i] = board[1] + board[4] + board[7];
+                    break;
                 case 5:
-                line[i] = board[2] + board[5] +board[8];
-                break;
-            //Diagonal cases
+                    line[i] = board[2] + board[5] + board[8];
+                    break;
+                //Diagonal cases
                 case 6:
-                line[i] = board[0] + board[4] + board[8];
-                break;
+                    line[i] = board[0] + board[4] + board[8];
+                    break;
                 case 7:
-                line[i] = board[2] + board[4] + board[6];
-                break;
+                    line[i] = board[2] + board[4] + board[6];
+                    break;
             }
         }
         return line;
-    } 
+    }
     
-    private void fillXOBoardArray(String[] myBoard){
-        int currentIndex=0;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                xoBoard[i][j]=myBoard[currentIndex].charAt(0);
+    private void fillXOBoardArray(String[] myBoard) {
+        int currentIndex = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                xoBoard[i][j] = myBoard[currentIndex].charAt(0);
                 currentIndex++;
             }
         }
     }
     
-    private int generateBestMove(){
+    private int generateBestMove() {
         fillXOBoardArray(board);
         Move bestMove = BestMove.findBestMove(xoBoard);
-        if     (bestMove.row==0 && bestMove.col==0)
+        if (bestMove.row == 0 && bestMove.col == 0) {
             return 0;
-        else if(bestMove.row==0 && bestMove.col==1)
+        } else if (bestMove.row == 0 && bestMove.col == 1) {
             return 1;
-        else if(bestMove.row==0 && bestMove.col==2)
+        } else if (bestMove.row == 0 && bestMove.col == 2) {
             return 2;
-        else if(bestMove.row==1 && bestMove.col==0)
+        } else if (bestMove.row == 1 && bestMove.col == 0) {
             return 3;
-        else if(bestMove.row==1 && bestMove.col==1)
+        } else if (bestMove.row == 1 && bestMove.col == 1) {
             return 4;
-        else if(bestMove.row==1 && bestMove.col==2)
+        } else if (bestMove.row == 1 && bestMove.col == 2) {
             return 5;
-        else if(bestMove.row==2 && bestMove.col==0)
+        } else if (bestMove.row == 2 && bestMove.col == 0) {
             return 6;
-        else if(bestMove.row==2 && bestMove.col==1)
+        } else if (bestMove.row == 2 && bestMove.col == 1) {
             return 7;
-        else if(bestMove.row==2 && bestMove.col==2)
+        } else if (bestMove.row == 2 && bestMove.col == 2) {
             return 8;
-        else 
+        } else {
             return -1;
+        }
     }
     
-    public void declareWinner(){
-        gameboard.GameBoardController.getRef().declareEndOfGame("You Win");
+    public void declareWinner() {
+        gameboard.GameBoardController.getRef().declareEndOfGame("Winner");
         ref = null;
         
     }
-    public void declareLooser(){
-        gameboard.GameBoardController.getRef().declareEndOfGame("You Loose");
+    
+    public void declareLooser() {
+        gameboard.GameBoardController.getRef().declareEndOfGame("Loser");
         ref = null;
     }
-    public void declareTie(){
-        gameboard.GameBoardController.getRef().declareEndOfGame("You Tie");
+    
+    public void declareTie() {
+        gameboard.GameBoardController.getRef().declareEndOfGame("Tie");
         ref = null;
     }
 }
