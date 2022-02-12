@@ -10,13 +10,30 @@ package CommunicationMasseges;
  * @author imkor
  */
 public class StartMultiPlayerGame {
-    int turn;
-    int oponentID;
+    public enum MultiPlayerGameType{
+        NEW_GAME,
+        LOAD_GAME
+    }
+    
+    private int turn;
+    private int oponentID;
+    private MultiPlayerGameType type;
+    private int gameID;
 
     public StartMultiPlayerGame(int turn, int oponentID) {
         this.turn = turn;
         this.oponentID = oponentID;
+        this.gameID = -1;
+        this.type = MultiPlayerGameType.NEW_GAME;
     }
+
+    public StartMultiPlayerGame(int turn, int oponentID, MultiPlayerGameType type, int gameID) {
+        this.turn = turn;
+        this.oponentID = oponentID;
+        this.type = type;
+        this.gameID = gameID;
+    }
+    
 
     public int getTurn() {
         return turn;
@@ -32,6 +49,22 @@ public class StartMultiPlayerGame {
 
     public void setOponentID(int oponentID) {
         this.oponentID = oponentID;
+    }
+
+    public MultiPlayerGameType getType() {
+        return type;
+    }
+
+    public void setType(MultiPlayerGameType type) {
+        this.type = type;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
     
     

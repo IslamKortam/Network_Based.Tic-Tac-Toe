@@ -103,7 +103,17 @@ public class PlayerHandler extends Player {
         }else if(commMsg.getType() == CommunicationMassegeType.GameMove){
             GameMove move = Parser.gson.fromJson(commMsg.getMsgBody(), GameMove.class);
             makeAMove(move);
+        }else if(commMsg.getType() == CommunicationMassegeType.GAME_STATUS){
+            GameStatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), GameStatusUpdate.class);
+            handleSinglePlayerGameEnd(update);
+        }else if(commMsg.getType() == CommunicationMassegeType.NEW_SINGLE_PLAYER_GAME){
+            changeStatus(PlayerStatus.IN_SINGLE_PLAYER_GAME);
         }
+    }
+    
+    private void handleSinglePlayerGameEnd(GameStatusUpdate update) throws SQLException{
+        updateScore(update.getStatus());
+        changeStatus(PlayerStatus.ONLINE);
     }
     
     private void handleInvitationResponse(InvitationResponse response){
@@ -171,26 +181,26 @@ public class PlayerHandler extends Player {
         GameSession.quitGame(playerId);
     }
 
-    public void status(GameStatusUpdate.GameStatus s) {
+    public void updateClientGamestatus(GameStatusUpdate.GameStatus s) {
         GameStatusUpdate status = new GameStatusUpdate(s);
         CommunicationMassege statusMsg = new CommunicationMassege(CommunicationMassegeType.GAME_STATUS, Parser.gson.toJson(status));
         userHandler.sendCommMsgToClient(statusMsg);
     }
 
     public void win() throws SQLException {
-        status(GameStatusUpdate.GameStatus.WINNER);
+        updateClientGamestatus(GameStatusUpdate.GameStatus.WINNER);
         changeStatus(PlayerStatus.ONLINE);
         updateScore(GameStatus.WINNER);
     }
 
     public void lose() throws SQLException {
-        status(GameStatusUpdate.GameStatus.LOSER);
+        updateClientGamestatus(GameStatusUpdate.GameStatus.LOSER);
         changeStatus(PlayerStatus.ONLINE);
         updateScore(GameStatus.LOSER);
     }
 
     public void tie() throws SQLException {
-        status(GameStatusUpdate.GameStatus.TIE);
+        updateClientGamestatus(GameStatusUpdate.GameStatus.TIE);
         changeStatus(PlayerStatus.ONLINE);
         updateScore(GameStatus.TIE);
     }

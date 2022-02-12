@@ -37,13 +37,14 @@ public class ModesController implements Initializable {
     private void handleSinglePlayerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Single Player");
         
-        MainController.getRef().initSinglePlayerGame();
+        
         if(togelbtn.isSelected()==true){
-            ClientSideGameController.getRef().setIsHardGame(true);
+            ClientSideGameController.setIsHardGame(true);
         }
         else{
-            ClientSideGameController.getRef().setIsHardGame(false);
+            ClientSideGameController.setIsHardGame(false);
         }
+        MainController.getRef().initSinglePlayerGame();
     }
 
     @FXML
