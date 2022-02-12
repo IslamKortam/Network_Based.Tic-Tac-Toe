@@ -5,6 +5,7 @@
  */
 package serverhome;
 
+import ServerLogicClasses.UserHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,12 +44,15 @@ public class ServerHomeController implements Initializable {
 
     @FXML
     void beOffline(ActionEvent event) {
+        ServerLogicClasses.ServerMulti.stopServer();
+        UserHandler.stopAllUsers();
              ServerHomeUtility.changeStatusToOffline();
            startServer.setDisable(false);
              stopSever.setDisable(true);}
 
     @FXML
     void goLive(MouseEvent event) {
+            ServerLogicClasses.ServerMulti.startServer();
            ServerHomeUtility.changeStatusToOnline();
              startServer.setDisable(true);
              stopSever.setDisable(false);

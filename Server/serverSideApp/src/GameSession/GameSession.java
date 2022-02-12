@@ -5,6 +5,8 @@
 package GameSession;
 
 import controllerPackage.PlayerHandler;
+import controllerPackage.PlayerStatus;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +48,8 @@ public class GameSession {
     public GameSession (PlayerHandler player_0 , PlayerHandler player_1){
         player0 = player_0;
         player1 = player_1;
+        player0.changeStatus(PlayerStatus.IN_MULTIPLAYER_GAME);
+        player1.changeStatus(PlayerStatus.IN_MULTIPLAYER_GAME);
         players=new PlayerHandler[]{player0,player1};
         turn = 0;
         player0.startNewMultiPlayerGame(0, player_1.getId());
@@ -70,7 +74,7 @@ public class GameSession {
     }
 
 
-    public void makeMove(int buttonId , int playerId)
+    public void makeMove(int buttonId , int playerId) throws SQLException
     {
 //System.out.println(turn);
         if(players[turn].getId() == playerId)
@@ -151,7 +155,7 @@ public class GameSession {
             turn =0;
     }
 
-    public void declareWinner(int turn){
+    public void declareWinner(int turn) throws SQLException{
         System.out.println("Player "+turn+" Won ^__^");
         players[turn].win();
         players[1 - turn].lose();
@@ -159,7 +163,7 @@ public class GameSession {
         
     }
 
-    public void declareTie(){
+    public void declareTie() throws SQLException{
         System.out.println("Tie ....");
         players[0].tie();
         players[1].tie();

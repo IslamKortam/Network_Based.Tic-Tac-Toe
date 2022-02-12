@@ -88,32 +88,8 @@ public class UserHandler extends Thread{
             } catch (IOException ex) {
                 //Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
                 System.err.println("Player Disconnected");
-                if(authrized){
-                    authrized = false;
-                    connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
-                    connectedPlayer.setUserHandler(null);
-                    //this.stop();
-                    try {
-                        inputStream.close();
-                    } catch (IOException ex1) {
-                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
-                        System.out.println("iN Catch");
-                    }
-                    outputStream.close();
-                    UserHandler.connectedUsersHandelers.remove(this);
-                    this.stop();
-                }
-                else{
-                    try {
-                        inputStream.close();
-                    } catch (IOException ex1) {
-                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
-                        System.out.println("iN Catch");
-                    }
-                    outputStream.close();
-                    UserHandler.connectedUsersHandelers.remove(this);
-                    this.stop();
-                }
+                UserHandler.connectedUsersHandelers.remove(this);
+                stopThisUser();
             } catch (SQLException ex) {
                 //Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -137,14 +113,52 @@ public class UserHandler extends Thread{
         UserHandler.connectedUsersHandelers.remove(this);
     }
     
-    private void stopThisUser() throws IOException{
-        socket.close();
-        
+    private void stopThisUser(){
+        if(authrized){
+                    connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
+                    authrized = false;
+                    connectedPlayer.setUserHandler(null);
+                    try {
+                        inputStream.close();
+                        outputStream.close();
+                        socket.close();
+                        
+                    } catch (IOException ex1) {
+                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
+                        System.out.println("iN Catch");
+                    }
+                    this.stop();
+                }
+                else{
+                    
+                    //outputStream.close();
+                    
+                    this.stop();
+                    try {
+                        socket.shutdownOutput();
+                        socket.shutdownInput();
+                        
+                        System.out.println("Socket Closed");
+                    } catch (IOException ex) {
+                        Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    finally{
+                        try {
+                            socket.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+        }
     }
     
-    public void stopAllUsers(){
+    public static void stopAllUsers(){
         for(UserHandler userHandler : connectedUsersHandelers){
-            
+            System.out.println("size Before: " + connectedUsersHandelers.size());
+            userHandler.stopThisUser();
+            System.out.println("size Before: " + connectedUsersHandelers.size());
         }
+        connectedUsersHandelers.removeAllElements();
     }
 }

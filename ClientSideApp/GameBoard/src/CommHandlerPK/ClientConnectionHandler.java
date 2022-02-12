@@ -46,6 +46,10 @@ public class ClientConnectionHandler extends Thread{
             try {
                 String s = inputStream.readLine();
                 System.out.println("Recieved From Server:" + s);
+                if(s == null){
+                    System.err.println("Server disconnected!!!");
+                    continue;
+                }
                 CommunicationMassege msg = Parser.gson.fromJson(s, CommunicationMassege.class);
                 switch(msg.getType()){
                     case SIGN_IN_REQUEST_STATUS:
