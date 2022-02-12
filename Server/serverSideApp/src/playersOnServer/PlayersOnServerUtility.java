@@ -10,6 +10,7 @@ import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -94,6 +95,39 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
         PlayersOnServerUtility.Players = playersVector;
         PlayersOnServerUtility.area = area;
         PlayersOnServerUtility.nodes = nodes;
+    }
+    
+    static void updatePlayer(int userID) {
+        Vector<Player> Players = Player.allPlayers;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                PlayerElements playerElement;
+                for (PlayerElements element : playersElementsArray) {
+                    if (element.getUserId() == userID) {
+                        playerElement = element;
+                        for (Player Player : Players) {
+                            if (Player.getId() == userID) {
+                                playerElement.getScore().setText(Integer.toString(Player.getScore()));
+                                System.out.println(playerElement.getScore().getText());
+                                playerElement.getStatus().setText(Player.getStatus().toString());
+
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+    }
+    public static void addNewPlayer(int userID) throws IOException {
+        Vector<Player> Players = Player.allPlayers;
+        for (Player p : Players) {
+            if (p.getId() == userID) {
+                createNodes(p);
+                System.out.println(userID);
+            }
+        }
     }
 
     public static void initScene()throws IOException{

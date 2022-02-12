@@ -13,7 +13,9 @@ import javafx.scene.image.ImageView;
  *
  * @author Bahaa eldin
  */
+
 public class PlayerElements {
+    
     private Image img;
     private ImageView imgView;
     private Label usrName;
