@@ -25,3 +25,9 @@
     -fx-background-color: #00e200;
     -fx-text-fill: #FFFFFF;
 }
+
+.redBackground
+{
+    -fx-background-color: #e20000;
+    -fx-text-fill: #FFFFFF;
+}

@@ -5,6 +5,7 @@
  */
 package gameboard;
 
+import CommunicationMasseges.GameStatusUpdate;
 import com.jfoenix.controls.JFXButton;
 import controllerPackage.ClientSideGameController;
 import java.io.IOException;
@@ -138,7 +139,7 @@ public class GameBoardUtility {
             public void run() {
                 buttons.get(boxNumber).setDisable(false);
                 buttons.get(boxNumber).setText("");
-                buttons.get(boxNumber).getStyleClass().removeAll("greenBackground","playerX","playerO");
+                buttons.get(boxNumber).getStyleClass().removeAll("greenBackground", "redBackground","playerX","playerO");
             }
         });
     }
@@ -216,53 +217,63 @@ public class GameBoardUtility {
             }
         });
     }
-    public static void GreenButtonWhenWinGame(int state) {
+    public static void colorButtonWhenEndGame(int line, GameStatusUpdate.GameStatus status) {
+        String color = "";
+        switch(status){
+            case WINNER:
+                color = "greenBackground";
+                break;
+            case LOSER:
+                color = "redBackground";
+                break;
+        }
+        final String backGroundColor = color;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                switch (state) {
+                switch (line) {
                     //horizontal cases
                     case 0:
-                        buttons.get(0).getStyleClass().add("greenBackground");
-                        buttons.get(1).getStyleClass().add("greenBackground");
-                        buttons.get(2).getStyleClass().add("greenBackground");
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(1).getStyleClass().add(backGroundColor);
+                        buttons.get(2).getStyleClass().add(backGroundColor);
                         break;
                     case 1:
-                        buttons.get(3).getStyleClass().add("greenBackground");
-                        buttons.get(4).getStyleClass().add("greenBackground");
-                        buttons.get(5).getStyleClass().add("greenBackground");
+                        buttons.get(3).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(5).getStyleClass().add(backGroundColor);
                         break;
                     case 2:
-                        buttons.get(6).getStyleClass().add("greenBackground");
-                        buttons.get(7).getStyleClass().add("greenBackground");
-                        buttons.get(8).getStyleClass().add("greenBackground");
+                        buttons.get(6).getStyleClass().add(backGroundColor);
+                        buttons.get(7).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
                         break;
                     //vertical cases
                     case 3:
-                        buttons.get(0).getStyleClass().add("greenBackground");
-                        buttons.get(3).getStyleClass().add("greenBackground");
-                        buttons.get(6).getStyleClass().add("greenBackground");
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(3).getStyleClass().add(backGroundColor);
+                        buttons.get(6).getStyleClass().add(backGroundColor);
                         break;
                     case 4:
-                        buttons.get(1).getStyleClass().add("greenBackground");
-                        buttons.get(4).getStyleClass().add("greenBackground");
-                        buttons.get(7).getStyleClass().add("greenBackground");
+                        buttons.get(1).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(7).getStyleClass().add(backGroundColor);
                         break;
                     case 5:
-                        buttons.get(2).getStyleClass().add("greenBackground");
-                        buttons.get(5).getStyleClass().add("greenBackground");
-                        buttons.get(8).getStyleClass().add("greenBackground");
+                        buttons.get(2).getStyleClass().add(backGroundColor);
+                        buttons.get(5).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
                         break;
                     //Diagonal cases
                     case 6:
-                        buttons.get(0).getStyleClass().add("greenBackground");
-                        buttons.get(4).getStyleClass().add("greenBackground");
-                        buttons.get(8).getStyleClass().add("greenBackground");
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
                         break;
                     case 7:
-                        buttons.get(2).getStyleClass().add("greenBackground");
-                        buttons.get(4).getStyleClass().add("greenBackground");
-                        buttons.get(6).getStyleClass().add("greenBackground");
+                        buttons.get(2).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(6).getStyleClass().add(backGroundColor);
                         break;
                 }
             }

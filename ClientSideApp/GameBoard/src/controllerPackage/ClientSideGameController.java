@@ -102,12 +102,13 @@ public class ClientSideGameController {
             yourTurn = false; //disableAllButtons
             updateGameMovesArray(boxID);
             GameBoardUtility.changeImgPlayerTurn(yourTurn);
+            Boolean gameEnded = checkEndOfGame();
             if (isMultiplayer) {
                 //sendToServer(boxID);
                 MainController.getRef().sendMoveToServer(boxID);
                 System.out.println("Multi player game move need to be send" + boxID);
             } else {
-                if (!checkEndOfGame()) {
+                if (!gameEnded){
                     if (isHardGame) {
                         makeOpponentMove(generateBestMove());
                     } else {
@@ -165,11 +166,11 @@ public class ClientSideGameController {
         String[] line = checkIfGameOver();
         int counter=0;
         for (String msg : line) {
-            if (msg.equals("XXX")) {
+            if (msg.equals(new String(new char[3]).replace("\0", "" + playerSymbole[playerNumber]))) {
                 winnerNumber = 0;
                 result =  true;
                 indexWinInArrayLine=counter;
-            } else if (msg.equals("OOO")) {
+            } else if (msg.equals(new String(new char[3]).replace("\0", "" + playerSymbole[1 - playerNumber]))) {
                 winnerNumber = 1;
                 result = true;
                 indexWinInArrayLine=counter;
@@ -181,26 +182,31 @@ public class ClientSideGameController {
             result =  true;
         }
         if(result == true){
-            GameStatusUpdate update = new GameStatusUpdate(GameStatusUpdate.GameStatus.TIE);
-            if(winnerNumber!=2)
-                GameBoardUtility.GreenButtonWhenWinGame(indexWinInArrayLine);
-            switch(winnerNumber){
-                case 0:
-                    //Winner
-                    update.setStatus(GameStatusUpdate.GameStatus.WINNER);
-                    break;
-                case 1:
-                    //Loser
-                    update.setStatus(GameStatusUpdate.GameStatus.LOSER);
-                    break;
-                case 2:
-                    //Tie
-                    update.setStatus(GameStatusUpdate.GameStatus.TIE);
-                    break;
+            if(winnerNumber == 0)
+                GameBoardUtility.colorButtonWhenEndGame(indexWinInArrayLine, (GameStatusUpdate.GameStatus.WINNER));
+            else if(winnerNumber == 1)
+                GameBoardUtility.colorButtonWhenEndGame(indexWinInArrayLine, (GameStatusUpdate.GameStatus.LOSER));
+                
+            if(!isMultiplayer){
+                GameStatusUpdate update = new GameStatusUpdate(GameStatusUpdate.GameStatus.TIE);
+                switch(winnerNumber){
+                    case 0:
+                        //Winner
+                        update.setStatus(GameStatusUpdate.GameStatus.WINNER);
+                        break;
+                    case 1:
+                        //Loser
+                        update.setStatus(GameStatusUpdate.GameStatus.LOSER);
+                        break;
+                    case 2:
+                        //Tie
+                        update.setStatus(GameStatusUpdate.GameStatus.TIE);
+                        break;
+                }
+                String s = ParserPackage.Parser.gson.toJson(update);
+                CommunicationMassege comMsg = new CommunicationMassege(CommunicationMassegeType.GAME_STATUS, s);
+                CommHandlerPK.ClientConnectionHandler.ref.sendCommMsgToServer(comMsg);
             }
-            String s = ParserPackage.Parser.gson.toJson(update);
-            CommunicationMassege comMsg = new CommunicationMassege(CommunicationMassegeType.GAME_STATUS, s);
-            CommHandlerPK.ClientConnectionHandler.ref.sendCommMsgToServer(comMsg);
         }
         return result;
     }
