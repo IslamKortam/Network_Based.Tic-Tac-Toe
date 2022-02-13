@@ -8,11 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3809357" download="eager" />
-=======
-    <jar href="GameBoard.jar" size="3810753" download="eager" />
->>>>>>> 3749029cfacaf5211bffec59904d34367dd508df
+    <jar href="GameBoard.jar" size="3810874" download="eager" />
     <jar href="lib\gson-2.8.0.jar" size="231952" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>
