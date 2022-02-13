@@ -24,6 +24,18 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      
+      <Button id="loadGame" fx:id="loadGame" layoutX="25.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleLoadGameButtonAction" prefHeight="73.0" prefWidth="134.0" style="-fx-background-radius: 30px;" stylesheets="@style.css" text="Load Game" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button id="signOut" fx:id="signOut" layoutX="200.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleSignOutButtonAction" prefHeight="73.0" prefWidth="134.0" style="-fx-background-radius: 30px;" stylesheets="@style.css" text="Sign Out" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      
       <JFXToggleButton fx:id="togelbtn" layoutX="269.0" layoutY="135.0" prefHeight="58.0" prefWidth="152.0" text="Hard Game">
          <font>
             <Font name="System Bold" size="14.0" />

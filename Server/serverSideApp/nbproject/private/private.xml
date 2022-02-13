@@ -3,26 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/Invitation.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverdao/PlayerPojo.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/playersOnServer/PlayersOnServerController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/playersOnServer/PlayersOnServerUtility.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerStatus.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/Player.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverhome/ServerHomeController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/playersOnServer/PlayerElements.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverhome/ServerHomeUtility.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerSideInvitations/ServerSideInvitation.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/CommunicationMasseges/CommunicationMassegeType.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/NotAuthrizedUsersHandler.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/ServerMainController.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverdao/GamePojo.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/nbproject/build-impl.xml</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerHandler.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/UserHandler.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverhome/ServerHome.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/GameSession/GameSession.java</file>
-            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/ServerLogicClasses/ServerMulti.java</file>
+            <file>file:/E:/Amany/2.ITI/Java/Final%20Repo/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/GameSession/GameSession.java</file>
         </group>
     </open-files>
 </project-private>

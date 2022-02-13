@@ -53,6 +53,14 @@ public class ModesController implements Initializable {
         MainController.getRef().navigateToplayerScene();
     }
 
+    @FXML
+    private void handleLoadGameButtonAction(ActionEvent event) throws IOException {
+        System.out.println("load game btn pressed");
+    }
+    @FXML
+    private void handleSignOutButtonAction(ActionEvent event) throws IOException {
+        System.out.println("sign out btn pressed");
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //a   = new Alert(Alert.AlertType.NONE);
