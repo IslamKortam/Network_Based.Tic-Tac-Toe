@@ -120,10 +120,10 @@ public class GameBoardUtility {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (text == "X") {
-                    buttons.get(boxNumber).setStyle("-fx-text-fill: #FF0000");
+                if ("X".equals(text)) {
+                    buttons.get(boxNumber).getStyleClass().add("playerX");
                 } else {
-                    buttons.get(boxNumber).setStyle("-fx-text-fill: #8425E1");
+                    buttons.get(boxNumber).getStyleClass().add("playerO");
                 }
                 buttons.get(boxNumber).setText(text);
                 buttons.get(boxNumber).setDisable(true);
@@ -138,6 +138,7 @@ public class GameBoardUtility {
             public void run() {
                 buttons.get(boxNumber).setDisable(false);
                 buttons.get(boxNumber).setText("");
+                buttons.get(boxNumber).getStyleClass().removeAll("greenBackground","playerX","playerO");
             }
         });
     }
@@ -191,8 +192,6 @@ public class GameBoardUtility {
     public static ImageView getImgPlayerTurn() {
         return imgPlayerTurn;
     }
-
-
     
     public static void showBtnSave(boolean isVisible) {
         Platform.runLater(new Runnable() {
@@ -217,4 +216,56 @@ public class GameBoardUtility {
             }
         });
     }
+    public static void GreenButtonWhenWinGame(int state) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                switch (state) {
+                    //horizontal cases
+                    case 0:
+                        buttons.get(0).getStyleClass().add("greenBackground");
+                        buttons.get(1).getStyleClass().add("greenBackground");
+                        buttons.get(2).getStyleClass().add("greenBackground");
+                        break;
+                    case 1:
+                        buttons.get(3).getStyleClass().add("greenBackground");
+                        buttons.get(4).getStyleClass().add("greenBackground");
+                        buttons.get(5).getStyleClass().add("greenBackground");
+                        break;
+                    case 2:
+                        buttons.get(6).getStyleClass().add("greenBackground");
+                        buttons.get(7).getStyleClass().add("greenBackground");
+                        buttons.get(8).getStyleClass().add("greenBackground");
+                        break;
+                    //vertical cases
+                    case 3:
+                        buttons.get(0).getStyleClass().add("greenBackground");
+                        buttons.get(3).getStyleClass().add("greenBackground");
+                        buttons.get(6).getStyleClass().add("greenBackground");
+                        break;
+                    case 4:
+                        buttons.get(1).getStyleClass().add("greenBackground");
+                        buttons.get(4).getStyleClass().add("greenBackground");
+                        buttons.get(7).getStyleClass().add("greenBackground");
+                        break;
+                    case 5:
+                        buttons.get(2).getStyleClass().add("greenBackground");
+                        buttons.get(5).getStyleClass().add("greenBackground");
+                        buttons.get(8).getStyleClass().add("greenBackground");
+                        break;
+                    //Diagonal cases
+                    case 6:
+                        buttons.get(0).getStyleClass().add("greenBackground");
+                        buttons.get(4).getStyleClass().add("greenBackground");
+                        buttons.get(8).getStyleClass().add("greenBackground");
+                        break;
+                    case 7:
+                        buttons.get(2).getStyleClass().add("greenBackground");
+                        buttons.get(4).getStyleClass().add("greenBackground");
+                        buttons.get(6).getStyleClass().add("greenBackground");
+                        break;
+                }
+            }
+        });
+    }    
 }
