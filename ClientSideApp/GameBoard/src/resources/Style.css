@@ -1,4 +1,3 @@
-
 #btnCloseGameBorad,
 #btnGame0,
 #btnGame1,
@@ -11,4 +10,24 @@
 #btnGame8
 {
     -fx-cursor: hand;
+}
+
+.playerX
+{
+    -fx-text-fill: green;
+}
+.playerO
+{
+    -fx-text-fill: blue;
+}
+.greenBackground
+{
+    -fx-background-color: #00e200;
+    -fx-text-fill: #FFFFFF;
+}
+
+.redBackground
+{
+    -fx-background-color: #e20000;
+    -fx-text-fill: #FFFFFF;
 }

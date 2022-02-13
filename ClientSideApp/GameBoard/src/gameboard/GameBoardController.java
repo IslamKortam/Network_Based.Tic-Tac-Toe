@@ -145,6 +145,16 @@ public class GameBoardController implements Initializable {
     void viewChatBox(MouseEvent event) {
         GameBoardUtility.changeVisibility(ChatBox);
     }
+    
+    @FXML
+    void sendChatMsg(MouseEvent event){
+        System.out.println("Send Chat Msg");
+    }
+    
+    @FXML
+    void requestSaveGame(MouseEvent event){
+        System.out.println("Request Save");
+    }
 
     public static GameBoardController getRef() {
         return ref;
@@ -156,7 +166,7 @@ public class GameBoardController implements Initializable {
             @Override
             public void run() {
                 Alert a = new Alert(Alert.AlertType.NONE);
-                a.setAlertType(Alert.AlertType.CONFIRMATION);
+                a.setAlertType(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Game Ended!");
                 a.setContentText(msg);
                 boolean ans = false;

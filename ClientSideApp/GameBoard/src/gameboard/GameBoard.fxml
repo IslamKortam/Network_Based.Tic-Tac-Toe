@@ -105,7 +105,7 @@
          <bottom>
             <Pane prefHeight="34.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="sendBtn" fitHeight="51.0" fitWidth="36.0" layoutX="166.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="sendBtn" fitHeight="51.0" fitWidth="36.0" layoutX="166.0" layoutY="-2.0" onMouseClicked="#sendChatMsg" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/send1.png" />
                      </image>
@@ -129,7 +129,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <JFXButton fx:id="btnSave" layoutX="619.0" layoutY="89.0" prefHeight="43.0" prefWidth="93.0" style="-fx-background-color: #803bea; -fx-background-radius: 15px; -fx-effect: dropshadow(three-pass-box, rgba(10,6,02,0.8), 10, 0, 0, 0); -fx-cursor: hand;" text="Save" textFill="WHITE">
+      <JFXButton fx:id="btnSave" layoutX="619.0" layoutY="89.0" onMouseClicked="#requestSaveGame" prefHeight="43.0" prefWidth="93.0" style="-fx-background-color: #803bea; -fx-background-radius: 15px; -fx-effect: dropshadow(three-pass-box, rgba(10,6,02,0.8), 10, 0, 0, 0); -fx-cursor: hand;" text="Save" textFill="WHITE">
          <font>
             <Font name="Broadway" size="18.0" />
          </font>

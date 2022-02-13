@@ -5,6 +5,7 @@
  */
 package gameboard;
 
+import CommunicationMasseges.GameStatusUpdate;
 import com.jfoenix.controls.JFXButton;
 import controllerPackage.ClientSideGameController;
 import java.io.IOException;
@@ -120,10 +121,10 @@ public class GameBoardUtility {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (text == "X") {
-                    buttons.get(boxNumber).setStyle("-fx-text-fill: #FF0000");
+                if ("X".equals(text)) {
+                    buttons.get(boxNumber).getStyleClass().add("playerX");
                 } else {
-                    buttons.get(boxNumber).setStyle("-fx-text-fill: #8425E1");
+                    buttons.get(boxNumber).getStyleClass().add("playerO");
                 }
                 buttons.get(boxNumber).setText(text);
                 buttons.get(boxNumber).setDisable(true);
@@ -138,6 +139,7 @@ public class GameBoardUtility {
             public void run() {
                 buttons.get(boxNumber).setDisable(false);
                 buttons.get(boxNumber).setText("");
+                buttons.get(boxNumber).getStyleClass().removeAll("greenBackground", "redBackground","playerX","playerO");
             }
         });
     }
@@ -191,8 +193,6 @@ public class GameBoardUtility {
     public static ImageView getImgPlayerTurn() {
         return imgPlayerTurn;
     }
-
-
     
     public static void showBtnSave(boolean isVisible) {
         Platform.runLater(new Runnable() {
@@ -217,4 +217,66 @@ public class GameBoardUtility {
             }
         });
     }
+    public static void colorButtonWhenEndGame(int line, GameStatusUpdate.GameStatus status) {
+        String color = "";
+        switch(status){
+            case WINNER:
+                color = "greenBackground";
+                break;
+            case LOSER:
+                color = "redBackground";
+                break;
+        }
+        final String backGroundColor = color;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                switch (line) {
+                    //horizontal cases
+                    case 0:
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(1).getStyleClass().add(backGroundColor);
+                        buttons.get(2).getStyleClass().add(backGroundColor);
+                        break;
+                    case 1:
+                        buttons.get(3).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(5).getStyleClass().add(backGroundColor);
+                        break;
+                    case 2:
+                        buttons.get(6).getStyleClass().add(backGroundColor);
+                        buttons.get(7).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
+                        break;
+                    //vertical cases
+                    case 3:
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(3).getStyleClass().add(backGroundColor);
+                        buttons.get(6).getStyleClass().add(backGroundColor);
+                        break;
+                    case 4:
+                        buttons.get(1).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(7).getStyleClass().add(backGroundColor);
+                        break;
+                    case 5:
+                        buttons.get(2).getStyleClass().add(backGroundColor);
+                        buttons.get(5).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
+                        break;
+                    //Diagonal cases
+                    case 6:
+                        buttons.get(0).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(8).getStyleClass().add(backGroundColor);
+                        break;
+                    case 7:
+                        buttons.get(2).getStyleClass().add(backGroundColor);
+                        buttons.get(4).getStyleClass().add(backGroundColor);
+                        buttons.get(6).getStyleClass().add(backGroundColor);
+                        break;
+                }
+            }
+        });
+    }    
 }
