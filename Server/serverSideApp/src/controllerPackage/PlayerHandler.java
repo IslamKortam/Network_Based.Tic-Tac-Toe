@@ -108,6 +108,9 @@ public class PlayerHandler extends Player {
             handleSinglePlayerGameEnd(update);
         }else if(commMsg.getType() == CommunicationMassegeType.NEW_SINGLE_PLAYER_GAME){
             changeStatus(PlayerStatus.IN_SINGLE_PLAYER_GAME);
+        }else if(commMsg.getType() == CommunicationMassegeType.CHAT){
+            ChatMsg msg = Parser.gson.fromJson(commMsg.getMsgBody(), ChatMsg.class);
+            sendChatMsg(msg);
         }
     }
     
@@ -241,10 +244,14 @@ public class PlayerHandler extends Player {
         ServerHomeUtility.updateLogs("Player: " + getUserName() + "'s Status changed to: " + st);
     }
 
-    public void sendMsg(int player2Id, String message) {
-        Chatting chat = new Chatting(player2Id, this.getId(), message);
-        CommunicationMassege chatMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, Parser.gson.toJson(chat));
-        userHandler.sendCommMsgToClient(chatMsg);
+    private void sendChatMsg(ChatMsg chatMsg) {
+        PlayerHandler.getPlayerHandlerByID(chatMsg.getReceiver()).recieveChatMsg(chatMsg);
+    }
+    
+    private void recieveChatMsg(ChatMsg chatMsg){
+        String s = Parser.gson.toJson(chatMsg);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, s);
+        sendMeCommMsg(commMsg);
     }
     public void startNewMultiPlayerGame(int turn, int oponentID){
         StartMultiPlayerGame order = new StartMultiPlayerGame(turn, oponentID);

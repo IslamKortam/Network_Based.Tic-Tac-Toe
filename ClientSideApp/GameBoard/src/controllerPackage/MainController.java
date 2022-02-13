@@ -7,6 +7,7 @@ package controllerPackage;
 
 import CommHandlerPK.ClientConnectionHandler;
 import CommunicationMasseges.AcceptedDinedStatus;
+import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameMove;
@@ -21,6 +22,7 @@ import CommunicationMasseges.SignUpResponse;
 import CommunicationMasseges.StartMultiPlayerGame;
 import CommunicationMasseges.StatusUpdate;
 import ParserPackage.Parser;
+import gameboard.GameBoardUtility;
 import java.io.IOException;
 import java.util.Vector;
 import javafx.application.Application;
@@ -113,9 +115,15 @@ public class MainController extends Application{
         }else if(commMsg.getType() == CommunicationMassegeType.SCORE_UPDATE){
             ScoreUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), ScoreUpdate.class);
             handleScoreUpdate(update);
+        }else if(commMsg.getType() == CommunicationMassegeType.CHAT){
+            ChatMsg chatUpdate = Parser.gson.fromJson(commMsg.getMsgBody(), ChatMsg.class);
+            handleChatUpdate(chatUpdate);
         }
     }
     
+    private void handleChatUpdate(ChatMsg chatUpdate){
+        GameBoardUtility.appendChatMsg(chatUpdate);
+    }
     private void handleStatusUpdate(StatusUpdate update){
         Player.getPlayerByID(update.getPlayerID()).setStatus(update.getNewStatus());
         PlayersSceneUtility.updatePlayer(update.getPlayerID());

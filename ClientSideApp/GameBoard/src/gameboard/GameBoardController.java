@@ -4,8 +4,15 @@
  */
 package gameboard;
 
+import CommHandlerPK.ClientConnectionHandler;
+import CommunicationMasseges.ChatMsg;
+import CommunicationMasseges.CommunicationMassege;
+import CommunicationMasseges.CommunicationMassegeType;
+import ParserPackage.Parser;
 import com.jfoenix.controls.JFXButton;
+import controllerPackage.ClientSideGameController;
 import controllerPackage.MainController;
+import controllerPackage.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -112,6 +119,7 @@ public class GameBoardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ref=this;
+        GameBoardUtility.setChatArea(ChatArea);
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
         GameBoardUtility.setButtons(buttons);
         GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img);
@@ -149,6 +157,22 @@ public class GameBoardController implements Initializable {
     @FXML
     void sendChatMsg(MouseEvent event){
         System.out.println("Send Chat Msg");
+        String chatMsgBody = ChatField.getText();
+        if(chatMsgBody == ""){
+            return;
+        }
+        
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ChatField.setText(""); //Empty chat field
+            }
+        });
+       
+        ChatMsg msg = new ChatMsg(ClientSideGameController.getRef().getOpponentID(), Player.getThisPlayer().getId(), chatMsgBody);
+        GameBoardUtility.appendChatMsg(msg);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.CHAT, Parser.gson.toJson(msg));
+        ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
     }
     
     @FXML

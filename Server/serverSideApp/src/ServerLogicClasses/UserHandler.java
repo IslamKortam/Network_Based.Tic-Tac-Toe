@@ -50,7 +50,15 @@ public class UserHandler extends Thread{
                 System.out.println("Recieved from client:" + s);
                 if(authrized){
                     CommunicationMassege commMsg = Parser.gson.fromJson(s, CommunicationMassege.class);
-                    connectedPlayer.handle(commMsg);
+                    if(commMsg.getType() == CommunicationMassegeType.SIGN_OUT_REQUEST){
+                        authrized = false;
+                        connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
+                        connectedPlayer.setUserHandler(null);
+                        connectedPlayer = null;
+                        System.out.println("User Signed Out");
+                    }else{
+                        connectedPlayer.handle(commMsg);
+                    }
                 }
                 else{
                     CommunicationMassege comm = Parser.gson.fromJson(s, CommunicationMassege.class);

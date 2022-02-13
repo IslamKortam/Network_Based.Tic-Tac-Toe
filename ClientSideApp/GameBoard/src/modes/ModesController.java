@@ -4,6 +4,9 @@
  */
 package modes;
 
+import CommHandlerPK.ClientConnectionHandler;
+import CommunicationMasseges.CommunicationMassege;
+import CommunicationMasseges.CommunicationMassegeType;
 import com.jfoenix.controls.JFXToggleButton;
 import controllerPackage.ClientSideGameController;
 import controllerPackage.MainController;
@@ -19,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import stagemanager.StageManager;
 
 /**
  *
@@ -60,6 +64,12 @@ public class ModesController implements Initializable {
     @FXML
     private void handleSignOutButtonAction(ActionEvent event) throws IOException {
         System.out.println("sign out btn pressed");
+        StageManager.getStageManger().displayScene(StageManager.SceneName.SIGNIN);
+        
+        
+        
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.SIGN_OUT_REQUEST, "");
+        ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

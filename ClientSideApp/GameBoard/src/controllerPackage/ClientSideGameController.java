@@ -30,6 +30,15 @@ public class ClientSideGameController {
     private char xoBoard[][] = new char[3][3];
     private static boolean isHardGame = false;
     private static int indexWinInArrayLine=-1;
+    private int opponentID = 0;
+
+    public int getOpponentID() {
+        return opponentID;
+    }
+
+    public void setOpponentID(int opponentID) {
+        this.opponentID = opponentID;
+    }
 
     public static boolean isIsHardGame() {
         return isHardGame;
@@ -38,13 +47,14 @@ public class ClientSideGameController {
     public ClientSideGameController(boolean isMultiplayer, int plNumber, int opponentID) {
         this.isMultiplayer = isMultiplayer;
         this.playerNumber = plNumber;
+        this.opponentID = opponentID;
         Player.getThisPlayer().setStatus(isMultiplayer?PlayerStatus.IN_MULTIPLAYER_GAME : PlayerStatus.IN_SINGLE_PLAYER_GAME);
         if (playerNumber == 0) {
             yourTurn = true;
         } else {
             yourTurn = false;
         }
-        GameBoardUtility.resetAllBoxes();
+        GameBoardUtility.resetScene();
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
         GameBoardUtility.showBtnSave(isMultiplayer);
         ref = this;

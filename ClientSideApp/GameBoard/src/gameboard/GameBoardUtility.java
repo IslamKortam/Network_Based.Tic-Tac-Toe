@@ -5,9 +5,11 @@
  */
 package gameboard;
 
+import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.GameStatusUpdate;
 import com.jfoenix.controls.JFXButton;
 import controllerPackage.ClientSideGameController;
+import controllerPackage.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Platform;
@@ -16,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -37,6 +40,7 @@ public class GameBoardUtility {
     public static Parent ref;
     static JFXButton btnSave;
     static ImageView imgPlayerTurn;
+    private static TextArea ChatArea;
 
     public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2) {
         GameBoardUtility.player1Name = player1;
@@ -132,7 +136,7 @@ public class GameBoardUtility {
         });
     }
 
-    static void resetBox(int boxNumber) {
+    private static void resetBox(int boxNumber) {
         // cancels the "disable" feature of the button and clear the text on it
         Platform.runLater(new Runnable() {
             @Override
@@ -279,4 +283,42 @@ public class GameBoardUtility {
             }
         });
     }    
+
+    public static void setChatArea(TextArea ChatArea) {
+        GameBoardUtility.ChatArea = ChatArea;
+    }
+    
+    public static void appendChatMsg(ChatMsg msg){
+        String line = "";
+        if(msg.getSenderID() == Player.getThisPlayer().getId()){
+            line += "You";
+        }else{
+            line += Player.getPlayerByID(msg.getSenderID()).getUserName();
+        }
+        
+        line += ": ";
+        line += msg.getMessage();
+        final String toBeAppendedLine = line + "\n";
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ChatArea.appendText(toBeAppendedLine);
+            }
+        });
+    }
+    
+    private static void resetChatArea(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ChatArea.setText("");
+            }
+        });
+    }
+    
+    public static void resetScene(){
+        resetChatArea();
+        resetAllBoxes();
+    }
+    
 }
