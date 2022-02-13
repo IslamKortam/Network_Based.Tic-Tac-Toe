@@ -166,7 +166,7 @@ public class GameBoardController implements Initializable {
             @Override
             public void run() {
                 Alert a = new Alert(Alert.AlertType.NONE);
-                a.setAlertType(Alert.AlertType.CONFIRMATION);
+                a.setAlertType(Alert.AlertType.INFORMATION);
                 a.setHeaderText("Game Ended!");
                 a.setContentText(msg);
                 boolean ans = false;
