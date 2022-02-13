@@ -46,7 +46,6 @@ public class PlayersSceneUtility {
     public static Parent ref;
     //private static ClientConnectionHandler handler;
 
-    
     static void goSceneBack() {
         System.out.println("Back Button Pressed.....");
     }
@@ -59,8 +58,8 @@ public class PlayersSceneUtility {
         }
 //        System.out.println(nodes.size());
     }
-    
-    static void createNodes(Player p){
+
+    static void createNodes(Player p) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -80,16 +79,17 @@ public class PlayersSceneUtility {
                     newPlayer.setScore(score);
                     newPlayer.setStatus(status);
                     newPlayer.setInviteBtn(invite);
-                    inviteBtnHandler();
-                    if((p.getStatus()==(PlayerStatus.IN_MULTIPLAYER_GAME)) || (p.getStatus()==PlayerStatus.IN_SINGLE_PLAYER_GAME)){
+                    //inviteBtnHandler();
+                    if ((p.getStatus() != PlayerStatus.ONLINE)) {
                         System.out.println(p.getStatus().toString());
                         invite.setDisable(true);
-                        invite.focusTraversableProperty();  
+                        //invite.focusTraversableProperty();  
                     }
-                    
+
                     newPlayer.setUserId(p.getId());
                     playersElementsArray.add(newPlayer);
-                    
+                    inviteBtnHandler(newPlayer.getUserId());
+
                 } catch (IOException ex) {
                     Logger.getLogger(PlayersSceneUtility.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -100,7 +100,7 @@ public class PlayersSceneUtility {
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((playersListScene.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
-        ref=root;
+        ref = root;
     }
 
     public static Scene getScene() {
@@ -116,21 +116,32 @@ public class PlayersSceneUtility {
     }
 
     static void setParentContainer(ArrayList<Node> nodes, VBox area) {
-        
+
         PlayersSceneUtility.area = area;
         PlayersSceneUtility.nodes = nodes;
     }
 
-    static void inviteBtnHandler() {
+    static void inviteBtnHandler(int userId) {
+        for (PlayerElements playerElement : playersElementsArray) {
+            if (playerElement.getUserId() == userId) {
+                playerElement.getInviteBtn().setOnMouseClicked(mouseEvent -> {
+                    Invitation invitation = new Invitation(Player.getThisPlayer().getId(), playerElement.getUserId(), Invitation.InvitationType.NEW_GAME);
+                    CommunicationMassege invitationmsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, Parser.gson.toJson(invitation));
+                    ClientConnectionHandler.ref.sendCommMsgToServer(invitationmsg);
+                });
+            }
+        }
+        /*
 //    //To handle actions on the invite button for each player
         playersElementsArray.forEach(player
                 -> player.getInviteBtn().setOnMouseClicked(mouseEvent -> {
 //                    System.out.println("user pressed " + player.getUserId());
 ////////// here we used a dummy senderID , 
-                Invitation invitation = new Invitation(Player.getThisPlayer().getId(),player.getUserId(), Invitation.InvitationType.NEW_GAME);
-                CommunicationMassege invitationmsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, Parser.gson.toJson(invitation));
-                ClientConnectionHandler.ref.sendCommMsgToServer(invitationmsg);
+                    Invitation invitation = new Invitation(Player.getThisPlayer().getId(), player.getUserId(), Invitation.InvitationType.NEW_GAME);
+                    CommunicationMassege invitationmsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, Parser.gson.toJson(invitation));
+                    ClientConnectionHandler.ref.sendCommMsgToServer(invitationmsg);
                 }));
+        */
     }
 
     public static void updatePlayer(int userID) {
@@ -142,21 +153,26 @@ public class PlayersSceneUtility {
                 for (PlayerElements element : playersElementsArray) {
                     if (element.getUserId() == userID) {
                         playerElement = element;
-                        for (Player Player : Players) {
-                            if (Player.getId() == userID) {
-                                playerElement.getScore().setText(Integer.toString(Player.getScore()));
-                                System.out.println(playerElement.getScore().getText());
-                                playerElement.getStatus().setText(Player.getStatus().toString());
+                        Player player = Player.getPlayerByID(userID);
+                        playerElement.getScore().setText(Integer.toString(player.getScore()));
+                        System.out.println(playerElement.getScore().getText());
 
-                            }
+                        playerElement.getStatus().setText(player.getStatus().toString());
+                        if (player.getStatus() == PlayerStatus.ONLINE) {
+
+                            playerElement.getInviteBtn().setDisable(false);
+                            //playerElement.getInviteBtn().focusTraversableProperty();  
+                        } else {
+                            playerElement.getInviteBtn().setDisable(true);
                         }
                     }
                 }
             }
         });
-        
+
     }
-    public static void addPlayerToVector(int id) throws IOException{
+
+    public static void addPlayerToVector(int id) throws IOException {
 //        Players.add(new Player(9,"salma","Mohamed","salma@yahoo.com",4,5,PlayerStatus.IN_MULTIPLAYER_GAME));
         //Players.add(p);
         //System.out.println(Players.size() + "vector size");
@@ -164,6 +180,7 @@ public class PlayersSceneUtility {
 //        appendNewPlayer(Players);
     }
 //may cause problems
+
     public static void addNewPlayer(int userID) throws IOException {
         Vector<Player> Players = Player.allPlayers;
         for (Player p : Players) {
@@ -173,13 +190,13 @@ public class PlayersSceneUtility {
             }
         }
     }
-/*
+    /*
     public static void setPlayers(Vector<Player> Players) {
         PlayersSceneUtility.Players = Players;
         System.out.println(Players.size());
     }
     
-    */
+     */
 
 }
 

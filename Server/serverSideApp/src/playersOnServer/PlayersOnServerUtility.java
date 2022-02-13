@@ -30,7 +30,7 @@ import javafx.stage.Stage;
  */
 public class PlayersOnServerUtility {
     static ArrayList<PlayerElements> playersElementsArray = new ArrayList<PlayerElements>();
-    static Vector<PlayerHandler> Players;
+    //static Vector<PlayerHandler> Players;
     private static Scene scene;
     private static Label name;
     private static ImageView playerImg;
@@ -48,10 +48,11 @@ public class PlayersOnServerUtility {
         PlayersOnServerUtility.mainStage = mainStage;
     }
 
-
+    /*
     public static void setPlayers(Vector<PlayerHandler> Players) {
         PlayersOnServerUtility.Players = Players;
     }
+    */
     static void goSceneBack(){
         getMainStage().setScene(serverhome.ServerHomeUtility.getScene());
         System.out.println("Back Button Pressed.....");
@@ -76,6 +77,7 @@ public class PlayersOnServerUtility {
         playersElementsArray.add(newPlayer);
         
     }
+    /*
    public  static void appendNewPlayer(Vector<PlayerHandler> PlayersVector) throws IOException {
         Players = PlayersVector;
         System.out.println(Players.size());
@@ -84,6 +86,7 @@ public class PlayersOnServerUtility {
         }
         System.out.println(nodes.size());
     }
+    */
 static void setContainerNodes(ImageView playerImg, Label name, Label score, Label status) {
         PlayersOnServerUtility.playerImg = playerImg;
         PlayersOnServerUtility.name = name;
@@ -92,13 +95,13 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
     }
 
     static void setParentContainer(ArrayList<Node> nodes, Vector<PlayerHandler> playersVector, VBox area) {
-        PlayersOnServerUtility.Players = playersVector;
+        //PlayersOnServerUtility.Players = playersVector;
         PlayersOnServerUtility.area = area;
         PlayersOnServerUtility.nodes = nodes;
     }
     
-    static void updatePlayer(int userID) {
-        Vector<Player> Players = Player.allPlayers;
+    public static void updatePlayer(int userID) {
+        //Vector<Player> Players = Player.allPlayers;
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -106,14 +109,9 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
                 for (PlayerElements element : playersElementsArray) {
                     if (element.getUserId() == userID) {
                         playerElement = element;
-                        for (Player Player : Players) {
-                            if (Player.getId() == userID) {
-                                playerElement.getScore().setText(Integer.toString(Player.getScore()));
-                                System.out.println(playerElement.getScore().getText());
-                                playerElement.getStatus().setText(Player.getStatus().toString());
-
-                            }
-                        }
+                        PlayerHandler Player = PlayerHandler.getPlayerHandlerByID(userID);
+                        playerElement.getScore().setText(Integer.toString(Player.getScore()));
+                        playerElement.getStatus().setText(Player.getStatus().toString());
                     }
                 }
             }
@@ -121,13 +119,8 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
         
     }
     public static void addNewPlayer(int userID) throws IOException {
-        Vector<Player> Players = Player.allPlayers;
-        for (Player p : Players) {
-            if (p.getId() == userID) {
-                createNodes(p);
-                System.out.println(userID);
-            }
-        }
+        Player player = PlayerHandler.getPlayerHandlerByID(userID);
+        createNodes(player);
     }
 
     public static void initScene()throws IOException{

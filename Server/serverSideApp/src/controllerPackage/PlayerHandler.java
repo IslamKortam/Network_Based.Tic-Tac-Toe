@@ -19,7 +19,9 @@ import ParserPackage.Parser;
 import serverdao.PlayerPojo;
 import serverhome.ServerHomeUtility;
 import ServerSideInvitations.*;
+import java.io.IOException;
 import java.sql.SQLException;
+import playersOnServer.PlayersOnServerUtility;
 import serverdao.Dao;
 
 /**
@@ -96,7 +98,9 @@ public class PlayerHandler extends Player {
     
     public void handle(CommunicationMassege commMsg) throws SQLException{
         if(commMsg.getType() == CommunicationMassegeType.INVITATION){
-            new ServerSideInvitation(Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class));
+            Invitation inv = Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class);
+            System.out.println("Sending Invetation to another player handler " + inv.getReceiverID());
+            new ServerSideInvitation(inv);
         }else if(commMsg.getType() == CommunicationMassegeType.INVITATION_RESPONSE){
             InvitationResponse response = Parser.gson.fromJson(commMsg.getMsgBody(), InvitationResponse.class);
             handleInvitationResponse(response);
@@ -139,13 +143,18 @@ public class PlayerHandler extends Player {
         this.userHandler = userHandler;
     }
 
-    public PlayerHandler(PlayerPojo p) {
+    public PlayerHandler(PlayerPojo p) throws IOException {
 
         super(p);
         players.add(this);
         sentInvReq = new Vector<ServerSideInvitation>();
         receivedReq = new Vector<ServerSideInvitation>();
-
+        try{
+            PlayersOnServerUtility.addNewPlayer(getId());
+        }
+        catch(IOException ex){
+            System.out.println("Error on Application GUI");
+        }
     }
 
     public void RequestNewGame(int playerId) {
@@ -241,6 +250,7 @@ public class PlayerHandler extends Player {
         CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.STATUS_UPDATE, s);
         notifyAllExcept(commMsg, getId());  //Notify all except me
         
+        PlayersOnServerUtility.updatePlayer(getId());
         ServerHomeUtility.updateLogs("Player: " + getUserName() + "'s Status changed to: " + st);
     }
 
