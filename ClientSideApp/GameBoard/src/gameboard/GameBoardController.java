@@ -158,7 +158,7 @@ public class GameBoardController implements Initializable {
     void sendChatMsg(MouseEvent event){
         System.out.println("Send Chat Msg");
         String chatMsgBody = ChatField.getText();
-        if(chatMsgBody == ""){
+        if(chatMsgBody.equals("")){
             return;
         }
         
