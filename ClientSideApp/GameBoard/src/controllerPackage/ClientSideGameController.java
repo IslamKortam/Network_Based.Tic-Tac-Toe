@@ -29,6 +29,7 @@ public class ClientSideGameController {
     private String[] board = {"a", "a", "a", "a", "a", "a", "a", "a", "a"};
     private char xoBoard[][] = new char[3][3];
     private static boolean isHardGame = false;
+    private static int indexWinInArrayLine=-1;
 
     public static boolean isIsHardGame() {
         return isHardGame;
@@ -162,14 +163,18 @@ public class ClientSideGameController {
         //winner 2=> Tie
         Boolean result = false;
         String[] line = checkIfGameOver();
+        int counter=0;
         for (String msg : line) {
             if (msg.equals("XXX")) {
                 winnerNumber = 0;
                 result =  true;
+                indexWinInArrayLine=counter;
             } else if (msg.equals("OOO")) {
                 winnerNumber = 1;
                 result = true;
+                indexWinInArrayLine=counter;
             }
+            counter++;
         }
         if (gameMoves.size() == 9 && result == false) {
             winnerNumber = 2;
@@ -177,6 +182,8 @@ public class ClientSideGameController {
         }
         if(result == true){
             GameStatusUpdate update = new GameStatusUpdate(GameStatusUpdate.GameStatus.TIE);
+            if(winnerNumber!=2)
+                GameBoardUtility.GreenButtonWhenWinGame(indexWinInArrayLine);
             switch(winnerNumber){
                 case 0:
                     //Winner

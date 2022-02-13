@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playersListScene.PlayersSceneController">
    <children>
-      <Button fx:id="backBtn" cancelButton="true" focusTraversable="false" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="41.0" prefWidth="47.0" style="-fx-graphic: url(/resources/home.png); -fx-background-color: white;" />
+      <Button fx:id="backBtn" cancelButton="true" focusTraversable="false" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="41.0" prefWidth="47.0" style="-fx-graphic: url(/resources/home.png); -fx-background-color: white; -fx-cursor: hand;" />
       <ImageView fitHeight="108.0" fitWidth="243.0" layoutX="254.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/logo1.png" />

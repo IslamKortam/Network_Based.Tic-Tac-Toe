@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -66,7 +65,7 @@
       </AnchorPane>
       <JFXButton id="button" layoutX="729.0" layoutY="5.0" onAction="#btnClose" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #F3866B; -fx-text-fill: #FFFFFF; -fx-background-radius: 50%; -fx-min-width: 10;" stylesheets="@Style.css" text="X" visible="false">
          </JFXButton>
-      <FlowPane fx:id="flwAvatars" layoutX="393.0" layoutY="31.0" prefHeight="434.0" prefWidth="371.0" style="-fx-background-color: #8425E1;" styleClass="borderRadius" stylesheets="@Style.css" visible="false" />
+      <FlowPane fx:id="flwAvatars" layoutX="393.0" layoutY="31.0" prefHeight="434.0" prefWidth="339.0" style="-fx-background-color: #8425E1;" styleClass="borderRadius" stylesheets="@Style.css" visible="false" />
       <JFXButton id="button" fx:id="btnMinimize" layoutX="689.0" layoutY="5.0" onMouseClicked="#handleBtnMinimize" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #8425E1; -fx-text-fill: #FFFFFF; -fx-background-radius: 50%; -fx-min-width: 10;" stylesheets="@Style.css" text="-" visible="false">
          
          <font>
