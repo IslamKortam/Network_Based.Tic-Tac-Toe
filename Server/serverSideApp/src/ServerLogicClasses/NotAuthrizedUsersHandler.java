@@ -13,6 +13,7 @@ import CommunicationMasseges.SignUpResponse;
 import CommunicationMasseges.SignUpStatusEnum;
 import controllerPackage.Player;
 import controllerPackage.PlayerHandler;
+import java.io.IOException;
 import java.sql.SQLException;
 import serverdao.Dao;
 import serverdao.PlayerPojo;
@@ -41,7 +42,7 @@ public class NotAuthrizedUsersHandler {
     }
     
     
-     public SignUpResponse handleSignUpAttempt(SignUpRequest req) throws SQLException{
+     public SignUpResponse handleSignUpAttempt(SignUpRequest req) throws SQLException, IOException{
         SignUpResponse reply = null;
         Boolean emailValid = true;
         Boolean userNameValid = true;

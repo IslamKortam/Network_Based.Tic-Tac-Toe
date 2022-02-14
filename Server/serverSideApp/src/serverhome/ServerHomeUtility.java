@@ -54,7 +54,7 @@ public class ServerHomeUtility {
                 status.setFill(Color.GREEN);
                 Image online = new Image(ServerHomeController.class.getResourceAsStream("/resources/online.png"));
                 statusImg.setImage(online);
-                logs.appendText("--------- server is now live ------\n");
+                logs.appendText("\n--------- server is now live ------");
             }
         });
 
@@ -70,7 +70,7 @@ public class ServerHomeUtility {
                 status.setFill(Color.RED);
                 Image offline = new Image(ServerHomeController.class.getResourceAsStream("/resources/offline.png"));
                 statusImg.setImage(offline);
-                logs.appendText("\n------- server is turned off ------\n");
+                logs.appendText("\n------- server is turned off ------");
 
             }
         });
@@ -78,13 +78,11 @@ public class ServerHomeUtility {
     }
 
     public static void showPlayerList(Event e) throws IOException {
-        Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
-        Scene scene = new Scene(root);
-        PlayersOnServerUtility.initScene();
+        //Parent root = FXMLLoader.load(serverhome.ServerHome.class.getResource("serverHome.fxml"));
+        //Scene scene = new Scene(root);
+        //PlayersOnServerUtility.initScene();
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        Vector<PlayerHandler> PlayersVector = PlayerHandler.getPlayers();
-
-        PlayersOnServerUtility.appendNewPlayer(PlayersVector);
+        
         stage.setScene(PlayersOnServerUtility.getScene());
         stage.show();
     }

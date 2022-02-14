@@ -6,6 +6,7 @@
 package controllerPackage;
 
 import ServerLogicClasses.ServerMulti;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Vector;
 import javafx.application.Application;
@@ -20,9 +21,10 @@ import serverdao.PlayerPojo;
  */
 public class ServerMainController extends Application {
     
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, IOException{
         Dao.startConnection();
         Vector<PlayerPojo> players = Dao.selectAllPlayers();
+        playersOnServer.PlayersOnServerUtility.initScene();
         for(PlayerPojo player : players){
             System.out.println(player.getID() + ":" + player.getEmail() + ":" + player.getPassword() + ":" + player.getNickName() + ":" + player.getUserName());
             new PlayerHandler(player);
