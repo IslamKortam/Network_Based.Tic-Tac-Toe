@@ -100,7 +100,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button id="btnCloseGameBorad" fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="29.0" style="-fx-graphic: url('/resources/home.png');" stylesheets="@../resources/Style.css" />
+      <Button id="btnCloseGameBorad" fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="29.0" style="-fx-graphic: url('/resources/home.png');" stylesheets="@../resources/Style.css" visible="false" />
       <BorderPane fx:id="ChatBox" layoutX="506.0" layoutY="243.0" prefHeight="277.0" prefWidth="200.0" visible="false">
          <bottom>
             <Pane prefHeight="34.0" prefWidth="200.0" BorderPane.alignment="CENTER">

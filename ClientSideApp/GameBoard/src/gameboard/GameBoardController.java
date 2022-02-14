@@ -95,7 +95,7 @@ public class GameBoardController implements Initializable {
     private Label player1Score;
     
     @FXML
-    private Button home;
+    private Button home,SendChatBtn;
 
     @FXML
     private BorderPane ChatBox;
