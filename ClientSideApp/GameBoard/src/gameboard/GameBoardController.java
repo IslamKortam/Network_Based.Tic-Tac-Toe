@@ -155,7 +155,16 @@ public class GameBoardController implements Initializable {
     }
     
     @FXML
-    void sendChatMsg(MouseEvent event){
+    void sendButtonPressed(MouseEvent event){
+        sendChatMsg();
+    }
+    
+    @FXML
+    void sendEnterPressed(ActionEvent ac){
+        sendChatMsg();
+    }
+    
+    void sendChatMsg(){
         System.out.println("Send Chat Msg");
         String chatMsgBody = ChatField.getText();
         if(chatMsgBody.equals("")){

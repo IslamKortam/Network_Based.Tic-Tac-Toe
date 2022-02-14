@@ -60,8 +60,8 @@
          <children>
             <Pane layoutX="10.0" layoutY="6.0" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                <children>
-                  <ImageView fx:id="player1Img" fitHeight="80.0" fitWidth="80.0" layoutX="43.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="player1Name" contentDisplay="CENTER" layoutX="56.0" layoutY="87.0" textAlignment="CENTER" wrapText="true">
+                  <ImageView fx:id="player1Img" fitHeight="80.0" fitWidth="80.0" layoutX="43.0" layoutY="6.0" pickOnBounds="true" />
+                  <Label fx:id="player1Name" alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="87.0" prefHeight="28.0" prefWidth="176.0" wrapText="true">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -70,20 +70,20 @@
             </Pane>
             <Pane layoutX="239.0" layoutY="6.0" prefHeight="120.0" prefWidth="170.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                <children>
-                  <ImageView fx:id="player2Img" fitHeight="80.0" fitWidth="80.0" layoutX="45.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="player2Name" contentDisplay="CENTER" layoutX="19.0" layoutY="87.0" textAlignment="CENTER" wrapText="true">
+                  <ImageView fx:id="player2Img" fitHeight="80.0" fitWidth="80.0" layoutX="45.0" layoutY="6.0" pickOnBounds="true" />
+                  <Label fx:id="player2Name" alignment="CENTER" contentDisplay="CENTER" layoutY="87.0" prefHeight="28.0" prefWidth="170.0" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="player1Score" alignment="CENTER" layoutX="175.0" layoutY="61.0" prefHeight="31.0" prefWidth="35.0" text="0" textAlignment="CENTER">
+            <Label fx:id="player1Score" alignment="CENTER" layoutX="135.0" layoutY="61.0" prefHeight="31.0" prefWidth="60.0" text="0" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="player2Score" alignment="CENTER" layoutX="209.0" layoutY="61.0" prefHeight="31.0" prefWidth="35.0" text="0" textAlignment="CENTER">
+            <Label fx:id="player2Score" alignment="CENTER" layoutX="216.0" layoutY="61.0" prefHeight="31.0" prefWidth="60.0" text="0" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -100,17 +100,17 @@
             </ImageView>
          </children>
       </Pane>
-      <Button id="btnCloseGameBorad" fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="29.0" style="-fx-graphic: url('/resources/home.png');" stylesheets="@../resources/Style.css" />
+      <Button id="btnCloseGameBorad" fx:id="home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="29.0" style="-fx-graphic: url('/resources/home.png');" stylesheets="@../resources/Style.css" visible="false" />
       <BorderPane fx:id="ChatBox" layoutX="506.0" layoutY="243.0" prefHeight="277.0" prefWidth="200.0" visible="false">
          <bottom>
             <Pane prefHeight="34.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="sendBtn" fitHeight="51.0" fitWidth="36.0" layoutX="166.0" layoutY="-2.0" onMouseClicked="#sendChatMsg" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="sendBtn" fitHeight="51.0" fitWidth="36.0" layoutX="166.0" layoutY="-2.0" onMouseClicked="#sendButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                      <image>
                         <Image url="@../resources/send1.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="ChatField" layoutY="2.0" prefHeight="31.0" prefWidth="165.0" promptText="Text Your Message" />
+                  <TextField fx:id="ChatField" layoutY="2.0" onAction="#sendEnterPressed" prefHeight="31.0" prefWidth="165.0" promptText="Text Your Message" />
                </children>
             </Pane>
          </bottom>
@@ -118,7 +118,7 @@
             <TextArea fx:id="ChatArea" editable="false" prefHeight="0.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <top>
-            <Label fx:id="ChatUser2" prefHeight="38.0" prefWidth="198.0" text="user 2" BorderPane.alignment="CENTER" />
+            <Label fx:id="ChatUser2" prefHeight="38.0" prefWidth="198.0" text="user 2" visible="false" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
       <ImageView fx:id="ChatBtn" fitHeight="43.0" fitWidth="53.0" layoutX="665.0" layoutY="522.0" onMouseClicked="#viewChatBox" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
