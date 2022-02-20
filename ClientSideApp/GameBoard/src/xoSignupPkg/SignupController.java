@@ -143,23 +143,23 @@ public class SignupController implements Initializable {
     }
     
     // File representing the folder
-    static final File dir = new File("src\\resources\\AvatarImgs");
-    
-    // array of supported extensions
-    static final String[] EXTENSIONS = new String[]{"png"};
-    
-    // filter to identify images based on their extensions
-    static final FilenameFilter IMAGE_FILTER = new FilenameFilter() {
-        @Override
-        public boolean accept(final File dir, final String name) {
-            for (final String ext : EXTENSIONS) {
-                if (name.endsWith("." + ext)) {
-                    return (true);
-                }
-            }
-            return (false);
-        }
-    };
+//    static final File dir = new File("src\\resources\\AvatarImgs");
+//    
+//    // array of supported extensions
+//    static final String[] EXTENSIONS = new String[]{"png"};
+//    
+//    // filter to identify images based on their extensions
+//    static final FilenameFilter IMAGE_FILTER = new FilenameFilter() {
+//        @Override
+//        public boolean accept(final File dir, final String name) {
+//            for (final String ext : EXTENSIONS) {
+//                if (name.endsWith("." + ext)) {
+//                    return (true);
+//                }
+//            }
+//            return (false);
+//        }
+//    };
     
     //Avatar ID (Pictures number start from 0)
     int imgID=0;
@@ -175,12 +175,12 @@ public class SignupController implements Initializable {
                 flwAvatars.setHgap(5);
                 flwAvatars.setPadding(new Insets(5, 5, 5, 5));
                 flwAvatars.setAlignment(Pos.CENTER);
-                if (dir.isDirectory()) { // make sure it's a directory
-                    for (final File f : dir.listFiles(IMAGE_FILTER)) {
-                        BufferedImage img = null;
-                        try {
-                            img = ImageIO.read(f);                            
-                            avImg = SwingFXUtils.toFXImage(img, null);
+               // if (dir.isDirectory()) { // make sure it's a directory
+                    for (/*final File f : dir.listFiles(IMAGE_FILTER)*/int i=0;i<15;i++) {
+                       // BufferedImage img = null;
+                        //try {
+                           // img = ImageIO.read(f);                            
+                            avImg = new Image(getClass().getResourceAsStream("/resources/AvatarImgs/" + Integer.toString(i) + ".png"));//SwingFXUtils.toFXImage(img, null);
                             imgView =new ImageView(avImg);
                             imgView.setFitWidth(100);
                             imgView.setFitHeight(100);
@@ -200,11 +200,10 @@ public class SignupController implements Initializable {
                             });
                             flwAvatars.getChildren().add(imgView);
                             imgID++;
-                        } catch (final IOException e) {
-                        }
+                       
                     }
                 }
-            }
+            //}
         });
         imgID=0;
     }
