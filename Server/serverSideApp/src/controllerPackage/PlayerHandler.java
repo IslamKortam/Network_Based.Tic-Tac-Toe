@@ -115,8 +115,25 @@ public class PlayerHandler extends Player {
         }else if(commMsg.getType() == CommunicationMassegeType.CHAT){
             ChatMsg msg = Parser.gson.fromJson(commMsg.getMsgBody(), ChatMsg.class);
             sendChatMsg(msg);
+        }else if(commMsg.getType() == CommunicationMassegeType.GameSaveRequest){
+            RequsetGameSave();
+        }else if(commMsg.getType() == CommunicationMassegeType.GameSaveResponse){
+            GameSaveResponse response = Parser.gson.fromJson(commMsg.getMsgBody(), GameSaveResponse.class);
+            handleGameSaveResponse(response);
         }
     }
+
+    private void handleGameSaveResponse(GameSaveResponse response){
+        switch(response.getStatus()){
+            case ACCEPTED:
+                acceptGameSave();
+                break;
+            case DENIED:
+                //Do Nothing
+                break;
+        }
+    }
+
     
     private void handleSinglePlayerGameEnd(GameStatusUpdate update) throws SQLException{
         updateScore(update.getStatus());
@@ -181,16 +198,27 @@ public class PlayerHandler extends Player {
         userHandler.sendCommMsgToClient(moveMsg);
     }
 
-    public void RequsetGameSave(int playerId) {
-        GameSession.requestSave(playerId);
+    public void RequsetGameSave() {
+        if(currentGame != null){
+            currentGame.requestSave(this.getId());
+        }
     }
 
-    public void acceptGameSave(int playerId) {
-        GameSession.acceptSave(playerId);
+    public void recieceGameSaveRequest(){
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameSaveRequest, "");
+        sendMeCommMsg(commMsg);
     }
 
-    public void quitGame(int playerId) {
-        GameSession.quitGame(playerId);
+    public void acceptGameSave() {
+        if(currentGame != null){
+            currentGame.acceptSave(this.getId());
+        }
+    }
+
+    public void quitGame() {
+        if(currentGame != null){
+            currentGame.quitGame(this.getId());
+        }
     }
 
     public void updateClientGamestatus(GameStatusUpdate.GameStatus s) {

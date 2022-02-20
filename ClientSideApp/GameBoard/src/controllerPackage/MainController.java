@@ -118,8 +118,22 @@ public class MainController extends Application{
         }else if(commMsg.getType() == CommunicationMassegeType.CHAT){
             ChatMsg chatUpdate = Parser.gson.fromJson(commMsg.getMsgBody(), ChatMsg.class);
             handleChatUpdate(chatUpdate);
+        }else if(commMsg.getType() == CommunicationMassegeType.GameSaveRequest){
+            handleGameSaveRequest();
         }
     }
+    
+    private void handleGameSaveRequest(){
+        System.out.println("Recieved a game save request");
+        ////////////////////////////////////////////////////////////
+        //Write the code here
+        //Create an alert with buttons accept / deny
+        //in the response of the alert, create a Communication msg with type=GameSaveResponse, and the status = accepted / denied depending on what he has chosen
+        // send this reply to the server using the ClientConnectionHandler.ref.sendCommMsgToServer() method
+        
+        
+    }
+    
     
     private void handleChatUpdate(ChatMsg chatUpdate){
         GameBoardUtility.appendChatMsg(chatUpdate);

@@ -13,6 +13,7 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import serverdao.Dao;
+import serverdao.GamePojo;
 import serverdao.PlayerPojo;
 
 /**
@@ -26,9 +27,15 @@ public class ServerMainController extends Application {
         Vector<PlayerPojo> players = Dao.selectAllPlayers();
         playersOnServer.PlayersOnServerUtility.initScene();
         for(PlayerPojo player : players){
-            System.out.println(player.getID() + ":" + player.getEmail() + ":" + player.getPassword() + ":" + player.getNickName() + ":" + player.getUserName());
+            System.out.println(player.getID() + ":" + player.getEmail() + ":" + player.getPassword() + ":" + player.getNickName() + ":" + player.getUserName() + ":" + player.getPicture());
             new PlayerHandler(player);
             //serverhome.ServerHomeUtility.updateLogs("+Added Player from DB: " + player.getUserName());
+        }
+        
+        Vector<GamePojo> gameVector = Dao.selectGameByPlayerID(1);
+        
+        for(GamePojo game : gameVector){
+            System.out.println("Saved Game: " + game.getGameID() + ":" + game.getPlayer1Id() + ":" + game.getPlayer2Id() + ":" + game.getBoard());
         }
         
         launch(serverhome.ServerHome.class ,args);

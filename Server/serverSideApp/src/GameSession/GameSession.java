@@ -6,8 +6,15 @@ package GameSession;
 
 import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
+import serverdao.Dao;
+import serverdao.GamePojo;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
+import ParserPackage.Parser;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,21 +30,38 @@ public class GameSession {
     private PlayerHandler player1;
     private PlayerHandler[] players;
     private int turn;
-    private ArrayList<Integer> arrayOfMoves = new ArrayList(9);
+    private ArrayList<Integer> arrayOfMoves = new ArrayList(0);
     private char[] XOBoard = new char[]{'.','.','.','.','.','.','.','.','.'};
     private char[] playerMark = new char[]{'X','O'};
 
-    public static void requestSave(int playerId) {
+    public void requestSave(int requesterID) {
+        if(requesterID == player0.getId()){
+            //Player0 is the one who requested
+            player1.recieceGameSaveRequest();
+        }else{
+            //Player1 is the one who requested
+            player0.recieceGameSaveRequest();
+        }
+    }
+
+    public void acceptSave(int playerId) {
+        save();
+    }
+
+    public void quitGame(int playerId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void acceptSave(int playerId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void save(){
+        String gameBoard = Parser.gson.toJson(arrayOfMoves);
+        GamePojo g = new GamePojo(player0.getId(), player1.getId(), 0, gameBoard, false, -1, new Date(0), true);
+        try {
+            Dao.insertIntoGameTable(g);
+        } catch (SQLException ex) {
+            Logger.getLogger(GameSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public static void quitGame(int playerId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     private enum GameResult{
         INCOMPLETE,
         TIE,
