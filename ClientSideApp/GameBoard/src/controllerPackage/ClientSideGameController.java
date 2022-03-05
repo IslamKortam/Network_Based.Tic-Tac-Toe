@@ -340,4 +340,8 @@ public class ClientSideGameController {
         gameboard.GameBoardController.getRef().declareEndOfGame("Tie");
         ref = null;
     }
+    public void createAlertSaveGame() {
+        gameboard.GameBoardController.getRef().saveGameRequest();
+        ref = null;
+    }
 }

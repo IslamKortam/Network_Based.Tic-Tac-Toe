@@ -11,6 +11,7 @@ import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameMove;
+import CommunicationMasseges.GameSaveResponse;
 import CommunicationMasseges.GameStatusUpdate;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
@@ -125,13 +126,7 @@ public class MainController extends Application{
     
     private void handleGameSaveRequest(){
         System.out.println("Recieved a game save request");
-        ////////////////////////////////////////////////////////////
-        //Write the code here
-        //Create an alert with buttons accept / deny
-        //in the response of the alert, create a Communication msg with type=GameSaveResponse, and the status = accepted / denied depending on what he has chosen
-        // send this reply to the server using the ClientConnectionHandler.ref.sendCommMsgToServer() method
-        
-        
+        ClientSideGameController.getRef().createAlertSaveGame();
     }
     
     

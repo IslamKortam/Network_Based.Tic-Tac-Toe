@@ -5,9 +5,11 @@
 package gameboard;
 
 import CommHandlerPK.ClientConnectionHandler;
+import CommunicationMasseges.AcceptedDinedStatus;
 import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.GameSaveResponse;
 import ParserPackage.Parser;
 import com.jfoenix.controls.JFXButton;
 import controllerPackage.ClientSideGameController;
@@ -209,6 +211,33 @@ public class GameBoardController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+        });
+    }
+    @FXML
+    public void saveGameRequest()  {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert a = new Alert(Alert.AlertType.NONE);
+                a.setAlertType(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("Save Game?");
+                a.setContentText("If you pressed ok you will save this game.");
+                a.showAndWait().ifPresent(response -> {
+                    GameSaveResponse resp = null;
+                    if (response == ButtonType.OK) {
+                        resp = new GameSaveResponse(AcceptedDinedStatus.ACCEPTED);
+                    }
+                    else{
+                        resp = new GameSaveResponse(AcceptedDinedStatus.DENIED);
+                    }
+
+                    String resStr = Parser.gson.toJson(resp);
+                    CommunicationMassege msg = new CommunicationMassege(CommunicationMassegeType.GameSaveRequest, resStr);
+
+                    // send this reply to the server using the ClientConnectionHandler.ref.sendCommMsgToServer() method
+                    ClientConnectionHandler.ref.sendCommMsgToServer(msg);
+                });
             }
         });
     }
