@@ -186,7 +186,9 @@ public class GameBoardController implements Initializable {
     
     @FXML
     void requestSaveGame(MouseEvent event){
-        System.out.println("Request Save");
+//        System.out.println("Request Save");
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameSaveRequest, "");
+        ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
     }
 
     public static GameBoardController getRef() {
