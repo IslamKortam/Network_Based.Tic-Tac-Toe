@@ -155,6 +155,18 @@ public class Dao {
         }
         return games;
     }
+
+    public static GamePojo selectGameByID(int id) throws SQLException {
+        GamePojo game = null;
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where ID = ?");
+        selectStatement.setInt(1, id);
+        ResultSet query = selectStatement.executeQuery();
+        if(query.next()){
+            game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
+        }
+        
+        return game;
+    }
     
     public static Vector<PlayerPojo> selectAllPlayers(){
         Vector<PlayerPojo> players = new Vector<PlayerPojo>();

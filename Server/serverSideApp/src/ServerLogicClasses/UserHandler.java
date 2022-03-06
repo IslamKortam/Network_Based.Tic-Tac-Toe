@@ -74,6 +74,7 @@ public class UserHandler extends Thread{
                             authrized = true;
                             sendCommMsgToClient(comm);
                             connectedPlayer.sendMeAllPlayers();
+                            connectedPlayer.sendMeMySavedGames();
                         }else{
                             System.out.println("Denied Client");
                             sendCommMsgToClient(comm);

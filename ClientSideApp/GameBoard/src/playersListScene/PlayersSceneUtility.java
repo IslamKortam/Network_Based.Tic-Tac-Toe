@@ -81,7 +81,7 @@ public class PlayersSceneUtility {
                     newPlayer.setInviteBtn(invite);
                     //inviteBtnHandler();
                     if ((p.getStatus() != PlayerStatus.ONLINE)) {
-                        System.out.println(p.getStatus().toString());
+                        //System.out.println(p.getStatus().toString());
                         invite.setDisable(true);
                         //invite.focusTraversableProperty();  
                     }

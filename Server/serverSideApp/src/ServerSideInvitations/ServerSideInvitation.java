@@ -42,6 +42,13 @@ public class ServerSideInvitation extends Invitation{
                 reciever.setCurrentGame(newGameSession);
             }
         }
+        else if(this.getType() == InvitationType.LOAD_GAME){
+            if(sender.getStatus() == PlayerStatus.ONLINE && reciever.getStatus() == PlayerStatus.ONLINE){
+                GameSession loadedGameSession = GameSession.loadGame(this);
+                sender.setCurrentGame(loadedGameSession);
+                reciever.setCurrentGame(loadedGameSession);
+            }
+        }
     }
     
     

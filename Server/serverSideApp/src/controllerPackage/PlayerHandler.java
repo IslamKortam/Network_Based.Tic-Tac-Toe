@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import playersOnServer.PlayersOnServerUtility;
 import serverdao.Dao;
+import serverdao.GamePojo;
 
 /**
  *
@@ -96,10 +97,21 @@ public class PlayerHandler extends Player {
         }
     }
     
+    public void sendMeMySavedGames() throws SQLException{
+        Vector<GamePojo> games = Dao.selectGameByPlayerID(this.getId());
+        for(GamePojo gamePojo : games){
+            GameInfo game = new GameInfo(gamePojo);
+            String gameString = Parser.gson.toJson(game);
+            CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameInfo, gameString);
+            this.sendMeCommMsg(commMsg);
+        }
+        return;
+    }
+    
     public void handle(CommunicationMassege commMsg) throws SQLException{
         if(commMsg.getType() == CommunicationMassegeType.INVITATION){
             Invitation inv = Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class);
-            System.out.println("Sending Invetation to another player handler " + inv.getReceiverID());
+            //System.out.println("Sending Invetation to another player handler " + inv.getReceiverID());
             new ServerSideInvitation(inv);
         }else if(commMsg.getType() == CommunicationMassegeType.INVITATION_RESPONSE){
             InvitationResponse response = Parser.gson.fromJson(commMsg.getMsgBody(), InvitationResponse.class);
