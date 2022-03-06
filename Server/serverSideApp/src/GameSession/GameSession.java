@@ -4,6 +4,7 @@
  */
 package GameSession;
 
+import controllerPackage.Player;
 import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
 import serverdao.Dao;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import ParserPackage.Parser;
+import ServerSideInvitations.ServerSideInvitation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,7 +96,27 @@ public class GameSession {
                 XOBoard[arrayOfMoves.get(i)]='O';
             }
         }
-        turn = arrayOfmoves.size() % 2;        
+        turn = arrayOfmoves.size() % 2;      
+        
+        System.err.println("Loaded Game Not sent to user yet");
+    }
+
+    public static GameSession loadGame(ServerSideInvitation invitation){
+        GamePojo game = null;
+        try {
+            game = Dao.selectGameByID(invitation.getGameID());
+        } catch (SQLException ex) {
+            Logger.getLogger(GameSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PlayerHandler player0 = PlayerHandler.getPlayerHandlerByID(game.getPlayer1Id());
+        PlayerHandler player1 = PlayerHandler.getPlayerHandlerByID(game.getPlayer2Id());
+
+        String gameMovesStringized = game.getBoard();
+
+        ArrayList<Integer> arrayOfMoves = null;
+        arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
+        GameSession gameSession = new GameSession(player0, player1, arrayOfMoves);
+        return gameSession;
     }
 
 

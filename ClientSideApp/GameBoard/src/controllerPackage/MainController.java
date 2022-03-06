@@ -11,6 +11,7 @@ import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameMove;
+import CommunicationMasseges.GameSaveResponse;
 import CommunicationMasseges.GameStatusUpdate;
 import CommunicationMasseges.Invitation;
 import CommunicationMasseges.InvitationResponse;
@@ -125,13 +126,7 @@ public class MainController extends Application{
     
     private void handleGameSaveRequest(){
         System.out.println("Recieved a game save request");
-        ////////////////////////////////////////////////////////////
-        //Write the code here
-        //Create an alert with buttons accept / deny
-        //in the response of the alert, create a Communication msg with type=GameSaveResponse, and the status = accepted / denied depending on what he has chosen
-        // send this reply to the server using the ClientConnectionHandler.ref.sendCommMsgToServer() method
-        
-        
+        ClientSideGameController.getRef().createAlertSaveGame();
     }
     
     
@@ -202,10 +197,18 @@ public class MainController extends Application{
             System.out.println(inv.getInvitID());
             System.out.println(Player.allPlayers.size());
             String playerName = Player.getPlayerByID(inv.getSenderID()).getUserName();
+            String alertBody = "";
+            if(inv.getType() == Invitation.InvitationType.NEW_GAME){
+                alertBody = playerName + " wants to challenge you\nDo you accept this challenge?";
+            }else{
+                //Load game
+                alertBody = playerName + " wants to load a game with ID " + inv.getGameID() + "\n" + "Do you accept this challenge?";
+            }
+            final String fAlertBody = alertBody;
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    Boolean opinion = ModesController.ref.showAlert(playerName + " want to challenge you\nDo you accept this challenge?");
+                    Boolean opinion = ModesController.ref.showAlert(fAlertBody);
                     InvitationResponse response = null;
                     if (opinion) {
                         response = new InvitationResponse(inv.getInvitID(), AcceptedDinedStatus.ACCEPTED);

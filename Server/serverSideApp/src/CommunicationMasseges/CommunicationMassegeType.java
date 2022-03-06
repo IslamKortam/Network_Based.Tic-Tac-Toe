@@ -16,6 +16,7 @@ public enum CommunicationMassegeType {
     GAME_STATUS,
     CHAT,
     PLAYER,
+    GameInfo,
     INVITATION,
     INVITATION_RESPONSE,
     START_NEW_MULTIPLAYER_GAME,
