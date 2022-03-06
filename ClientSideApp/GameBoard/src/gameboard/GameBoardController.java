@@ -235,7 +235,7 @@ public class GameBoardController implements Initializable {
                     }
 
                     String resStr = Parser.gson.toJson(resp);
-                    CommunicationMassege msg = new CommunicationMassege(CommunicationMassegeType.GameSaveRequest, resStr);
+                    CommunicationMassege msg = new CommunicationMassege(CommunicationMassegeType.GameSaveResponse, resStr);
 
                     // send this reply to the server using the ClientConnectionHandler.ref.sendCommMsgToServer() method
                     ClientConnectionHandler.ref.sendCommMsgToServer(msg);

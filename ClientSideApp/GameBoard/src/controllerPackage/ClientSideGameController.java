@@ -342,6 +342,5 @@ public class ClientSideGameController {
     }
     public void createAlertSaveGame() {
         gameboard.GameBoardController.getRef().saveGameRequest();
-        ref = null;
     }
 }
