@@ -63,8 +63,8 @@ public class StageManager {
     }
 
     public void resetStage() throws IOException {
+        PlayersSceneUtility.resetScene();
         displayScene(SceneName.SIGNIN);
-
     }
 
     public void displayScene(SceneName name) throws IOException {

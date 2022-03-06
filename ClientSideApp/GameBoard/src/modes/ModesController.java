@@ -64,7 +64,8 @@ public class ModesController implements Initializable {
     @FXML
     private void handleSignOutButtonAction(ActionEvent event) throws IOException {
         System.out.println("sign out btn pressed");
-        StageManager.getStageManger().displayScene(StageManager.SceneName.SIGNIN);
+        //StageManager.getStageManger().displayScene(StageManager.SceneName.SIGNIN);
+        StageManager.getStageManger().resetStage();
         
         
         
