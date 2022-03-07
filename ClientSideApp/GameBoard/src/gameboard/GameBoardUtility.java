@@ -122,6 +122,7 @@ public class GameBoardUtility {
 
     public static void setBox(int boxNumber, String text) {
         // set the text on the buitton by String symbol and set "disable" feature of the buttons 
+        System.out.println("Setting box " + boxNumber + " with " + text);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -132,6 +133,7 @@ public class GameBoardUtility {
                 }
                 buttons.get(boxNumber).setText(text);
                 buttons.get(boxNumber).setDisable(true);
+                System.out.println("Done Here");
             }
         });
     }
@@ -317,6 +319,7 @@ public class GameBoardUtility {
     }
     
     public static void resetScene(){
+        System.out.println("Reseting Scene");
         resetChatArea();
         resetAllBoxes();
     }

@@ -11,5 +11,6 @@ package CommunicationMasseges;
  */
 public enum AcceptedDinedStatus {
     ACCEPTED,
-    DENIED
+    DENIED,
+    DUPLICATED
 }

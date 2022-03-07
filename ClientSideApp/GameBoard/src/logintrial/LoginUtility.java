@@ -36,8 +36,10 @@ public class LoginUtility {
             public void run() {
                 if (ch == 1) {
                     errorMsg.setText("Success");
-                } else {
+                } else if(ch == 0) {
                     errorMsg.setText("Invalid username or password.");
+                }else{
+                    errorMsg.setText("This user is already online!");
                 }
             }
         });

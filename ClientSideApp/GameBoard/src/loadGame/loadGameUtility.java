@@ -5,6 +5,12 @@
  */
 package loadGame;
 
+import CommHandlerPK.ClientConnectionHandler;
+import CommunicationMasseges.CommunicationMassege;
+import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.Invitation;
+import ParserPackage.Parser;
+import controllerPackage.Player;
 import java.io.IOException;
 import java.sql.Date;
 import javafx.collections.FXCollections;
@@ -48,7 +54,7 @@ public class loadGameUtility {
         loadGameUtility.g = new Game(gameId, p2id, p2name, p2status, date, "");
         data.add(g);
         table.setItems(data);
-        
+        loadGameUtility.clickOnButton();
     }
 
     public static void clickOnButton() {
@@ -57,6 +63,10 @@ public class loadGameUtility {
             Button load = g.getLoad();
             load.setOnAction((event) -> {
                 System.out.println(g.getPlayer2Name());
+                Invitation inv = new Invitation(Player.getThisPlayer().getId(), g.player2Id, Invitation.InvitationType.LOAD_GAME, g.getGameId());
+                String s = Parser.gson.toJson(inv);
+                CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, s);
+                ClientConnectionHandler.ref.sendCommMsgToServer(commMsg);
             });
             
         }

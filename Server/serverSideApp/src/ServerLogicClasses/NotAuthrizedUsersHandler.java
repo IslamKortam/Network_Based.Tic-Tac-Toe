@@ -13,6 +13,7 @@ import CommunicationMasseges.SignUpResponse;
 import CommunicationMasseges.SignUpStatusEnum;
 import controllerPackage.Player;
 import controllerPackage.PlayerHandler;
+import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.sql.SQLException;
 import serverdao.Dao;
@@ -35,8 +36,12 @@ public class NotAuthrizedUsersHandler {
         if(p.getID() == -1){    //No player with this Credenatils
             reply = new SignInStatus(AcceptedDinedStatus.DENIED);
         }
-        else{
+        else if(PlayerHandler.getPlayerHandlerByID(p.getID()).getStatus() == PlayerStatus.OFFLINE){
+            //Player was offline
             reply = new SignInStatus(AcceptedDinedStatus.ACCEPTED, new Player(p));
+        }
+        else{
+            reply = new SignInStatus(AcceptedDinedStatus.DUPLICATED, null);
         }
         return reply;
     }

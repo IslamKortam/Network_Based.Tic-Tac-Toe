@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import ParserPackage.Parser;
 import ServerSideInvitations.ServerSideInvitation;
+import com.google.gson.reflect.TypeToken;
 import java.time.LocalDate;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -130,8 +131,11 @@ public class GameSession {
             }
         }
         turn = arrayOfmoves.size() % 2;      
+        player0.startLoadedMultiplayerGame(0, player_1.getId(), -1, arrayOfmoves);
+        player1.startLoadedMultiplayerGame(1, player_0.getId(), -1, arrayOfmoves);
         
-        System.err.println("Loaded Game Not sent to user yet");
+        
+        System.err.println("Not removed from the memory yet");
     }
 
     public static GameSession loadGame(ServerSideInvitation invitation){
@@ -145,9 +149,10 @@ public class GameSession {
         PlayerHandler player1 = PlayerHandler.getPlayerHandlerByID(game.getPlayer2Id());
 
         String gameMovesStringized = game.getBoard();
-
+        System.out.println(gameMovesStringized);
         ArrayList<Integer> arrayOfMoves = null;
-        arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
+        //arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
+        arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, new TypeToken<ArrayList<Integer>>(){}.getType());
         GameSession gameSession = new GameSession(player0, player1, arrayOfMoves);
         return gameSession;
     }

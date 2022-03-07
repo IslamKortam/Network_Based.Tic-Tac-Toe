@@ -5,17 +5,36 @@
  */
 package CommunicationMasseges;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author imkor
  */
 public class StartMultiPlayerGame {
+    public enum MultiPlayerGameType{
+        NEW_GAME,
+        LOAD_GAME
+    }
+    
     int turn;
     int oponentID;
-
+    private MultiPlayerGameType type;
+    private int gameID;
+    private ArrayList<Integer> arrayOfMoves;
+    
+    
     public StartMultiPlayerGame(int turn, int oponentID) {
         this.turn = turn;
         this.oponentID = oponentID;
+    }
+    
+    public StartMultiPlayerGame(int turn, int oponentID, MultiPlayerGameType type, int gameID, ArrayList<Integer> arrayOfMoves) {
+        this.turn = turn;
+        this.oponentID = oponentID;
+        this.type = type;
+        this.gameID = gameID;
+        this.arrayOfMoves = arrayOfMoves;
     }
 
     public int getTurn() {
@@ -32,6 +51,22 @@ public class StartMultiPlayerGame {
 
     public void setOponentID(int oponentID) {
         this.oponentID = oponentID;
+    }
+    
+    public ArrayList<Integer> getArrayOfMoves() {
+        return arrayOfMoves;
+    }
+
+    public void setArrayOfMoves(ArrayList<Integer> arrayOfMoves) {
+        this.arrayOfMoves = arrayOfMoves;
+    }
+
+    public MultiPlayerGameType getType() {
+        return type;
+    }
+
+    public void setType(MultiPlayerGameType type) {
+        this.type = type;
     }
     
     

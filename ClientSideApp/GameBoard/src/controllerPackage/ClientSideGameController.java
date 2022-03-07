@@ -8,6 +8,7 @@ package controllerPackage;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.GameStatusUpdate;
+import CommunicationMasseges.StartMultiPlayerGame;
 import controllerPackage.BestMove.Move;
 import gameboard.GameBoardUtility;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ClientSideGameController {
         } else {
             yourTurn = false;
         }
-        GameBoardUtility.resetScene();
+        //GameBoardUtility.resetScene();
         GameBoardUtility.changeImgPlayerTurn(yourTurn);
         GameBoardUtility.showBtnSave(isMultiplayer);
         ref = this;
@@ -72,6 +73,27 @@ public class ClientSideGameController {
             Player player0 = Player.getThisPlayer();
             GameBoardUtility.setPlyer(player0.getFullName(), player0.getScore() + "", player0.getIconIndex(), (isHardGame? "Hard" : "Easy") + " Robot", (isHardGame? "500" : "100"), 100);
         }
+    }
+    
+    public static void loadGame(StartMultiPlayerGame order){
+        ClientSideGameController loadedGame = new ClientSideGameController(true, order.getTurn(), order.getOponentID());
+        for(int move : order.getArrayOfMoves()){
+            if(loadedGame.yourTurn){
+                loadedGame.admitMove(move, loadedGame.playerNumber);
+                loadedGame.yourTurn = false; //disableAllButtons
+                loadedGame.updateGameMovesArray(move);
+                System.out.println("My turn");
+                
+            }else{
+                loadedGame.admitMove(move, 1 - loadedGame.playerNumber);
+                loadedGame.updateGameMovesArray(move);
+                loadedGame.yourTurn = true; //EnableFreeButtons
+                System.out.println("His turn");
+            }
+            System.out.println("Admiited move to: " + move + " your turn: " + loadedGame.yourTurn + " Player Number: " + loadedGame.playerNumber);
+            GameBoardUtility.changeImgPlayerTurn(loadedGame.yourTurn);
+        }
+        System.out.println("Game Loaded");
     }
     
     public static ClientSideGameController getRef() {

@@ -199,6 +199,26 @@ public class PlayersSceneUtility {
      */
     
     public static void resetScene(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for(Node node : nodes){
+                    
+                    area.getChildren().remove(node);
+                }
+                System.out.println("Reseting players scene");
+                System.out.println(area.getChildren().size());
+                area.getChildren().clear();
+                area.getChildren().removeAll(area.getChildren());
+                System.out.println(area.getChildren().size());
+                nodes.clear();
+                try {
+                    PlayersSceneUtility.initScene();
+                } catch (IOException ex) {
+                    Logger.getLogger(PlayersSceneUtility.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
     }
 

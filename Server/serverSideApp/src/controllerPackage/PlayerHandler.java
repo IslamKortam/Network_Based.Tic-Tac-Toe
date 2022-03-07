@@ -21,6 +21,7 @@ import serverhome.ServerHomeUtility;
 import ServerSideInvitations.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import playersOnServer.PlayersOnServerUtility;
 import serverdao.Dao;
 import serverdao.GamePojo;
@@ -316,6 +317,13 @@ public class PlayerHandler extends Player {
     }
     public void startNewMultiPlayerGame(int turn, int oponentID){
         StartMultiPlayerGame order = new StartMultiPlayerGame(turn, oponentID);
+        String s = Parser.gson.toJson(order);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.START_NEW_MULTIPLAYER_GAME, s);
+        sendMeCommMsg(commMsg);
+    }
+    
+    public void startLoadedMultiplayerGame(int turn, int oponentID, int gameID, ArrayList<Integer> arrayOfMoves){
+        StartMultiPlayerGame order = new StartMultiPlayerGame(turn, oponentID, StartMultiPlayerGame.MultiPlayerGameType.LOAD_GAME, gameID, arrayOfMoves);
         String s = Parser.gson.toJson(order);
         CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.START_NEW_MULTIPLAYER_GAME, s);
         sendMeCommMsg(commMsg);

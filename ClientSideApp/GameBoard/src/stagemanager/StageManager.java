@@ -110,8 +110,8 @@ public class StageManager {
                           break;
                      case LOADGAME:
 //                        GameBoardUtility.initScene();
-                        stage.setScene(GameBoardUtility.getScene());
-                        moveScreen(GameBoardUtility.ref,stage);
+                        stage.setScene(loadGameUtility.getScene());
+                        moveScreen(loadGameUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.LOADGAME;
 

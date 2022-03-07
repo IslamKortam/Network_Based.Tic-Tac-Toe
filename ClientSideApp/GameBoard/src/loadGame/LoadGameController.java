@@ -51,20 +51,8 @@ public class LoadGameController implements Initializable {
        @FXML
     private Button home;
      @FXML
-    void goToHome(ActionEvent event) {
-       Alert a = new Alert(Alert.AlertType.NONE);
-        a.setAlertType(Alert.AlertType.CONFIRMATION);
-        a.setHeaderText("Exit Game?");
-        a.setContentText("If you pressed ok you will lost this game.");
-        a.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    MainController.getRef().navigateToModes();
-                } catch (IOException ex) {
-                    Logger.getLogger(LoadGameController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+    void goToHome(ActionEvent event) throws IOException {
+        MainController.getRef().navigateToModes();
     }
 
   
