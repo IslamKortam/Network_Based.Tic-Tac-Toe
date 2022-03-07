@@ -165,12 +165,22 @@ public class MainController extends Application{
     
     public void handleGameStatus(GameStatusUpdate update){
         
-        if(update.getStatus() == GameStatusUpdate.GameStatus.WINNER){
-            ClientSideGameController.getRef().declareWinner();
-        }else if(update.getStatus() == GameStatusUpdate.GameStatus.LOSER){
-             ClientSideGameController.getRef().declareLooser();
-        }else{
-             ClientSideGameController.getRef().declareTie();
+        switch(update.getStatus()){
+            case WINNER:
+                ClientSideGameController.getRef().declareWinner();
+                break;
+            case LOSER:
+                ClientSideGameController.getRef().declareLooser();
+                break;
+            case TIE:
+                ClientSideGameController.getRef().declareTie();
+                break;
+            case GameSaved:
+                ClientSideGameController.getRef().gameSaved();
+                break;
+            case OtherPlayerDisconnected:
+                ClientSideGameController.getRef().otherUserDisconnected();
+                break;
         }
     }
     

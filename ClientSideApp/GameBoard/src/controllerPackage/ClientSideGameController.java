@@ -326,20 +326,34 @@ public class ClientSideGameController {
     }
     
     public void declareWinner() {
-        gameboard.GameBoardController.getRef().declareEndOfGame("Winner");
+        gameboard.GameBoardController.getRef().declareGameStatusChange("Winner");
         ref = null;
         
     }
     
     public void declareLooser() {
-        gameboard.GameBoardController.getRef().declareEndOfGame("Loser");
+        gameboard.GameBoardController.getRef().declareGameStatusChange("Loser");
         ref = null;
     }
     
     public void declareTie() {
-        gameboard.GameBoardController.getRef().declareEndOfGame("Tie");
+        gameboard.GameBoardController.getRef().declareGameStatusChange("Tie");
         ref = null;
     }
+    
+    public void gameSaved() {
+        gameboard.GameBoardController.getRef().declareGameStatusChange("Game Saved Successfuly");
+        ref = null;
+    }
+    
+    public void otherUserDisconnected() {
+        String msg ="Your oppponent (" + Player.getPlayerByID(opponentID).getUserName()+ ") Disconnecteed! Your game is Saved.\nYou may replay it later...";
+        gameboard.GameBoardController.getRef().declareGameStatusChange(msg);
+        ref = null;
+    }
+    
+    
+    
     public void createAlertSaveGame() {
         gameboard.GameBoardController.getRef().saveGameRequest();
     }

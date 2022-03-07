@@ -125,6 +125,9 @@ public class UserHandler extends Thread{
     private void stopThisUser(){
         if(authrized){
                     connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
+                    if(connectedPlayer.getCurrentGame() != null){
+                        connectedPlayer.getCurrentGame().handlePlayerDisconnection();
+                    }
                     authrized = false;
                     connectedPlayer.setUserHandler(null);
                     try {
@@ -161,6 +164,8 @@ public class UserHandler extends Thread{
                     
         }
     }
+    
+    
     
     public static void stopAllUsers(){
         for(UserHandler userHandler : connectedUsersHandelers){

@@ -198,13 +198,13 @@ public class GameBoardController implements Initializable {
     }
     
     @FXML
-    public void declareEndOfGame(String msg) {
+    public void declareGameStatusChange(String msg) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Alert a = new Alert(Alert.AlertType.NONE);
                 a.setAlertType(Alert.AlertType.INFORMATION);
-                a.setHeaderText("Game Ended!");
+                a.setHeaderText("Game Status Changed!");
                 a.setContentText(msg);
                 boolean ans = false;
                 Optional<ButtonType> result = a.showAndWait();

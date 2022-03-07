@@ -12,13 +12,16 @@ package CommunicationMasseges;
 public class GameStatusUpdate {
   
     
-      public enum GameStatus{
-      WINNER,
-      LOSER,
-      TIE}
+    public enum GameStatus{
+        WINNER,
+        LOSER,
+        TIE,
+        GameSaved,
+        OtherPlayerDisconnected
+    }
       
       
-     private GameStatus status;
+    private GameStatus status;
     public GameStatusUpdate(GameStatus status) {
         this.status = status;
     }
