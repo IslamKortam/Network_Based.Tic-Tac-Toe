@@ -102,9 +102,19 @@ public class PlayerHandler extends Player {
         for(GamePojo gamePojo : games){
             GameInfo game = new GameInfo(gamePojo);
             String gameString = Parser.gson.toJson(game);
+            //System.err.println("Game sent: " + gameString);
             CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameInfo, gameString);
             this.sendMeCommMsg(commMsg);
         }
+        return;
+    }
+    
+    public void sendMeNewSavedGame(GamePojo game){
+        GameInfo gameInfo = new GameInfo(game);
+        String gameString = Parser.gson.toJson(gameInfo);
+        //System.err.println("Game sent: " + gameString);
+        CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.GameInfo, gameString);
+        this.sendMeCommMsg(commMsg);
         return;
     }
     
@@ -201,7 +211,8 @@ public class PlayerHandler extends Player {
     }
 
     public void makeAMove(GameMove move) throws SQLException {
-        currentGame.makeMove(move.getBoxID(), getId());
+        if(currentGame != null)
+            currentGame.makeMove(move.getBoxID(), getId());
     }
 
     public void receiveAmove(int boxId) {
@@ -314,6 +325,10 @@ public class PlayerHandler extends Player {
         this.currentGame = currentGame;
     }
     
+    
+    public GameSession getCurrentGame(){
+        return this.currentGame;
+    }
     
     
 }

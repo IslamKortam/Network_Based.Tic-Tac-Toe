@@ -14,7 +14,9 @@ public class GameStatusUpdate {
     public enum GameStatus {
         WINNER,
         LOSER,
-        TIE
+        TIE,
+        GameSaved,
+        OtherPlayerDisconnected
     }
     private GameStatus status;
 

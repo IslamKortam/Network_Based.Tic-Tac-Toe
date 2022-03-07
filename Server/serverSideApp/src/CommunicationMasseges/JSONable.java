@@ -13,9 +13,9 @@ import ParserPackage.Parser;
  */
 public interface JSONable {
 
-    /*
-    public String toJSON(){
+    
+    public default String toJSON(){
         return Parser.gson.toJson(this);
     }
-    */
+    
 }

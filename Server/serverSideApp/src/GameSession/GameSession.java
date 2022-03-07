@@ -4,6 +4,9 @@
  */
 package GameSession;
 
+import CommunicationMasseges.CommunicationMassege;
+import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.GameStatusUpdate;
 import controllerPackage.Player;
 import controllerPackage.PlayerHandler;
 import controllerPackage.PlayerStatus;
@@ -15,6 +18,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import ParserPackage.Parser;
 import ServerSideInvitations.ServerSideInvitation;
+import java.time.LocalDate;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,6 +53,28 @@ public class GameSession {
 
     public void acceptSave(int playerId) {
         save();
+        player0.updateClientGamestatus(GameStatusUpdate.GameStatus.GameSaved);
+        player0.changeStatus(PlayerStatus.ONLINE);
+        
+        player1.updateClientGamestatus(GameStatusUpdate.GameStatus.GameSaved);
+        player1.changeStatus(PlayerStatus.ONLINE);
+        
+        endGame();
+    }
+    
+    public void handlePlayerDisconnection(){
+        save();
+        if(player0.getStatus() == PlayerStatus.OFFLINE){
+            //Player 0 disconnected
+            player1.updateClientGamestatus(GameStatusUpdate.GameStatus.OtherPlayerDisconnected);
+            player1.changeStatus(PlayerStatus.ONLINE);
+            
+        }else{
+            //Player 1 disconnected
+            player0.updateClientGamestatus(GameStatusUpdate.GameStatus.OtherPlayerDisconnected);
+            player0.changeStatus(PlayerStatus.ONLINE);
+        }
+        endGame();
     }
 
     public void quitGame(int playerId) {
@@ -56,9 +83,15 @@ public class GameSession {
 
     private void save(){
         String gameBoard = Parser.gson.toJson(arrayOfMoves);
-        GamePojo g = new GamePojo(player0.getId(), player1.getId(), 0, gameBoard, false, -1, new Date(0), true);
+        LocalDate date = LocalDate.now();
+        Date sqlDate = Date.valueOf(date);
+        GamePojo g = new GamePojo(player0.getId(), player1.getId(), 0, gameBoard, false, -1, sqlDate, true);
         try {
             Dao.insertIntoGameTable(g);
+            GamePojo savedGame = Dao.selectGameByPlayerID(player0.getId()).lastElement();
+            player0.sendMeNewSavedGame(savedGame);
+            player1.sendMeNewSavedGame(savedGame);
+            
         } catch (SQLException ex) {
             Logger.getLogger(GameSession.class.getName()).log(Level.SEVERE, null, ex);
         }
