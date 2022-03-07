@@ -199,6 +199,11 @@ public class PlayersSceneUtility {
      */
     
     public static void resetScene(){
+        Vector<Player> Players = Player.allPlayers;
+        Players.clear();
+        area.getChildren().clear();
+        nodes.clear();
+        playersElementsArray.clear();
         
     }
 
