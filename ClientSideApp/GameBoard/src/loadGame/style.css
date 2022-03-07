@@ -1,9 +1,42 @@
 
 
-
-.table-row-cell {
-
-
-  -fx-padding: 5 1 1 1; /** This causes trouble, too */
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.table-view .column-header{
+    -fx-background-color: linear-gradient(to bottom,#eb6d84, #fbd9cc);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 3px 0 0;
+    -fx-padding: 0 0 5px 0;
+    -fx-text-background-color:white;
+    
 }
 
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    
+}
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color:#7c25e0 ;
+}
+.table-row-cell:odd{
+    -fx-background-color: #F9EBEB;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-background-color: #FBF4F4;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}

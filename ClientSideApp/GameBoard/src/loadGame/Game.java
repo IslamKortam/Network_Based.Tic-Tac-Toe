@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
  */
 public class Game {
     int gameId;
+     int player2Id;
     String player2Name;
     String player2Status;
     Date date;
@@ -21,13 +22,24 @@ public class Game {
 
     
 
-    public Game(int gameId, String player2Name, String player2Status, Date date,String val) {
+    public Game(int gameId, int player2Id, String player2Name, String player2Status, Date date,String val) {
         this.gameId = gameId;
+        this.player2Id = player2Id;
         this.player2Name = player2Name;
         this.player2Status = player2Status;
         this.date = date;
         this.load=new Button("reload saved game");
+           this.load.visibleProperty().setValue(Boolean.FALSE);
     }
+
+    public int getPlayer2Id() {
+        return player2Id;
+    }
+
+    public void setPlayer2Id(int player2Id) {
+        this.player2Id = player2Id;
+    }
+
 
     public int getGameId() {
         return gameId;

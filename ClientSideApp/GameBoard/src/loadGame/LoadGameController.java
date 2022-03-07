@@ -5,15 +5,21 @@
  */
 package loadGame;
 
+import controllerPackage.MainController;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,13 +52,22 @@ public class LoadGameController implements Initializable {
     private Button home;
      @FXML
     void goToHome(ActionEvent event) {
-         System.out.println("homePage");
+       Alert a = new Alert(Alert.AlertType.NONE);
+        a.setAlertType(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("Exit Game?");
+        a.setContentText("If you pressed ok you will lost this game.");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    MainController.getRef().navigateToModes();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoadGameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
-    @FXML
-    void resetAction(ActionEvent event) {
-        loadGameUtility.reset();
-    }
+  
    
      private final ObservableList<Game> data = FXCollections.observableArrayList();
     @Override
