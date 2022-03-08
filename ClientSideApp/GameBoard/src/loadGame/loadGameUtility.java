@@ -123,6 +123,7 @@ public class loadGameUtility {
     
     public static void changePlayerStatus(int p2id, PlayerStatus newStatus) {
         Platform.runLater(new Runnable() {
+            ObservableList<Game> games = table.getItems();
             @Override
             public void run() {
                 for (Game g : table.getItems()) {
@@ -130,6 +131,7 @@ public class loadGameUtility {
                                 g.setPlayer2Status("" + newStatus);
                     }
                 }
+                table.refresh();
             }
         });
     }
@@ -137,12 +139,15 @@ public class loadGameUtility {
       Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                
                 for (Game g : table.getItems()) {
                     if (g.getPlayer2Id() == p2id) {
                         Button load = g.getLoad();
                         load.visibleProperty().setValue(Boolean.TRUE);
                     }
                 }
+                
+                
             }
         });
     }
