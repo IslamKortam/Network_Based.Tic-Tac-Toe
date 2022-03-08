@@ -27,6 +27,7 @@ public class Dao {
     private static Connection connection = null;
 
     public static void startConnection() throws SQLException {
+        System.out.println("Connection Started");
           DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
         System.out.println("successfully connected");
@@ -35,9 +36,11 @@ public class Dao {
     public static void closeConnection() throws SQLException {
         Dao.connection.close();
         Dao.connection = null;
+        System.out.println("Connection Stopped");
     }
 
     public static void insertIntoPlayerTable(PlayerPojo p) throws SQLException {
+        Dao.startConnection();
         PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO Users (FullName ,UserName "
                 + ",Email ,Password ,Avatar ,Score ,LastVisit,visible )\n"
                 + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
@@ -50,9 +53,12 @@ public class Dao {
         insertStatement.setDate(7, p.getLastVisit());
         insertStatement.setBoolean(8, p.getVisible());
         insertStatement.execute();
+        insertStatement.close();
+        Dao.closeConnection();
     }
 
     public static void insertIntoGameTable(GamePojo g) throws SQLException {
+        Dao.startConnection();
         PreparedStatement insertStatement = Dao.connection.prepareStatement("INSERT INTO  Game (Player1ID ,Player2ID ,"
                 + "Date ,TimeLength ,Board ,Complete ,WinnerID,visible )\n"
                 + "     VALUES (? ,? ,? ,? ,? ,? ,? ,?)");
@@ -65,45 +71,63 @@ public class Dao {
         insertStatement.setInt(7, g.getWinnerId());
         insertStatement.setBoolean(8, g.getVisible());
         insertStatement.execute();
+        insertStatement.close();
+        Dao.closeConnection();
     }
 
     public static void updateScore(int userId, int score) throws SQLException {
+        Dao.startConnection();
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET Score=? WHERE ID=?");
         updateStatement.setInt(1, score);
         updateStatement.setInt(2, userId);
         updateStatement.execute();
+        updateStatement.close();
+        Dao.closeConnection();
     }
 
     public static void updateLastVisit(Date lastVisit, int userId) throws SQLException {
+        Dao.startConnection();
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET LastVisit=? WHERE ID=?");
         updateStatement.setDate(1, lastVisit);
         updateStatement.setInt(2, userId);
         updateStatement.execute();
+        updateStatement.close();
+        Dao.closeConnection();
     }
 
     public static void updatePlayerVisibility(Boolean vStatus, int userId) throws SQLException {
+        Dao.startConnection();
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Users SET visible=? WHERE ID=?");
         updateStatement.setBoolean(1, vStatus);
         updateStatement.setInt(2, userId);
         updateStatement.execute();
+        updateStatement.close();
+        Dao.closeConnection();
     }
 
     public static void updateGameVisibility(Boolean vStatus, int gameId) throws SQLException {
+        Dao.startConnection();
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Visible=? WHERE ID=?");
         updateStatement.setBoolean(1, vStatus);
         updateStatement.setInt(2, gameId);
         updateStatement.execute();
+        updateStatement.close();
+        Dao.closeConnection();
     }
 
     public static void updateGameCompletion(Boolean cStatus, int gameId) throws SQLException {
+        Dao.startConnection();
         PreparedStatement updateStatement = Dao.connection.prepareStatement("UPDATE Game SET Complete=? WHERE ID=?");
         updateStatement.setBoolean(1, cStatus);
         updateStatement.setInt(2, gameId);
         updateStatement.execute();
+        updateStatement.close();
+        Dao.closeConnection();
     }
 
     
     public static PlayerPojo selectPlayerByID(int ID) throws SQLException {
+        Dao.startConnection();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where ID=?");
         selectStatement.setInt(1, ID);
         ResultSet query = selectStatement.executeQuery();
@@ -113,10 +137,13 @@ public class Dao {
                     query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                     query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
         }
+        selectStatement.close();
+        Dao.closeConnection();
         return player;
     }
     
     public static PlayerPojo selectPlayerByEmail(String Email) throws SQLException {
+        Dao.startConnection();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
         selectStatement.setString(1, Email);
         ResultSet query = selectStatement.executeQuery();
@@ -126,10 +153,13 @@ public class Dao {
                     query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                     query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
         }
+        selectStatement.close();
+        Dao.closeConnection();
         return player;
     }
 
     public static PlayerPojo selectPlayerByUsername(String username) throws SQLException{
+        Dao.startConnection();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where UserName = ? and visible = 1");
         selectStatement.setString(1, username);
         PlayerPojo player = new PlayerPojo();
@@ -139,10 +169,13 @@ public class Dao {
                 query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                 query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
         }
+        selectStatement.close();
+        Dao.closeConnection();
         return player;
     }
 
     public static Vector<GamePojo> selectGameByPlayerID(int playerID) throws SQLException {
+        Dao.startConnection();
         Vector<GamePojo> games = new Vector<GamePojo>(); 
         PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where Player1ID = ? or Player2ID = ?");
         selectStatement.setInt(1, playerID);
@@ -150,13 +183,17 @@ public class Dao {
         ResultSet query = selectStatement.executeQuery();
         while(query.next()){
                 GamePojo game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
-                games.add(game);
+                if(game.getVisible())
+                    games.add(game);
                 
         }
+        selectStatement.close();
+        Dao.closeConnection();
         return games;
     }
 
     public static GamePojo selectGameByID(int id) throws SQLException {
+        Dao.startConnection();
         GamePojo game = null;
         PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where ID = ?");
         selectStatement.setInt(1, id);
@@ -164,11 +201,13 @@ public class Dao {
         if(query.next()){
             game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
         }
-        
+        selectStatement.close();
+        Dao.closeConnection();
         return game;
     }
     
-    public static Vector<PlayerPojo> selectAllPlayers(){
+    public static Vector<PlayerPojo> selectAllPlayers() throws SQLException{
+        Dao.startConnection();
         Vector<PlayerPojo> players = new Vector<PlayerPojo>();
         try {
             PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where visible=1");
@@ -179,13 +218,17 @@ public class Dao {
                 query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
                 players.add(player);
             }
+            selectStatement.close();
+            
         } catch (SQLException ex) {
             System.err.println("Error in SelectAllPlayers");
         }
+        Dao.closeConnection();
         return players;
     }
     
     public static PlayerPojo selectPlayerByCredential(String email, String password) throws SQLException{
+        Dao.startConnection();
         PlayerPojo player = new PlayerPojo();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email = ? and Password = ? and visible = 1");
         selectStatement.setString(1, email);
@@ -196,6 +239,8 @@ public class Dao {
                 query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                 query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
         }
+        selectStatement.close();
+        Dao.closeConnection();
         return player;
     }
 }

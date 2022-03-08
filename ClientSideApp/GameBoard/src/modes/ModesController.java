@@ -60,6 +60,7 @@ public class ModesController implements Initializable {
     @FXML
     private void handleLoadGameButtonAction(ActionEvent event) throws IOException {
         System.out.println("load game btn pressed");
+        MainController.getRef().navigeToLoadGameScene();
     }
     @FXML
     private void handleSignOutButtonAction(ActionEvent event) throws IOException {

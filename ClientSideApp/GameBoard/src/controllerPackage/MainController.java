@@ -10,6 +10,7 @@ import CommunicationMasseges.AcceptedDinedStatus;
 import CommunicationMasseges.ChatMsg;
 import CommunicationMasseges.CommunicationMassege;
 import CommunicationMasseges.CommunicationMassegeType;
+import CommunicationMasseges.GameInfo;
 import CommunicationMasseges.GameMove;
 import CommunicationMasseges.GameSaveResponse;
 import CommunicationMasseges.GameStatusUpdate;
@@ -25,10 +26,12 @@ import CommunicationMasseges.StatusUpdate;
 import ParserPackage.Parser;
 import gameboard.GameBoardUtility;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Vector;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import loadGame.loadGameUtility;
 import logintrial.LoginTrial;
 import logintrial.LoginUtility;
 import modes.AlertType;
@@ -63,7 +66,12 @@ public class MainController extends Application{
             System.out.println(status.getPlayerData().getFullName());
             stageMagner.displayScene(SceneName.GAMEMODE);
             Player.setThisPlayer(status.getPlayerData());
-        } else {
+        }else if(status.getStatus() == AcceptedDinedStatus.DUPLICATED){
+            System.out.println("Duplicated");
+            LoginUtility.displayLoginError(2);
+        }
+        else {
+            //Wrong email or pass
             System.out.println("Denied");
             LoginUtility.displayLoginError(0);
         }
@@ -121,6 +129,28 @@ public class MainController extends Application{
             handleChatUpdate(chatUpdate);
         }else if(commMsg.getType() == CommunicationMassegeType.GameSaveRequest){
             handleGameSaveRequest();
+        }else if(commMsg.getType() == CommunicationMassegeType.GameInfo){
+            GameInfo savedGameInfo = Parser.gson.fromJson(commMsg.getMsgBody(), GameInfo.class);
+            handleNewSavedGameInfo(savedGameInfo);
+        }
+    }
+    
+    private void handleNewSavedGameInfo(GameInfo savedGameInfo){
+        int opponentId = -1;
+        if(savedGameInfo.getPlayer1ID() == Player.getThisPlayer().getId()){
+            //Oponent is player 2
+            opponentId = savedGameInfo.getPlayer2ID();
+        }else{
+            //Oponent is player 1
+            opponentId = savedGameInfo.getPlayer1ID();
+        }
+        Player opponent = Player.getPlayerByID(opponentId);
+        String oponnentName = opponent.getUserName();
+        loadGameUtility.appendData(savedGameInfo.getGameID(), Date.valueOf(savedGameInfo.getDate()), opponent.getUserName(), "" + opponent.getStatus(), opponentId);
+        if(opponent.getStatus() == PlayerStatus.ONLINE){
+            loadGameUtility.enableButton(opponentId);
+        }else{
+            loadGameUtility.disableButton(opponentId);
         }
     }
     
@@ -136,6 +166,12 @@ public class MainController extends Application{
     private void handleStatusUpdate(StatusUpdate update){
         Player.getPlayerByID(update.getPlayerID()).setStatus(update.getNewStatus());
         PlayersSceneUtility.updatePlayer(update.getPlayerID());
+        loadGameUtility.changePlayerStatus(update.getPlayerID(), update.getNewStatus());
+        if(update.getNewStatus() == PlayerStatus.ONLINE){
+            loadGameUtility.enableButton(update.getPlayerID());
+        }else{
+            loadGameUtility.disableButton(update.getPlayerID());
+        }
     }
     
     private void handleScoreUpdate(ScoreUpdate update){
@@ -192,7 +228,13 @@ public class MainController extends Application{
     
     private void startNewMultiPlayerGame(StartMultiPlayerGame order) throws IOException{
         stageMagner.displayScene(SceneName.GAMEBOARD);
-        new ClientSideGameController(true, order.getTurn(), order.getOponentID());    //Secont parmater is the turn
+        if(order.getType() == StartMultiPlayerGame.MultiPlayerGameType.NEW_GAME){
+            new ClientSideGameController(true, order.getTurn(), order.getOponentID());    //Secont parmater is the turn
+        }else{
+            loadGameUtility.deleteGameFromTable(order.getGameID());
+            ClientSideGameController.loadGame(order);
+            //new ClientSideGameController(true, order.getTurn(), order.getOponentID()
+        }
     }
 
     private void handleRecievingNewPlayer(Player p) throws IOException {
@@ -237,6 +279,12 @@ public class MainController extends Application{
     public void navigateToplayerScene() throws IOException {
         stageMagner.displayScene(SceneName.PLAYERLIST);
     }
+    
+    public void navigeToLoadGameScene() throws IOException {
+        stageMagner.displayScene(SceneName.LOADGAME);
+    }
+    
+    
 
     public void navigateToModes() throws IOException {
         stageMagner.displayScene(SceneName.GAMEMODE);

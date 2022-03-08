@@ -5,6 +5,8 @@
  */
 package CommunicationMasseges;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author imkor
@@ -19,12 +21,14 @@ public class StartMultiPlayerGame {
     private int oponentID;
     private MultiPlayerGameType type;
     private int gameID;
-
+    private ArrayList<Integer> arrayOfMoves;
+    
     public StartMultiPlayerGame(int turn, int oponentID) {
         this.turn = turn;
         this.oponentID = oponentID;
         this.gameID = -1;
         this.type = MultiPlayerGameType.NEW_GAME;
+        this.arrayOfMoves = null;
     }
 
     public StartMultiPlayerGame(int turn, int oponentID, MultiPlayerGameType type, int gameID) {
@@ -32,7 +36,18 @@ public class StartMultiPlayerGame {
         this.oponentID = oponentID;
         this.type = type;
         this.gameID = gameID;
+        this.arrayOfMoves = null;
     }
+    
+    public StartMultiPlayerGame(int turn, int oponentID, MultiPlayerGameType type, int gameID, ArrayList<Integer> arrayOfMoves) {
+        this.turn = turn;
+        this.oponentID = oponentID;
+        this.type = type;
+        this.gameID = gameID;
+        this.arrayOfMoves = arrayOfMoves;
+    }
+    
+    
     
 
     public int getTurn() {
@@ -65,6 +80,14 @@ public class StartMultiPlayerGame {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public ArrayList<Integer> getArrayOfMoves() {
+        return arrayOfMoves;
+    }
+
+    public void setArrayOfMoves(ArrayList<Integer> arrayOfMoves) {
+        this.arrayOfMoves = arrayOfMoves;
     }
     
     

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import ParserPackage.Parser;
 import ServerSideInvitations.ServerSideInvitation;
+import com.google.gson.reflect.TypeToken;
 import java.time.LocalDate;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -115,10 +116,12 @@ public class GameSession {
         player1.startNewMultiPlayerGame(1, player_0.getId());
     }
 
-    public GameSession(PlayerHandler player_0 , PlayerHandler player_1 , ArrayList arrayOfmoves){
+    public GameSession(PlayerHandler player_0 , PlayerHandler player_1 , ArrayList arrayOfmoves, int gameID){
         player0 = player_0;
         player1 = player_1;
         players=new PlayerHandler[]{player0,player1};
+        player0.changeStatus(PlayerStatus.IN_MULTIPLAYER_GAME);
+        player1.changeStatus(PlayerStatus.IN_MULTIPLAYER_GAME);
         arrayOfMoves = arrayOfmoves;
         for(int i=0; i < arrayOfMoves.size(); i++)
         {
@@ -129,12 +132,15 @@ public class GameSession {
                 XOBoard[arrayOfMoves.get(i)]='O';
             }
         }
-        turn = arrayOfmoves.size() % 2;      
+        turn = arrayOfmoves.size() % 2;
+        player0.startLoadedMultiplayerGame(0, player_1.getId(), gameID, arrayOfmoves);
+        player1.startLoadedMultiplayerGame(1, player_0.getId(), gameID, arrayOfmoves);
         
-        System.err.println("Loaded Game Not sent to user yet");
+        
+        System.err.println("Not removed from the memory yet");
     }
 
-    public static GameSession loadGame(ServerSideInvitation invitation){
+    public static GameSession loadGame(ServerSideInvitation invitation) throws SQLException{
         GamePojo game = null;
         try {
             game = Dao.selectGameByID(invitation.getGameID());
@@ -145,10 +151,12 @@ public class GameSession {
         PlayerHandler player1 = PlayerHandler.getPlayerHandlerByID(game.getPlayer2Id());
 
         String gameMovesStringized = game.getBoard();
-
+        System.out.println(gameMovesStringized);
         ArrayList<Integer> arrayOfMoves = null;
-        arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
-        GameSession gameSession = new GameSession(player0, player1, arrayOfMoves);
+        //arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
+        Dao.updateGameVisibility(false, game.getGameID());
+        arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, new TypeToken<ArrayList<Integer>>(){}.getType());
+        GameSession gameSession = new GameSession(player0, player1, arrayOfMoves, game.getGameID());
         return gameSession;
     }
 

@@ -213,6 +213,7 @@ public class GameBoardController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                GameBoardUtility.resetScene();
             }
         });
     }

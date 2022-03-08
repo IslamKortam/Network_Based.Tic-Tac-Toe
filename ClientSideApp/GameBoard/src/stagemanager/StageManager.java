@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import xoSignupPkg.SignUpUtility;
 import logintrial.LoginUtility;
 import gameboard.GameBoardUtility;
+import loadGame.loadGameUtility;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,8 @@ public class StageManager {
         SIGNUP,
         GAMEMODE,
         PLAYERLIST,
-        GAMEBOARD
+        GAMEBOARD,
+        LOADGAME
     }
     private final Stage stage;
     private SceneName currentSceneName;
@@ -46,6 +48,7 @@ public class StageManager {
         ModesUtility.initScene();
         PlayersSceneUtility.initScene();
         GameBoardUtility.initScene();
+        loadGameUtility.initScene();
         this.stage = stage;
         stageManger = this;
         stage.setResizable(false);
@@ -64,6 +67,7 @@ public class StageManager {
 
     public void resetStage() throws IOException {
         PlayersSceneUtility.resetScene();
+        loadGameUtility.reset();
         displayScene(SceneName.SIGNIN);
     }
 
@@ -104,6 +108,14 @@ public class StageManager {
                         moveScreen(GameBoardUtility.ref,stage);
                         stage.show();
                         currentSceneName = SceneName.GAMEBOARD;
+                          break;
+                     case LOADGAME:
+//                        GameBoardUtility.initScene();
+                        stage.setScene(loadGameUtility.getScene());
+                        moveScreen(loadGameUtility.ref,stage);
+                        stage.show();
+                        currentSceneName = SceneName.LOADGAME;
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
