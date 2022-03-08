@@ -64,22 +64,19 @@ public class LoginController implements Initializable {
             @Override
             public void run() {
                 TextInputDialog td = new TextInputDialog(fieldDefaultValue);
-                td.showAndWait().ifPresent(response -> {
-                    
-                    td.setTitle(alertTitle);
-                    td.setHeaderText(Body);
-
-                    Optional<String> result = td.showAndWait();
-
-                    result.ifPresent(name -> {
-                        if("".equals(name)){
-                            System.out.print(name);
-                        }
-                        else{
-                            System.out.print("Exit");
-                        }
-                    });
+                td.setTitle(alertTitle);
+                td.setHeaderText(Body);
+                Optional<String> result = td.showAndWait();
+                result.ifPresent(name -> {
+                    if("".equals(name)){
+                        System.out.print(name);
+                    }
+                    else{
+                        System.out.print("Exit");
+                    }
                 });
+//                td.showAndWait().ifPresent(response -> {
+//                });
             }
         });
     }
