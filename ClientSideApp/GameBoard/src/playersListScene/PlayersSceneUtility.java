@@ -101,6 +101,8 @@ public class PlayersSceneUtility {
         Parent root = FXMLLoader.load((playersListScene.PlayersSceneUtility.class).getResource("PlayersSceneFXML.fxml"));
         scene = new Scene(root);
         ref = root;
+        area.getChildren().add(FXMLLoader.load(playersListScene.PlayersSceneController.class.getResource("header.fxml")));
+        
     }
 
     public static Scene getScene() {
