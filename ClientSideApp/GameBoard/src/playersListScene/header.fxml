@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="607.0">
+         <children>
+            <GridPane layoutX="4.0" layoutY="10.0" prefHeight="65.0" prefWidth="600.0" style="-fx-background-radius: 5px;" styleClass="item" stylesheets="@playercontainer.css">
+               <children>
+                  <Label id="name" fx:id="name" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="27.0" prefWidth="95.0" text="Name" GridPane.columnIndex="1">
+                     <padding>
+                        <Insets left="25.0" right="26.0" top="6.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="11.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="MS Reference Specialty" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label id="score" fx:id="score" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="60.0" text="Score" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="18.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="MS Reference Specialty" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label id="status" fx:id="status" contentDisplay="CENTER" prefHeight="17.0" prefWidth="144.0" text="Status" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets left="16.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="MS Reference Specialty" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label id="name" fx:id="name1" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="27.0" prefWidth="95.0" text="Image">
+                     <padding>
+                        <Insets left="25.0" right="26.0" top="6.0" />
+                     </padding>
+                     <font>
+                        <Font name="MS Reference Specialty" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="87.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="110.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="6.0" prefWidth="87.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="153.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="72.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
