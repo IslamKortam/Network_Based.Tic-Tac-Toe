@@ -137,15 +137,18 @@ public class GameBoardController implements Initializable {
     void backToHome(ActionEvent event)  {
         Alert a = new Alert(Alert.AlertType.NONE);
         a.setAlertType(Alert.AlertType.CONFIRMATION);
-        a.setHeaderText("Exit Game?");
-        a.setContentText("If you pressed ok you will lost this game.");
+        a.setHeaderText("Abort Game?");
+        a.setContentText("If you press ok you will lose this game.");
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                try {
-                    MainController.getRef().navigateToModes();
-                } catch (IOException ex) {
-                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try {
+                    System.out.print("Game Closed From Player");
+//                    MainController.getRef().navigateToModes();
+//                } catch (IOException ex) {
+//                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+            }else{
+                System.out.print("Cancel");
             }
         });
     }
