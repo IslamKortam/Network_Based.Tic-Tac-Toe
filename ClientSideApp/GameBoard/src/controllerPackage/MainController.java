@@ -48,7 +48,7 @@ import xoSignupPkg.SignUpUtility;
 public class MainController extends Application{
 
     private static MainController ref = new MainController();
-    private static ClientConnectionHandler connectionHandler;
+    //private static ClientConnectionHandler connectionHandler;
     private StageManager stageMagner;
 
     public void setStageMagner(StageManager stageMagner) {
@@ -57,7 +57,7 @@ public class MainController extends Application{
 
     private MainController() {
         System.out.println("Main Controller Created");
-        connectionHandler = new ClientConnectionHandler();
+        //connectionHandler = new ClientConnectionHandler();
     }
 
     public void handleIncomingSignInRequsetStatus(SignInStatus status) throws IOException {
@@ -81,7 +81,7 @@ public class MainController extends Application{
         SignInRequest req = new SignInRequest(email, password);
         String parsedReq = ParserPackage.Parser.gson.toJson(req);
         CommunicationMassege comm = new CommunicationMassege(CommunicationMassegeType.SIGN_IN_REQUEST, parsedReq);
-        connectionHandler.sendCommMsgToServer(comm);
+        ClientConnectionHandler.ref.sendCommMsgToServer(comm);
     }
 
     public void navigateToSignUpPage() throws IOException {
