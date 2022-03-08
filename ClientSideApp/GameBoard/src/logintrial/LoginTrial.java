@@ -4,6 +4,7 @@
  */
 package logintrial;
 
+import CommHandlerPK.ClientConnectionHandler;
 import controllerPackage.MainController;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +37,7 @@ public class LoginTrial extends Application {
         StageManager stageManger = new StageManager(stage);
         MainController.getRef().setStageMagner(stageManger);
         ScheduledThreadPoolExecutor th = new ScheduledThreadPoolExecutor(1);
-       
+       new ClientConnectionHandler();
     }
 
     /**

@@ -58,8 +58,8 @@ public class LoginController implements Initializable {
         MainController.getRef().navigateToSignUpPage();
     }
     
-    @FXML
-    public static void showAlert(String alertTitle, String Body,String fieldDefaultValue){
+    
+    public static void showConnectionProblemAlert(String alertTitle, String Body,String fieldDefaultValue){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

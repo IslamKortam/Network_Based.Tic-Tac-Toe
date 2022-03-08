@@ -26,7 +26,9 @@ public class ClientConnectionHandler extends Thread{
     private int serverPort = 8083;
     private DataInputStream inputStream;
     private PrintStream outputStream;
+    private Boolean listening;
     public ClientConnectionHandler(){
+        listening = false;
         try {
             clientSocket = new Socket(serverIP, serverPort);
             inputStream = new DataInputStream(clientSocket.getInputStream());
@@ -35,9 +37,33 @@ public class ClientConnectionHandler extends Thread{
             ref = this;
             
         } catch (IOException ex) {
-            Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
+            handleBeginConnectionProblem();
+            //Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    private void handleBeginConnectionProblem(){
+        
+        try {
+            stagemanager.StageManager.getStageManger().resetStage();
+        } catch (IOException ex) {
+            Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String title = "Connection problem(Server not found)";
+        String body = "Re-enter Server IP Address and press ok to reconnet.\nOr cancel to Exit";
+        logintrial.LoginController.showConnectionProblemAlert(title, body, getServerIP());
+    }
+    
+    private void handleConnectionBroken(){
+        try {
+            stagemanager.StageManager.getStageManger().resetStage();
+        } catch (IOException ex) {
+            Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String title = "Connetcion to Server is Lost!";
+        String body = "Re-enter Server IP Address and press ok to reconnet.\nOr cancel to Exit";
+        logintrial.LoginController.showConnectionProblemAlert(title, body, getServerIP());
     }
     
     @Override
@@ -79,10 +105,28 @@ public class ClientConnectionHandler extends Thread{
     }
     
     public void startListening(){
-        this.start();
+        if(!listening){
+            listening = true;
+            this.start();
+        }
     }
     
     public void stopListening(){
-        this.stop();
+        if(listening){
+            listening = false;
+            this.stop();
+        }
     }
+
+    public String getServerIP() {
+        return serverIP;
+    }
+
+    public void setServerIP(String serverIP) {
+        this.serverIP = serverIP;
+    }
+
+    
+    
+    
 }
