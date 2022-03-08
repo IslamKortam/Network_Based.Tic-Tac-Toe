@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -12,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playersListScene.PlayerContainerController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playersListScene.PlayerContainerController">
     <stylesheets>
         <URL value="@playerContainer.css" />
     </stylesheets>
@@ -22,10 +28,10 @@
             <GridPane layoutX="4.0" layoutY="10.0" prefHeight="65.0" prefWidth="600.0" style="-fx-background-radius: 5px;" styleClass="item" stylesheets="@playercontainer.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="87.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="6.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="153.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="72.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="159.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="6.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="185.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="74.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -52,12 +58,12 @@
                         <Insets left="18.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label id="status" fx:id="status" contentDisplay="CENTER" prefHeight="17.0" prefWidth="144.0" text="status" GridPane.columnIndex="3">
+                  <Label id="status" fx:id="status" contentDisplay="CENTER" prefHeight="17.0" prefWidth="169.0" text="status" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="16.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="invite" mnemonicParsing="false" styleClass="invite" text="challenge" GridPane.columnIndex="4" />
+                  <Button fx:id="invite" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" styleClass="invite" text="challenge" GridPane.columnIndex="4" />
                </children>
             </GridPane>
          </children>
