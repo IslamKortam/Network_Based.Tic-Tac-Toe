@@ -8,21 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3832082" download="eager" />
-=======
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3831530" download="eager" />
-=======
-<<<<<<< HEAD
-    <jar href="GameBoard.jar" size="3824227" download="eager" />
-    <jar href="lib\AbsoluteLayout.jar" size="10668" download="eager" />
-=======
-    <jar href="GameBoard.jar" size="3830938" download="eager" />
->>>>>>> e343fca2c79543866210cd2800501d11dfe5aeaf
->>>>>>> master
+    <jar href="GameBoard.jar" size="3832672" download="eager" />
     <jar href="lib\AbsoluteLayout.jar" size="2903" download="eager" />
->>>>>>> ab6713e3a2f48aaf05e8e672f860594e1e2829e8
     <jar href="lib\gson-2.8.0.jar" size="231952" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>

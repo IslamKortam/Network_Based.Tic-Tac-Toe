@@ -2,9 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/serverdao/Dao.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/PlayerHandler.java</file>
@@ -18,6 +15,5 @@
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/GameSession/GameInvitation.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/Server/serverSideApp/src/controllerPackage/ServerMainController.java</file>
         </group>
->>>>>>> ab6713e3a2f48aaf05e8e672f860594e1e2829e8
     </open-files>
 </project-private>

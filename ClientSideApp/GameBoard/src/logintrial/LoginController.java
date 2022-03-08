@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LoginUtility.setErrorLabel(errorMsg);
-        showAlert("aa","bb","cc");
+        //showAlert("aa","bb","cc");
     }
 
     @FXML
