@@ -10,8 +10,11 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 import java.net.URL;
+import java.util.Optional;
+import javafx.application.Platform;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 
 public class LoginController implements Initializable {
 
@@ -54,5 +57,30 @@ public class LoginController implements Initializable {
     void handleButtonAction2(ActionEvent event) throws IOException {
         MainController.getRef().navigateToSignUpPage();
     }
+    
+    @FXML
+    public static void showAlert(String alertTitle, String Body,String fieldDefaultValue){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                TextInputDialog td = new TextInputDialog(fieldDefaultValue);
+                td.showAndWait().ifPresent(response -> {
+                    
+                    td.setTitle(alertTitle);
+                    td.setHeaderText(Body);
 
+                    Optional<String> result = td.showAndWait();
+
+                    result.ifPresent(name -> {
+                        if("".equals(name)){
+                            System.out.print(name);
+                        }
+                        else{
+                            System.out.print("Exit");
+                        }
+                    });
+                });
+            }
+        });
+    }
 }

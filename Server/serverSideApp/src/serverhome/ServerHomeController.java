@@ -9,11 +9,14 @@ import ServerLogicClasses.UserHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -67,6 +70,4 @@ public class ServerHomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     ServerHomeUtility server = new ServerHomeUtility(logs, startServer, stopSever,statusText, statusImg);
     }    
-    
-    
 }
