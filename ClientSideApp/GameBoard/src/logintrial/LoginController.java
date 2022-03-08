@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LoginUtility.setErrorLabel(errorMsg);
-
+        showAlert("aa","bb","cc");
     }
 
     @FXML
@@ -68,7 +68,7 @@ public class LoginController implements Initializable {
                 td.setHeaderText(Body);
                 Optional<String> result = td.showAndWait();
                 result.ifPresent(name -> {
-                    if("".equals(name)){
+                    if(!"".equals(name)){
                         System.out.print(name);
                     }
                     else{
