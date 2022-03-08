@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -34,6 +35,10 @@ public class ServerHome extends Application {
         ServerHomeUtility.setScene(scene);
         PlayersOnServerUtility.setMainStage(stage);
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("XO-Server");
+        Image img = new Image(ServerHome.class.getResourceAsStream("/resources/TitleLogo.png"));
+        stage.getIcons().add(img);
         stage.show();
         logPlayers();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

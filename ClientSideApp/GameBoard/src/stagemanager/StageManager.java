@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 import modes.ModesUtility;
@@ -52,6 +53,9 @@ public class StageManager {
         this.stage = stage;
         stageManger = this;
         stage.setResizable(false);
+        stage.setTitle("XO-Client");
+        Image img = new Image(StageManager.class.getResourceAsStream("/resources/TitleLogo.png"));
+        stage.getIcons().add(img);
         displayScene(SceneName.SIGNIN);
     }
 
