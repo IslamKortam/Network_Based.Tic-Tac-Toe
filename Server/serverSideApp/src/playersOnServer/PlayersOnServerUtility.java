@@ -126,6 +126,8 @@ static void setContainerNodes(ImageView playerImg, Label name, Label score, Labe
     public static void initScene()throws IOException{
         Parent root = FXMLLoader.load((playersOnServer.PlayersOnServer.class).getResource("PlayersOnServer.fxml"));
         scene = new Scene(root);
+        area.getChildren().add(FXMLLoader.load(playersOnServer.PlayersOnServerController.class.getResource("header.fxml")));
+
     }    
 
     public static Scene getScene(){
