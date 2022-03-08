@@ -45,7 +45,7 @@
                         <Image url="@../resources/AvatarImgs/10.png" />
                      </image>
                   </ImageView>
-                  <Label id="name" fx:id="name" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="27.0" prefWidth="95.0" text="name" GridPane.columnIndex="1">
+                  <Label id="name" fx:id="name" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="27.0" prefWidth="155.0" text="name" GridPane.columnIndex="1">
                      <padding>
                         <Insets left="25.0" right="26.0" top="6.0" />
                      </padding>
@@ -58,7 +58,7 @@
                         <Insets left="18.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label id="status" fx:id="status" contentDisplay="CENTER" prefHeight="17.0" prefWidth="144.0" text="status" GridPane.columnIndex="3">
+                  <Label id="status" fx:id="status" contentDisplay="CENTER" prefHeight="17.0" prefWidth="179.0" text="status" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="16.0" />
                      </GridPane.margin>
