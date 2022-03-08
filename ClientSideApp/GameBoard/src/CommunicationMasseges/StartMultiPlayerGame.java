@@ -68,6 +68,14 @@ public class StartMultiPlayerGame {
     public void setType(MultiPlayerGameType type) {
         this.type = type;
     }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
     
     
 }

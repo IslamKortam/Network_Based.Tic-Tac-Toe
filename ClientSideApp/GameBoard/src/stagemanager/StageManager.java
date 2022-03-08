@@ -67,6 +67,7 @@ public class StageManager {
 
     public void resetStage() throws IOException {
         PlayersSceneUtility.resetScene();
+        loadGameUtility.reset();
         displayScene(SceneName.SIGNIN);
     }
 

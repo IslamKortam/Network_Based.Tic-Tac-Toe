@@ -11,8 +11,10 @@ import CommunicationMasseges.CommunicationMassegeType;
 import CommunicationMasseges.Invitation;
 import ParserPackage.Parser;
 import controllerPackage.Player;
+import controllerPackage.PlayerStatus;
 import java.io.IOException;
 import java.sql.Date;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,11 +52,15 @@ public class loadGameUtility {
     }
     
     public static void appendData(int gameId, Date date, String p2name, String p2status, int p2id) {
-        
-        loadGameUtility.g = new Game(gameId, p2id, p2name, p2status, date, "");
-        data.add(g);
-        table.setItems(data);
-        loadGameUtility.clickOnButton();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                loadGameUtility.g = new Game(gameId, p2id, p2name, p2status, date, "");
+                data.add(g);
+                table.setItems(data);
+                loadGameUtility.clickOnButton();
+            }
+        });
     }
 
     public static void clickOnButton() {
@@ -73,41 +79,72 @@ public class loadGameUtility {
     }
     
     public static void reset() {
-        table.getItems().clear();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                table.getItems().clear();
+            }
+        });
     }
     
     public static void deleteGameFromTable(int gameId) {
-        for (Game g : table.getItems()) {
-            if (g.getGameId() == gameId) {
-                System.out.println(g.getPlayer2Name());
-                table.getSelectionModel().select(g);
-                Game loaded = table.getSelectionModel().getSelectedItem();
-                table.getItems().remove(loaded);
-                
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Game x = null;
+                for (Game g : table.getItems()) {
+                    if (g.getGameId() == gameId) {
+                        x = g;
+                        break;
+                    }
+                }
+                if(x != null){
+                    table.getSelectionModel().select(x);
+                    Game loaded = table.getSelectionModel().getSelectedItem();
+                    table.getItems().remove(loaded);
+                }
             }
-            
-        }
+        });
     }
     
     public static void disableButton(int p2id) {
-        for (Game g : table.getItems()) {
-            if (g.getPlayer2Id() == p2id) {
-                Button load = g.getLoad();
-                load.visibleProperty().setValue(Boolean.FALSE);
-                
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (Game g : table.getItems()) {
+                    if (g.getPlayer2Id() == p2id) {
+                        Button load = g.getLoad();
+                        load.visibleProperty().setValue(Boolean.FALSE);
+                    }
+                }
             }
-            
-        }        
+        });
+    }
+    
+    public static void changePlayerStatus(int p2id, PlayerStatus newStatus) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (Game g : table.getItems()) {
+                    if (g.getPlayer2Id() == p2id) {
+                                g.setPlayer2Status("" + newStatus);
+                    }
+                }
+            }
+        });
     }
   public static void enableButton(int p2id) {
-        for (Game g : table.getItems()) {
-            if (g.getPlayer2Id() == p2id) {
-                Button load = g.getLoad();
-                load.visibleProperty().setValue(Boolean.TRUE);
-                
+      Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (Game g : table.getItems()) {
+                    if (g.getPlayer2Id() == p2id) {
+                        Button load = g.getLoad();
+                        load.visibleProperty().setValue(Boolean.TRUE);
+                    }
+                }
             }
-            
-        }        
+        });
     }
   public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((loadGameUtility.class).getResource("loadGame.fxml"));
