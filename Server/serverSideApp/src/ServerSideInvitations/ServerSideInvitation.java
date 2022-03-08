@@ -9,6 +9,9 @@ import CommunicationMasseges.Invitation.InvitationType;
 import controllerPackage.PlayerHandler;
 import GameSession.GameSession;
 import controllerPackage.PlayerStatus;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,7 +47,12 @@ public class ServerSideInvitation extends Invitation{
         }
         else if(this.getType() == InvitationType.LOAD_GAME){
             if(sender.getStatus() == PlayerStatus.ONLINE && reciever.getStatus() == PlayerStatus.ONLINE){
-                GameSession loadedGameSession = GameSession.loadGame(this);
+                GameSession loadedGameSession = null;
+                try {
+                    loadedGameSession = GameSession.loadGame(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ServerSideInvitation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 sender.setCurrentGame(loadedGameSession);
                 reciever.setCurrentGame(loadedGameSession);
             }

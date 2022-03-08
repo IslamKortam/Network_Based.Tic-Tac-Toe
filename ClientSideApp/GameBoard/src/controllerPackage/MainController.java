@@ -166,6 +166,12 @@ public class MainController extends Application{
     private void handleStatusUpdate(StatusUpdate update){
         Player.getPlayerByID(update.getPlayerID()).setStatus(update.getNewStatus());
         PlayersSceneUtility.updatePlayer(update.getPlayerID());
+        loadGameUtility.changePlayerStatus(update.getPlayerID(), update.getNewStatus());
+        if(update.getNewStatus() == PlayerStatus.ONLINE){
+            loadGameUtility.enableButton(update.getPlayerID());
+        }else{
+            loadGameUtility.disableButton(update.getPlayerID());
+        }
     }
     
     private void handleScoreUpdate(ScoreUpdate update){
@@ -225,6 +231,7 @@ public class MainController extends Application{
         if(order.getType() == StartMultiPlayerGame.MultiPlayerGameType.NEW_GAME){
             new ClientSideGameController(true, order.getTurn(), order.getOponentID());    //Secont parmater is the turn
         }else{
+            loadGameUtility.deleteGameFromTable(order.getGameID());
             ClientSideGameController.loadGame(order);
             //new ClientSideGameController(true, order.getTurn(), order.getOponentID()
         }

@@ -23,7 +23,7 @@ import serverdao.PlayerPojo;
 public class ServerMainController extends Application {
     
     public static void main(String[] args) throws SQLException, IOException{
-        Dao.startConnection();
+        //Dao.startConnection();
         Vector<PlayerPojo> players = Dao.selectAllPlayers();
         playersOnServer.PlayersOnServerUtility.initScene();
         for(PlayerPojo player : players){

@@ -9,11 +9,15 @@ import ServerLogicClasses.UserHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -68,5 +72,24 @@ public class ServerHomeController implements Initializable {
     ServerHomeUtility server = new ServerHomeUtility(logs, startServer, stopSever,statusText, statusImg);
     }    
     
-    
+    @FXML
+    public void showAlert(String alertHeader, String Body)  {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert a = new Alert(Alert.AlertType.NONE);
+                a.setAlertType(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText(alertHeader);
+                a.setContentText(Body);
+                a.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.out.println("Ok");
+                    }
+                    else{
+                        System.out.println("Cancel");
+                    }
+                });
+            }
+        });
+    }
 }
