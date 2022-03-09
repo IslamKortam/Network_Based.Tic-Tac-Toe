@@ -173,6 +173,9 @@ public class GameBoardUtility {
             }
         });
     }
+    static void disableChat(ImageView ChatBtn){
+        ChatBtn.setDisable(true);
+    }
 
     public static void initScene() throws IOException {
         Parent root = FXMLLoader.load((gameboard.GameBoardUtility.class).getResource("GameBoard.fxml"));
