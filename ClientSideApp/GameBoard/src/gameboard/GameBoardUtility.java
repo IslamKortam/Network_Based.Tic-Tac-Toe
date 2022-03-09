@@ -175,8 +175,8 @@ GameBoardUtility.ChatBtn = chatBtn;
             }
         });
     }
-    static void disableChat(){
-        ChatBtn.setDisable(true);
+    static void changeChatStatus(Boolean status){
+        ChatBtn.setDisable(status);
     }
 
     public static void initScene() throws IOException {
