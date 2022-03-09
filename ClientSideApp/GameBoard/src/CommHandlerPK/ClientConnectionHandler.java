@@ -94,7 +94,8 @@ public class ClientConnectionHandler extends Thread{
                 }
                 System.out.println("CommHandler:"+s);
             } catch (IOException ex) {
-                Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
+                handleConnectionBroken();
+                //Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

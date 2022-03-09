@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
  * @author Salma
  */
 public class ServerHomeController implements Initializable {
+    private static ServerHomeController ref = null;
       
    @FXML
     private ImageView playerList;
@@ -69,11 +70,24 @@ public class ServerHomeController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ref = this;
     ServerHomeUtility server = new ServerHomeUtility(logs, startServer, stopSever,statusText, statusImg);
     }    
     
-    @FXML
-    public void showDB_ConnectionError_Alert()  {
+    public static void toOnline(){
+        ServerHomeUtility.changeStatusToOnline();
+        ref.startServer.setDisable(true);
+        ref.stopSever.setDisable(false);
+    }
+    
+    public static void toOffline(){
+        ServerHomeUtility.changeStatusToOffline();
+        ref.startServer.setDisable(false);
+        ref.stopSever.setDisable(true);
+    }
+    
+    
+    public static void showDB_ConnectionError_Alert()  {
         String alertHeader = "Database connection Error!";
         String body = "Aborting";
         Platform.runLater(new Runnable() {

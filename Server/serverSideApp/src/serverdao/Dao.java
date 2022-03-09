@@ -5,6 +5,7 @@
  */
 package serverdao;
 
+import ServerLogicClasses.UserHandler;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -12,25 +13,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import serverhome.ServerHomeController;
 
 /**
  *
- * @author Salma
- * Add new methods and modified by Mohamed Rashed
- * // using my sql queries 
+ * @author Salma Add new methods and modified by Mohamed Rashed // using my sql
+ * queries
  */
 public class Dao {
 
-  private static String dataBaseUrl="jdbc:mysql://uiva61xx4xcpxpjo:6oI5Bi8mbQitgbNAeT7c@bbjhbbhoug8jo9hqqoeb-mysql.services.clever-cloud.com:3306/bbjhbbhoug8jo9hqqoeb";
-    private static String dataBaseName="bbjhbbhoug8jo9hqqoeb";
-    private static String dataBasePassword="6oI5Bi8mbQitgbNAeT7c";
+    private static String dataBaseUrl = "jdbc:mysql://uiva61xx4xcpxpjo:6oI5Bi8mbQitgbNAeT7c@bbjhbbhoug8jo9hqqoeb-mysql.services.clever-cloud.com:3306/bbjhbbhoug8jo9hqqoeb";
+    private static String dataBaseName = "bbjhbbhoug8jo9hqqoeb";
+    private static String dataBasePassword = "6oI5Bi8mbQitgbNAeT7c";
     private static Connection connection = null;
 
-    public static void startConnection() throws SQLException {
-        System.out.println("Connection Started");
-          DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
-        System.out.println("successfully connected");
+    public static void startConnection() {
+
+        try {
+            System.out.println("Connection Started");
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
+            System.out.println("successfully connected");
+        } catch (SQLException ex) {
+            ServerHomeController.toOffline();
+            ServerLogicClasses.ServerMulti.stopServer();
+            ServerHomeController.showDB_ConnectionError_Alert();
+            UserHandler.stopAllUsers();
+        }
     }
 
     public static void closeConnection() throws SQLException {
@@ -125,30 +136,13 @@ public class Dao {
         Dao.closeConnection();
     }
 
-    
     public static PlayerPojo selectPlayerByID(int ID) throws SQLException {
         Dao.startConnection();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where ID=?");
         selectStatement.setInt(1, ID);
         ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player=new PlayerPojo();
-        if(query.next()){
-            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
-                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
-        }
-        selectStatement.close();
-        Dao.closeConnection();
-        return player;
-    }
-    
-    public static PlayerPojo selectPlayerByEmail(String Email) throws SQLException {
-        Dao.startConnection();
-        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
-        selectStatement.setString(1, Email);
-        ResultSet query = selectStatement.executeQuery();
-        PlayerPojo player=new PlayerPojo();
-        if(query.next()){
+        PlayerPojo player = new PlayerPojo();
+        if (query.next()) {
             player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
                     query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
                     query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
@@ -158,16 +152,32 @@ public class Dao {
         return player;
     }
 
-    public static PlayerPojo selectPlayerByUsername(String username) throws SQLException{
+    public static PlayerPojo selectPlayerByEmail(String Email) throws SQLException {
+        Dao.startConnection();
+        PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email=?");
+        selectStatement.setString(1, Email);
+        ResultSet query = selectStatement.executeQuery();
+        PlayerPojo player = new PlayerPojo();
+        if (query.next()) {
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+        }
+        selectStatement.close();
+        Dao.closeConnection();
+        return player;
+    }
+
+    public static PlayerPojo selectPlayerByUsername(String username) throws SQLException {
         Dao.startConnection();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where UserName = ? and visible = 1");
         selectStatement.setString(1, username);
         PlayerPojo player = new PlayerPojo();
         ResultSet query = selectStatement.executeQuery();
-        if(query.next()){
-            player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
+        if (query.next()) {
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
         }
         selectStatement.close();
         Dao.closeConnection();
@@ -176,16 +186,17 @@ public class Dao {
 
     public static Vector<GamePojo> selectGameByPlayerID(int playerID) throws SQLException {
         Dao.startConnection();
-        Vector<GamePojo> games = new Vector<GamePojo>(); 
+        Vector<GamePojo> games = new Vector<GamePojo>();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where Player1ID = ? or Player2ID = ?");
         selectStatement.setInt(1, playerID);
         selectStatement.setInt(2, playerID);
         ResultSet query = selectStatement.executeQuery();
-        while(query.next()){
-                GamePojo game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
-                if(game.getVisible())
-                    games.add(game);
-                
+        while (query.next()) {
+            GamePojo game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
+            if (game.getVisible()) {
+                games.add(game);
+            }
+
         }
         selectStatement.close();
         Dao.closeConnection();
@@ -198,46 +209,46 @@ public class Dao {
         PreparedStatement selectStatement = Dao.connection.prepareStatement("Select * from Game where ID = ?");
         selectStatement.setInt(1, id);
         ResultSet query = selectStatement.executeQuery();
-        if(query.next()){
+        if (query.next()) {
             game = new GamePojo(query.getInt("ID"), query.getInt("Player1ID"), query.getInt("Player2ID"), query.getLong("TimeLength"), query.getString("Board"), query.getBoolean("Complete"), query.getInt("WinnerID"), query.getDate("Date"), query.getBoolean("Visible"));
         }
         selectStatement.close();
         Dao.closeConnection();
         return game;
     }
-    
-    public static Vector<PlayerPojo> selectAllPlayers() throws SQLException{
+
+    public static Vector<PlayerPojo> selectAllPlayers() throws SQLException {
         Dao.startConnection();
         Vector<PlayerPojo> players = new Vector<PlayerPojo>();
         try {
             PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where visible=1");
             ResultSet query = selectStatement.executeQuery();
-            while(query.next()){
-                PlayerPojo player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
+            while (query.next()) {
+                PlayerPojo player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                        query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                        query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
                 players.add(player);
             }
             selectStatement.close();
-            
+
         } catch (SQLException ex) {
             System.err.println("Error in SelectAllPlayers");
         }
         Dao.closeConnection();
         return players;
     }
-    
-    public static PlayerPojo selectPlayerByCredential(String email, String password) throws SQLException{
+
+    public static PlayerPojo selectPlayerByCredential(String email, String password) throws SQLException {
         Dao.startConnection();
         PlayerPojo player = new PlayerPojo();
         PreparedStatement selectStatement = Dao.connection.prepareStatement("select * from Users where Email = ? and Password = ? and visible = 1");
         selectStatement.setString(1, email);
         selectStatement.setString(2, password);
         ResultSet query = selectStatement.executeQuery();
-        if(query.next()){
-            player = new PlayerPojo(query.getInt("ID") ,query.getString("UserName"), query.getString("FullName"),
-                query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
-                query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));   
+        if (query.next()) {
+            player = new PlayerPojo(query.getInt("ID"), query.getString("UserName"), query.getString("FullName"),
+                    query.getString("Email"), query.getString("Password"), query.getInt("Avatar"),
+                    query.getInt("Score"), query.getDate("LastVisit"), query.getBoolean("visible"));
         }
         selectStatement.close();
         Dao.closeConnection();
