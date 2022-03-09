@@ -76,10 +76,21 @@ Where you can view all saved game you can replay only if the second player is on
 if you clicked the sign-out button your status will be changed to  offline, and you will be 
 sent to login  page .
 
-#### for further reading
+#### For further reading
 [deatailed information ](https://drive.google.com/file/d/1OXRYxIZUAlknXIEknLMJ8WuqgITxbhdQ/view)
 
 
+### Contributors 
+
+•	Mohamed Elymany Rashed
+
+•	Islam Mahmoud Kortam
+
+•	Amany Bahaa El-Din Mustafa
+
+•	Salma Mohamed abdel-atty 
+
+•	Ahmed atef Mohammed ahmed 
 
 
 
