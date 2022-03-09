@@ -162,6 +162,8 @@ public class PlayersSceneUtility {
                     if (element.getUserId() == userID) {
                         playerElement = element;
                         Player player = Player.getPlayerByID(userID);
+                        if(player == null)
+                            return;
                         playerElement.getScore().setText(Integer.toString(player.getScore()));
 
                         playerElement.getStatus().setText(player.getStatus().toString());

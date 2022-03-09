@@ -117,6 +117,7 @@ public class UserHandler extends Thread{
     }
     
     private void stopThisUser(){
+        System.out.println("User stopped");
         if(authrized){
                     connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
                     if(connectedPlayer.getCurrentGame() != null){
@@ -125,9 +126,9 @@ public class UserHandler extends Thread{
                     authrized = false;
                     connectedPlayer.setUserHandler(null);
                     try {
+                        socket.close();
                         inputStream.close();
                         outputStream.close();
-                        socket.close();
                         
                     } catch (IOException ex1) {
                         Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
@@ -160,8 +161,8 @@ public class UserHandler extends Thread{
     
     
     public static void stopAllUsers(){
-        for(UserHandler userHandler : connectedUsersHandelers){
-            userHandler.stopThisUser();
+        for(int i = 0; i < connectedUsersHandelers.size(); i++){
+            connectedUsersHandelers.elementAt(i).stopThisUser();
         }
         connectedUsersHandelers.removeAllElements();
     }
