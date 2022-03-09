@@ -71,7 +71,9 @@ public class ServerHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ref = this;
-    ServerHomeUtility server = new ServerHomeUtility(logs, startServer, stopSever,statusText, statusImg);
+        //toOffline();
+        toOffline();
+        ServerHomeUtility server = new ServerHomeUtility(logs, startServer, stopSever,statusText, statusImg);
     }    
     
     public static void toOnline(){

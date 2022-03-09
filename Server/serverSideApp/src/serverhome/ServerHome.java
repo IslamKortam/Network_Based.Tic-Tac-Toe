@@ -6,6 +6,8 @@
 package serverhome;
 
 import controllerPackage.PlayerHandler;
+import java.io.IOException;
+import java.util.Vector;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -17,6 +19,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import playersOnServer.PlayersOnServerUtility;
+import serverdao.Dao;
+import serverdao.GamePojo;
+import serverdao.PlayerPojo;
 
 /**
  *
@@ -40,7 +45,7 @@ public class ServerHome extends Application {
         Image img = new Image(ServerHome.class.getResourceAsStream("/resources/TitleLogo.png"));
         stage.getIcons().add(img);
         stage.show();
-        logPlayers();
+        
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
@@ -65,6 +70,25 @@ public class ServerHome extends Application {
             }
         });
         
+        try{
+            Vector<PlayerPojo> players = Dao.selectAllPlayers();
+            playersOnServer.PlayersOnServerUtility.initScene();
+            for(PlayerPojo player : players){
+                System.out.println(player.getID() + ":" + player.getEmail() + ":" + player.getPassword() + ":" + player.getNickName() + ":" + player.getUserName() + ":" + player.getPicture());
+                new PlayerHandler(player);
+                //serverhome.ServerHomeUtility.updateLogs("+Added Player from DB: " + player.getUserName());
+            }
+
+            Vector<GamePojo> gameVector = Dao.selectGameByPlayerID(1);
+
+            for(GamePojo game : gameVector){
+                System.out.println("Saved Game: " + game.getGameID() + ":" + game.getPlayer1Id() + ":" + game.getPlayer2Id() + ":" + game.getBoard());
+            }
+        }catch(IOException e){
+            
+        }
+        
+        logPlayers();
     }
     
     private void logPlayers(){
@@ -72,15 +96,4 @@ public class ServerHome extends Application {
             ServerHomeUtility.updateLogs("+ Added: " + player.getUserName() + ":" + player.getStatus());
         }
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    /*
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    */
-    
 }

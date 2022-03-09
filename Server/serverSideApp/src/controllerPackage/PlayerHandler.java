@@ -22,6 +22,8 @@ import ServerSideInvitations.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import playersOnServer.PlayersOnServerUtility;
 import serverdao.Dao;
 import serverdao.GamePojo;
@@ -132,7 +134,11 @@ public class PlayerHandler extends Player {
             makeAMove(move);
         }else if(commMsg.getType() == CommunicationMassegeType.GAME_STATUS){
             GameStatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), GameStatusUpdate.class);
-            handleSinglePlayerGameEnd(update);
+            if(update.getStatus() == GameStatus.Aborted){
+                handelGameStatusUpdate(update);
+            }else{
+                handleSinglePlayerGameEnd(update);
+            }
         }else if(commMsg.getType() == CommunicationMassegeType.NEW_SINGLE_PLAYER_GAME){
             changeStatus(PlayerStatus.IN_SINGLE_PLAYER_GAME);
         }else if(commMsg.getType() == CommunicationMassegeType.CHAT){
@@ -145,6 +151,20 @@ public class PlayerHandler extends Player {
             handleGameSaveResponse(response);
         }
     }
+    
+    private void handelGameStatusUpdate(GameStatusUpdate update){
+        if(update.getStatus() == GameStatus.Aborted){
+            if(currentGame != null){
+                try {
+                    System.out.println("Heeeeeeeeeeeere");
+                    currentGame.abort(this.getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
 
     private void handleGameSaveResponse(GameSaveResponse response){
         switch(response.getStatus()){
@@ -267,6 +287,21 @@ public class PlayerHandler extends Player {
         updateClientGamestatus(GameStatusUpdate.GameStatus.TIE);
         changeStatus(PlayerStatus.ONLINE);
         updateScore(GameStatus.TIE);
+    }
+    
+    public void opponentAbortedGame() throws SQLException{
+        updateClientGamestatus(GameStatusUpdate.GameStatus.Aborted);
+        changeStatus(PlayerStatus.ONLINE);
+        updateScore(GameStatus.WINNER);
+    }
+    
+    public void abortedGame(){
+        changeStatus(PlayerStatus.ONLINE);
+        try {
+            updateScore(GameStatus.LOSER);
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void updateScore(GameStatus gameStatus) throws SQLException{

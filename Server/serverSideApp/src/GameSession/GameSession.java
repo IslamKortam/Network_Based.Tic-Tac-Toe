@@ -260,4 +260,18 @@ public class GameSession {
         players[0].setCurrentGame(null);
         players[1].setCurrentGame(null);
     }
+    
+    public void abort(int aborterID) throws SQLException{
+        if(aborterID == player0.getId()){
+            //Player0 Aborted 
+            System.out.println("Player 0 aborted");
+            player1.opponentAbortedGame();
+            player0.abortedGame();
+        }else{
+            System.out.println("Player 1 aborted");
+            player0.opponentAbortedGame();
+            player1.abortedGame();
+        }
+        endGame();
+    }
 }

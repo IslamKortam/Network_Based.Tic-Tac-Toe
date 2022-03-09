@@ -11,8 +11,11 @@ import CommunicationMasseges.Invitation;
 import ParserPackage.Parser;
 import controllerPackage.Player;
 import controllerPackage.PlayerStatus;
+import gameboard.GameBoardController;
+import gameboard.GameBoardUtility;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +24,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import stagemanager.StageManager;
 
 /**
  *
@@ -207,6 +213,21 @@ public class PlayersSceneUtility {
         nodes.clear();
         playersElementsArray.clear();
         
+    }
+    
+    
+    public static void notifyNewUserSignedIn(int playerID) {
+        Player player = Player.getPlayerByID(playerID);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert a = new Alert(Alert.AlertType.NONE);
+                a.setAlertType(Alert.AlertType.INFORMATION);
+                a.setHeaderText("Notification");
+                a.setContentText("Player: " + player.getUserName() + " is online!\n");
+                a.show();
+            }
+        });
     }
 
 }

@@ -143,7 +143,7 @@ public class GameBoardController implements Initializable {
         a.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
 //                try {
-                    System.out.print("Game Closed From Player");
+                    ClientSideGameController.getRef().abortGame();
 //                    MainController.getRef().navigateToModes();
 //                } catch (IOException ex) {
 //                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);

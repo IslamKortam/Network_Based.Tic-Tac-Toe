@@ -17,7 +17,8 @@ public class GameStatusUpdate {
         LOSER,
         TIE,
         GameSaved,
-        OtherPlayerDisconnected
+        OtherPlayerDisconnected,
+        Aborted
     }
       
       

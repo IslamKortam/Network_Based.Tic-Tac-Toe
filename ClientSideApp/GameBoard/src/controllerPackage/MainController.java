@@ -37,6 +37,7 @@ import logintrial.LoginUtility;
 import modes.AlertType;
 import modes.ModesController;
 import playersListScene.PlayersSceneUtility;
+import static playersListScene.PlayersSceneUtility.notifyNewUserSignedIn;
 import stagemanager.*;
 import stagemanager.StageManager.SceneName;
 import xoSignupPkg.SignUpUtility;
@@ -110,7 +111,9 @@ public class MainController extends Application{
         }
         else if(commMsg.getType() == CommunicationMassegeType.GameMove){
             GameMove move = Parser.gson.fromJson(commMsg.getMsgBody(), GameMove.class);
-            
+            if(ClientSideGameController.getRef() == null){
+                return;
+            }
             ClientSideGameController.getRef().makeOpponentMove(move.getBoxID());
         }else if(commMsg.getType() == CommunicationMassegeType.GAME_STATUS){
             GameStatusUpdate update = Parser.gson.fromJson(commMsg.getMsgBody(), GameStatusUpdate.class);
@@ -161,16 +164,26 @@ public class MainController extends Application{
     }
     
     private void handleGameSaveRequest(){
+        if(ClientSideGameController.getRef() == null){
+            return;
+        }
         System.out.println("Recieved a game save request");
         ClientSideGameController.getRef().createAlertSaveGame();
     }
     
     
     private void handleChatUpdate(ChatMsg chatUpdate){
+        if(ClientSideGameController.getRef() == null){
+            return;
+        }
         GameBoardUtility.appendChatMsg(chatUpdate);
     }
     private void handleStatusUpdate(StatusUpdate update){
-        Player.getPlayerByID(update.getPlayerID()).setStatus(update.getNewStatus());
+        Player player = Player.getPlayerByID(update.getPlayerID());
+        if(player.getStatus() == PlayerStatus.OFFLINE && update.getNewStatus() == PlayerStatus.ONLINE && stageMagner.getCurrentSceneName() != SceneName.GAMEBOARD){
+            notifyNewUserSignedIn(update.getPlayerID());
+        }
+        player.setStatus(update.getNewStatus());
         PlayersSceneUtility.updatePlayer(update.getPlayerID());
         loadGameUtility.changePlayerStatus(update.getPlayerID(), update.getNewStatus());
         if(update.getNewStatus() == PlayerStatus.ONLINE){
@@ -206,7 +219,9 @@ public class MainController extends Application{
     }
     
     public void handleGameStatus(GameStatusUpdate update){
-        
+        if(ClientSideGameController.getRef() == null){
+            return;
+        }
         switch(update.getStatus()){
             case WINNER:
                 ClientSideGameController.getRef().declareWinner();
@@ -222,6 +237,9 @@ public class MainController extends Application{
                 break;
             case OtherPlayerDisconnected:
                 ClientSideGameController.getRef().otherUserDisconnected();
+                break;
+            case Aborted:
+                ClientSideGameController.getRef().otherUserAborted();
                 break;
         }
     }
