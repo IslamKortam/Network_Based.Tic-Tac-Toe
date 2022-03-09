@@ -154,6 +154,12 @@ public class MainController extends Application{
         }
     }
     
+    public void resetApp() throws IOException{
+        stageMagner.resetStage();
+        Player.allPlayers.clear();
+        Player.setThisPlayer(null);
+    }
+    
     private void handleGameSaveRequest(){
         System.out.println("Recieved a game save request");
         ClientSideGameController.getRef().createAlertSaveGame();

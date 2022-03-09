@@ -22,8 +22,8 @@ import controllerPackage.MainController;
 public class ClientConnectionHandler extends Thread{
     public static ClientConnectionHandler ref;
     private Socket clientSocket;
-    private String serverIP = "127.0.0.1";
-    private int serverPort = 8083;
+    private static String serverIP = "127.0.0.1";
+    private static int serverPort = 8083;
     private DataInputStream inputStream;
     private PrintStream outputStream;
     private Boolean listening;
@@ -43,27 +43,32 @@ public class ClientConnectionHandler extends Thread{
         
     }
     
+    
+    
     private void handleBeginConnectionProblem(){
         
         try {
-            stagemanager.StageManager.getStageManger().resetStage();
+            MainController.getRef().resetApp();
         } catch (IOException ex) {
             Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         String title = "Connection problem(Server not found)";
         String body = "Re-enter Server IP Address and press ok to reconnet.\nOr cancel to Exit";
         logintrial.LoginController.showConnectionProblemAlert(title, body, getServerIP());
+        stopListening();
     }
     
     private void handleConnectionBroken(){
+        
         try {
-            stagemanager.StageManager.getStageManger().resetStage();
+            MainController.getRef().resetApp();
         } catch (IOException ex) {
             Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         String title = "Connetcion to Server is Lost!";
         String body = "Re-enter Server IP Address and press ok to reconnet.\nOr cancel to Exit";
         logintrial.LoginController.showConnectionProblemAlert(title, body, getServerIP());
+        stopListening();
     }
     
     @Override
@@ -73,7 +78,7 @@ public class ClientConnectionHandler extends Thread{
                 String s = inputStream.readLine();
                 System.out.println("Recieved From Server:" + s);
                 if(s == null){
-                    System.err.println("Server disconnected!!!");
+                    handleConnectionBroken();
                     continue;
                 }
                 CommunicationMassege msg = Parser.gson.fromJson(s, CommunicationMassege.class);
@@ -118,12 +123,12 @@ public class ClientConnectionHandler extends Thread{
         }
     }
 
-    public String getServerIP() {
-        return serverIP;
+    public static String getServerIP() {
+        return ClientConnectionHandler.serverIP;
     }
 
-    public void setServerIP(String serverIP) {
-        this.serverIP = serverIP;
+    public static void setServerIP(String serverIP) {
+        ClientConnectionHandler.serverIP = serverIP;
     }
 
     
