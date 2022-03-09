@@ -122,6 +122,7 @@ public class GameBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ref=this;
         GameBoardUtility.setChatArea(ChatArea);
+        GameBoardUtility.setChatBox(ChatBox);
         buttons = new ArrayList<>(Arrays.asList(button1 , button2 , button3 , button4 , button5 , button6 , button7 , button8 , button9));
         GameBoardUtility.setButtons(buttons);
         GameBoardUtility.setNodes(player1Name,player2Name,player1Score,player2Score,player1Img,player2Img , ChatBtn);
@@ -156,7 +157,7 @@ public class GameBoardController implements Initializable {
     
     @FXML
     void viewChatBox(MouseEvent event) {
-        GameBoardUtility.changeVisibility(ChatBox);
+        GameBoardUtility.changeVisibility();
     }
     
     @FXML

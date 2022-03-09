@@ -73,22 +73,18 @@ public class ServerHomeController implements Initializable {
     }    
     
     @FXML
-    public void showAlert(String alertHeader, String Body)  {
+    public void showDB_ConnectionError_Alert()  {
+        String alertHeader = "Database connection Error!";
+        String body = "Aborting";
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Alert a = new Alert(Alert.AlertType.NONE);
                 a.setAlertType(Alert.AlertType.CONFIRMATION);
                 a.setHeaderText(alertHeader);
-                a.setContentText(Body);
-                a.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        System.out.println("Ok");
-                    }
-                    else{
-                        System.out.println("Cancel");
-                    }
-                });
+                a.setContentText(body);
+                a.showAndWait();
+                System.exit(0);
             }
         });
     }

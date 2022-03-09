@@ -60,6 +60,7 @@ public class ClientSideGameController {
         GameBoardUtility.showBtnSave(isMultiplayer);
         ref = this;
         if(isMultiplayer){
+            GameBoardUtility.setChatButtonDisable(true);
             Player player0, player1;
             if(yourTurn){
                 player0 = Player.getThisPlayer();
@@ -70,6 +71,7 @@ public class ClientSideGameController {
             }
             GameBoardUtility.setPlyer(player0.getFullName(), player0.getScore() + "", player0.getIconIndex(), player1.getFullName(), player1.getScore() + "", player1.getIconIndex());
         }else{  //Signle player
+            GameBoardUtility.setChatButtonDisable(false);
             Player player0 = Player.getThisPlayer();
             GameBoardUtility.setPlyer(player0.getFullName(), player0.getScore() + "", player0.getIconIndex(), (isHardGame? "Hard" : "Easy") + " Robot", (isHardGame? "500" : "100"), 100);
         }
