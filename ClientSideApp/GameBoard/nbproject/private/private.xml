@@ -9,17 +9,20 @@
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/stagemanager/StageManager.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/modes/ModesUtility.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersSceneUtility.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginUtility.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/controllerPackage/ClientSideGameController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/loadGame/loadGameUtility.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/loadGame/LoadGameController.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/AcceptedDinedStatus.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/gameboard/GameBoardUtility.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/GameStatusUpdate.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/logintrial/LoginTrial.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/nbproject/build-impl.xml</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/loadGame/Game.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommunicationMasseges/StartMultiPlayerGame.java</file>
             <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/CommHandlerPK/ClientConnectionHandler.java</file>
+            <file>file:/D:/Projects/Java/Final%20Project/Tic%20Tac%20Toe/Network_Based.Tic-Tac-Toe/ClientSideApp/GameBoard/src/playersListScene/PlayersSceneFXML.fxml</file>
         </group>
     </open-files>
 </project-private>

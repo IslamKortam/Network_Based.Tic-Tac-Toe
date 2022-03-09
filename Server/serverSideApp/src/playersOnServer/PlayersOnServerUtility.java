@@ -55,7 +55,6 @@ public class PlayersOnServerUtility {
     */
     static void goSceneBack(){
         getMainStage().setScene(serverhome.ServerHomeUtility.getScene());
-        System.out.println("Back Button Pressed.....");
     }
 
     static void createNodes(Player p) throws IOException{

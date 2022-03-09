@@ -100,6 +100,7 @@ public class ServerHomeController implements Initializable {
                 a.setHeaderText(alertHeader);
                 a.setContentText(body);
                 a.showAndWait();
+                Platform.exit();
                 System.exit(0);
             }
         });

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 
 public class LoginController implements Initializable {
+    private static LoginController ref;
 
     @FXML
     private Label errorMsg;
@@ -48,7 +49,6 @@ public class LoginController implements Initializable {
         } else {
             errorMsg.setText("");
             MainController.getRef().sendSignInRequest(UserNameTextField.getText().toLowerCase(), passwordTextField.getText());
-            System.out.println(UserNameTextField.getText().toLowerCase() + "\n" + passwordTextField.getText());
 
         }
     }
@@ -74,8 +74,36 @@ public class LoginController implements Initializable {
                 });
                 
                 if(!result.isPresent())
+                {
+                    Platform.exit();
                     System.exit(0);
+                }
             }
         });
+    }
+    
+    private void setEmailField(String s){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                UserNameTextField.setText(s);
+            }
+        });
+    }
+    
+    private void setPasswordField(String s){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                passwordTextField.setText(s);
+            }
+        });
+    }
+    
+    public static void resetScene(){
+        ref.UserNameTextField.setText("");
+        ref.passwordTextField.setText("");
+        //ref.setEmailField("");
+        //ref.setPasswordField("");
     }
 }

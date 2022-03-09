@@ -47,7 +47,6 @@ public class UserHandler extends Thread{
         while(true){
             try {
                 String s = inputStream.readLine();
-                System.out.println("Recieved from client:" + s);
                 if(authrized){
                     CommunicationMassege commMsg = Parser.gson.fromJson(s, CommunicationMassege.class);
                     if(commMsg.getType() == CommunicationMassegeType.SIGN_OUT_REQUEST){
@@ -55,7 +54,6 @@ public class UserHandler extends Thread{
                         connectedPlayer.changeStatus(PlayerStatus.OFFLINE);
                         connectedPlayer.setUserHandler(null);
                         connectedPlayer = null;
-                        System.out.println("User Signed Out");
                     }else{
                         connectedPlayer.handle(commMsg);
                     }
@@ -67,7 +65,6 @@ public class UserHandler extends Thread{
                         SignInStatus status = NotAuthrizedUsersHandler.ref.handleSignInAttempt(req);
                         comm = new CommunicationMassege(CommunicationMassegeType.SIGN_IN_REQUEST_STATUS, Parser.gson.toJson(status));
                         if(status.getStatus() == AcceptedDinedStatus.ACCEPTED){
-                            System.out.println("Accepted Client");
                             connectedPlayer = getPlayerHandlerByID(status.getPlayerData().getId());
                             connectedPlayer.setUserHandler(this);
                             connectedPlayer.changeStatus(PlayerStatus.ONLINE);
@@ -76,7 +73,6 @@ public class UserHandler extends Thread{
                             connectedPlayer.sendMeAllPlayers();
                             connectedPlayer.sendMeMySavedGames();
                         }else{
-                            System.out.println("Denied Client");
                             sendCommMsgToClient(comm);
                         }
                         
@@ -84,7 +80,6 @@ public class UserHandler extends Thread{
                     else if(comm.getType() == CommunicationMassegeType.SIGN_UP_REQUEST){
                         SignUpRequest req = Parser.gson.fromJson(comm.getMsgBody(), SignUpRequest.class);
                         SignUpResponse status = NotAuthrizedUsersHandler.ref.handleSignUpAttempt(req);
-                        System.out.println("SignUpResponse: " + status.getSignup());
                         String res = Parser.gson.toJson(status);
                         CommunicationMassege replyComm = new CommunicationMassege(CommunicationMassegeType.SIGN_UP_REQUEST_STATUS, res);
                         sendCommMsgToClient(replyComm);
@@ -96,7 +91,6 @@ public class UserHandler extends Thread{
                 
             } catch (IOException ex) {
                 //Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
-                System.err.println("Player Disconnected");
                 UserHandler.connectedUsersHandelers.remove(this);
                 stopThisUser();
             } catch (SQLException ex) {
@@ -137,7 +131,6 @@ public class UserHandler extends Thread{
                         
                     } catch (IOException ex1) {
                         Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex1);
-                        System.out.println("iN Catch");
                     }
                     this.stop();
                 }
@@ -150,7 +143,6 @@ public class UserHandler extends Thread{
                         socket.shutdownOutput();
                         socket.shutdownInput();
                         
-                        System.out.println("Socket Closed");
                     } catch (IOException ex) {
                         Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -169,9 +161,7 @@ public class UserHandler extends Thread{
     
     public static void stopAllUsers(){
         for(UserHandler userHandler : connectedUsersHandelers){
-            System.out.println("size Before: " + connectedUsersHandelers.size());
             userHandler.stopThisUser();
-            System.out.println("size Before: " + connectedUsersHandelers.size());
         }
         connectedUsersHandelers.removeAllElements();
     }

@@ -84,18 +84,14 @@ public class ClientSideGameController {
                 loadedGame.admitMove(move, loadedGame.playerNumber);
                 loadedGame.yourTurn = false; //disableAllButtons
                 loadedGame.updateGameMovesArray(move);
-                System.out.println("My turn");
 
             } else {
                 loadedGame.admitMove(move, 1 - loadedGame.playerNumber);
                 loadedGame.updateGameMovesArray(move);
                 loadedGame.yourTurn = true; //EnableFreeButtons
-                System.out.println("His turn");
             }
-            System.out.println("Admiited move to: " + move + " your turn: " + loadedGame.yourTurn + " Player Number: " + loadedGame.playerNumber);
             GameBoardUtility.changeImgPlayerTurn(loadedGame.yourTurn);
         }
-        System.out.println("Game Loaded");
     }
 
     public static ClientSideGameController getRef() {
@@ -140,7 +136,6 @@ public class ClientSideGameController {
             if (isMultiplayer) {
                 //sendToServer(boxID);
                 MainController.getRef().sendMoveToServer(boxID);
-                System.out.println("Multi player game move need to be send" + boxID);
             } else {
                 if (!gameEnded) {
                     if (isHardGame) {
@@ -151,16 +146,13 @@ public class ClientSideGameController {
                 } else {
 
                     if (winnerNumber == 0) {
-                        System.out.println("Winner");
 
                         declareWinner();
 
                     } else if (winnerNumber == 1) {
-                        System.out.println("Looser");
 
                         declareLooser();
                     } else {
-                        System.out.println("Tie");
 
                         //Tie
                         declareTie();
@@ -253,7 +245,6 @@ public class ClientSideGameController {
 
         if (checkEndOfGame() && !isIsMultiplayer()) {
             if (winnerNumber == 1) {
-                System.out.println("Looser");
                 declareLooser();
             } else {  //Tie
                 declareTie();

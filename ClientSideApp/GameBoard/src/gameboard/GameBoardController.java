@@ -131,7 +131,6 @@ public class GameBoardController implements Initializable {
         for(int i=0; i < buttons.size(); i++)
         {
             GameBoardUtility.setBoxHandler(i);
-            System.out.println(i);
         }        
     }
     @FXML
@@ -149,7 +148,7 @@ public class GameBoardController implements Initializable {
 //                    Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
 //                }
             }else{
-                System.out.print("Cancel");
+                
             }
         });
     }
@@ -171,7 +170,6 @@ public class GameBoardController implements Initializable {
     }
     
     void sendChatMsg(){
-        System.out.println("Send Chat Msg");
         String chatMsgBody = ChatField.getText();
         if(chatMsgBody.equals("")){
             return;

@@ -76,7 +76,6 @@ public class ClientConnectionHandler extends Thread{
         while(true){
             try {
                 String s = inputStream.readLine();
-                System.out.println("Recieved From Server:" + s);
                 if(s == null){
                     handleConnectionBroken();
                     continue;
@@ -92,7 +91,6 @@ public class ClientConnectionHandler extends Thread{
                 if(msg.getType() != CommunicationMassegeType.SIGN_IN_REQUEST_STATUS){
                     MainController.getRef().handle(msg);
                 }
-                System.out.println("CommHandler:"+s);
             } catch (IOException ex) {
                 handleConnectionBroken();
                 //Logger.getLogger(ClientConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +104,6 @@ public class ClientConnectionHandler extends Thread{
     }
     
     private void sendToServer(String s){
-        System.out.println("Sending To Server:" + s);
         outputStream.println(s);
     }
     

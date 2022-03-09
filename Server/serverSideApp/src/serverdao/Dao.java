@@ -32,10 +32,8 @@ public class Dao {
     public static void startConnection() {
 
         try {
-            System.out.println("Connection Started");
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             Dao.connection = DriverManager.getConnection(Dao.dataBaseUrl, Dao.dataBaseName, Dao.dataBasePassword);
-            System.out.println("successfully connected");
         } catch (SQLException ex) {
             ServerHomeController.toOffline();
             ServerLogicClasses.ServerMulti.stopServer();
@@ -47,7 +45,6 @@ public class Dao {
     public static void closeConnection() throws SQLException {
         Dao.connection.close();
         Dao.connection = null;
-        System.out.println("Connection Stopped");
     }
 
     public static void insertIntoPlayerTable(PlayerPojo p) throws SQLException {
@@ -232,7 +229,7 @@ public class Dao {
             selectStatement.close();
 
         } catch (SQLException ex) {
-            System.err.println("Error in SelectAllPlayers");
+            
         }
         Dao.closeConnection();
         return players;

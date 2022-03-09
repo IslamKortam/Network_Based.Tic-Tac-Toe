@@ -100,7 +100,6 @@ public class SignupController implements Initializable {
             a.getDialogPane().setContent(alertContentMsg);
             a.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    System.out.println("Data submited successfully");
                    /* DataFromDB.addNewUser(txtFullName.getText(), txtUsername.getText(), txtEmail.getText(),
                             txtPassword.getText(), Integer.valueOf(AvatarID.getText()));*/
                    PlayerPojo plr = new PlayerPojo(txtUsername.getText().toLowerCase(),txtFullName.getText(), txtEmail.getText().toLowerCase(),
@@ -195,7 +194,6 @@ public class SignupController implements Initializable {
                                     AvatarID.setText(imview.getId());
                                     userAvatar.setImage(imview.getImage());
                                     flwAvatars.setVisible(false);
-                                    System.out.println(imview.getId());
                                 }
                             });
                             flwAvatars.getChildren().add(imgView);

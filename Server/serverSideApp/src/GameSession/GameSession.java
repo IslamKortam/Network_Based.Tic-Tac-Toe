@@ -137,7 +137,6 @@ public class GameSession {
         player1.startLoadedMultiplayerGame(1, player_0.getId(), gameID, arrayOfmoves);
         
         
-        System.err.println("Not removed from the memory yet");
     }
 
     public static GameSession loadGame(ServerSideInvitation invitation) throws SQLException{
@@ -151,7 +150,6 @@ public class GameSession {
         PlayerHandler player1 = PlayerHandler.getPlayerHandlerByID(game.getPlayer2Id());
 
         String gameMovesStringized = game.getBoard();
-        System.out.println(gameMovesStringized);
         ArrayList<Integer> arrayOfMoves = null;
         //arrayOfMoves = Parser.gson.fromJson(gameMovesStringized, arrayOfMoves.getClass());
         Dao.updateGameVisibility(false, game.getGameID());
@@ -181,7 +179,7 @@ public class GameSession {
 //            System.out.println(XOBoard);
         }
         else{
-        System.out.println("Not your turn");
+            
         }
 
     }
@@ -231,7 +229,6 @@ public class GameSession {
         {
         result = GameResult.TIE;
         }
-        System.out.println(line);
             return result;
     }
 
@@ -243,7 +240,6 @@ public class GameSession {
     }
 
     public void declareWinner(int turn) throws SQLException{
-        System.out.println("Player "+turn+" Won ^__^");
         players[turn].win();
         players[1 - turn].lose();
         endGame();
@@ -251,7 +247,6 @@ public class GameSession {
     }
 
     public void declareTie() throws SQLException{
-        System.out.println("Tie ....");
         players[0].tie();
         players[1].tie();
         endGame();
@@ -264,11 +259,9 @@ public class GameSession {
     public void abort(int aborterID) throws SQLException{
         if(aborterID == player0.getId()){
             //Player0 Aborted 
-            System.out.println("Player 0 aborted");
             player1.opponentAbortedGame();
             player0.abortedGame();
         }else{
-            System.out.println("Player 1 aborted");
             player0.opponentAbortedGame();
             player1.abortedGame();
         }

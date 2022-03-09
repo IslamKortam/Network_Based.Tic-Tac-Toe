@@ -53,12 +53,12 @@ public class PlayersSceneUtility {
     //private static ClientConnectionHandler handler;
 
     static void goSceneBack() {
-        System.out.println("Back Button Pressed.....");
+        
     }
 
     static void appendNewPlayer() throws IOException {
         Vector<Player> Players = Player.allPlayers;
-        System.out.println(Players.size());
+        
         for (Player p : Players) {
             createNodes(p);
         }
@@ -163,7 +163,6 @@ public class PlayersSceneUtility {
                         playerElement = element;
                         Player player = Player.getPlayerByID(userID);
                         playerElement.getScore().setText(Integer.toString(player.getScore()));
-                        System.out.println(playerElement.getScore().getText());
 
                         playerElement.getStatus().setText(player.getStatus().toString());
                         if (player.getStatus() == PlayerStatus.ONLINE) {
@@ -194,7 +193,6 @@ public class PlayersSceneUtility {
         for (Player p : Players) {
             if (p.getId() == userID) {
                 createNodes(p);
-                System.out.println(userID);
             }
         }
     }

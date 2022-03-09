@@ -73,6 +73,7 @@ public class StageManager {
         PlayersSceneUtility.resetScene();
         loadGameUtility.reset();
         GameBoardUtility.resetScene();
+        //logintrial.LoginController.resetScene();
         displayScene(SceneName.SIGNIN);
     }
 

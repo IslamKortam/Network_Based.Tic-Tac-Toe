@@ -57,23 +57,18 @@ public class MainController extends Application{
     }
 
     private MainController() {
-        System.out.println("Main Controller Created");
         //connectionHandler = new ClientConnectionHandler();
     }
 
     public void handleIncomingSignInRequsetStatus(SignInStatus status) throws IOException {
         if (status.getStatus() == AcceptedDinedStatus.ACCEPTED) {
-            System.out.println("Accepted");
-            System.out.println(status.getPlayerData().getFullName());
             stageMagner.displayScene(SceneName.GAMEMODE);
             Player.setThisPlayer(status.getPlayerData());
         }else if(status.getStatus() == AcceptedDinedStatus.DUPLICATED){
-            System.out.println("Duplicated");
             LoginUtility.displayLoginError(2);
         }
         else {
             //Wrong email or pass
-            System.out.println("Denied");
             LoginUtility.displayLoginError(0);
         }
     }
@@ -99,13 +94,10 @@ public class MainController extends Application{
             handleRecievingNewPlayer(p);
 
         } else if (commMsg.getType() == CommunicationMassegeType.INVITATION) {
-            System.out.println("Invitation:");
-            System.out.println(commMsg.getMsgBody());
             Invitation inv = Parser.gson.fromJson(commMsg.getMsgBody(), Invitation.class);
             handleRecievedInvitation(inv);
         }
         else if(commMsg.getType() == CommunicationMassegeType.START_NEW_MULTIPLAYER_GAME){
-            System.out.println("Starting Multiplayer Game");
             StartMultiPlayerGame order = Parser.gson.fromJson(commMsg.getMsgBody(), StartMultiPlayerGame.class);
             startNewMultiPlayerGame(order);
         }
@@ -167,7 +159,6 @@ public class MainController extends Application{
         if(ClientSideGameController.getRef() == null){
             return;
         }
-        System.out.println("Recieved a game save request");
         ClientSideGameController.getRef().createAlertSaveGame();
     }
     
@@ -262,7 +253,6 @@ public class MainController extends Application{
     }
 
     private void handleRecievingNewPlayer(Player p) throws IOException {
-        System.out.println(p.getEmail() + ":" + p.getFullName() + ":" + p.getUserName() + ":" + p.getStatus());
         Player.allPlayers.add(p);
         PlayersSceneUtility.addNewPlayer(p.getId());
     }
@@ -270,8 +260,6 @@ public class MainController extends Application{
     private void handleRecievedInvitation(Invitation inv) {
         if (stageMagner.getCurrentSceneName() != SceneName.GAMEBOARD) {
             //int invitID,senderID;
-            System.out.println(inv.getInvitID());
-            System.out.println(Player.allPlayers.size());
             String playerName = Player.getPlayerByID(inv.getSenderID()).getUserName();
             String alertBody = "";
             if(inv.getType() == Invitation.InvitationType.NEW_GAME){
@@ -296,7 +284,7 @@ public class MainController extends Application{
                 }
             });
         } else {
-            System.out.println("Player in another game");
+            
         }
     }
 
@@ -329,7 +317,6 @@ public class MainController extends Application{
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("................................");
 
 
         Player.allPlayers = new Vector<Player>();

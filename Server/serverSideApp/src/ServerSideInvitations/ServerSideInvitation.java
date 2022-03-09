@@ -26,13 +26,9 @@ public class ServerSideInvitation extends Invitation{
     
     public ServerSideInvitation(Invitation inv){
         super(inv);
-        System.out.println("SenderID: " + this.getSenderID());
         sender = PlayerHandler.getPlayerHandlerByID(this.getSenderID());
-        System.out.println(PlayerHandler.getPlayers().size());
         reciever = PlayerHandler.getPlayerHandlerByID(this.getReceiverID());
         setInvitID(count++);
-        System.out.println("Sender full name: " + sender.getFullName());
-        System.out.println("Reciever full name: " + reciever.getFullName());
         sender.addASentInvitation(this);
         reciever.addARecievedInvitation(this);
     }

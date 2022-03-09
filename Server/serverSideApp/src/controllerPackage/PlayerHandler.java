@@ -156,7 +156,6 @@ public class PlayerHandler extends Player {
         if(update.getStatus() == GameStatus.Aborted){
             if(currentGame != null){
                 try {
-                    System.out.println("Heeeeeeeeeeeere");
                     currentGame.abort(this.getId());
                 } catch (SQLException ex) {
                     Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,7 +212,7 @@ public class PlayerHandler extends Player {
             PlayersOnServerUtility.addNewPlayer(getId());
         }
         catch(IOException ex){
-            System.out.println("Error on Application GUI");
+            
         }
     }
 

@@ -68,7 +68,6 @@ public class loadGameUtility {
         for (Game g : table.getItems()) {
             Button load = g.getLoad();
             load.setOnAction((event) -> {
-                System.out.println(g.getPlayer2Name());
                 Invitation inv = new Invitation(Player.getThisPlayer().getId(), g.player2Id, Invitation.InvitationType.LOAD_GAME, g.getGameId());
                 String s = Parser.gson.toJson(inv);
                 CommunicationMassege commMsg = new CommunicationMassege(CommunicationMassegeType.INVITATION, s);

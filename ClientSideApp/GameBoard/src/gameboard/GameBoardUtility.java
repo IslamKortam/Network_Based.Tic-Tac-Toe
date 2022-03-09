@@ -129,7 +129,6 @@ GameBoardUtility.ChatBtn = chatBtn;
 
     public static void setBox(int boxNumber, String text) {
         // set the text on the buitton by String symbol and set "disable" feature of the buttons 
-        System.out.println("Setting box " + boxNumber + " with " + text);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -140,7 +139,6 @@ GameBoardUtility.ChatBtn = chatBtn;
                 }
                 buttons.get(boxNumber).setText(text);
                 buttons.get(boxNumber).setDisable(true);
-                System.out.println("Done Here");
             }
         });
     }
@@ -346,7 +344,6 @@ GameBoardUtility.ChatBtn = chatBtn;
     }
     
     public static void resetScene(){
-        System.out.println("Reseting Scene");
         resetChatArea();
         resetAllBoxes();
         setChatButtonDisable(false);
