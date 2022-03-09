@@ -1,5 +1,6 @@
 package logintrial;
 
+import CommHandlerPK.ClientConnectionHandler;
 import controllerPackage.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 
 import java.net.URL;
 import java.util.Optional;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -49,8 +51,6 @@ public class LoginController implements Initializable {
             System.out.println(UserNameTextField.getText().toLowerCase() + "\n" + passwordTextField.getText());
 
         }
-            //MainController ref= MainController.getRef();
-            //ref.navigateToModes();
     }
 
     @FXML
@@ -67,16 +67,14 @@ public class LoginController implements Initializable {
                 td.setTitle(alertTitle);
                 td.setHeaderText(Body);
                 Optional<String> result = td.showAndWait();
+                
                 result.ifPresent(name -> {
-                    if(!"".equals(name)){
-                        System.out.print(name);
-                    }
-                    else{
-                        System.out.print("Exit");
-                    }
+                    ClientConnectionHandler.setServerIP(name);
+                    new ClientConnectionHandler();
                 });
-//                td.showAndWait().ifPresent(response -> {
-//                });
+                
+                if(!result.isPresent())
+                    System.exit(0);
             }
         });
     }

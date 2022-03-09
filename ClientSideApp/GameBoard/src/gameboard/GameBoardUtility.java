@@ -42,6 +42,11 @@ public class GameBoardUtility {
     static JFXButton btnSave;
     static ImageView imgPlayerTurn;
     private static TextArea ChatArea;
+    private static BorderPane ChatBox;
+
+    public static void setChatBox(BorderPane ChatBox) {
+        GameBoardUtility.ChatBox = ChatBox;
+    }
 
     public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2 , ImageView chatBtn) {
         GameBoardUtility.player1Name = player1;
@@ -163,7 +168,7 @@ GameBoardUtility.ChatBtn = chatBtn;
         });
     }
 
-    static void changeVisibility(BorderPane ChatBox) {
+    static void changeVisibility() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -175,8 +180,25 @@ GameBoardUtility.ChatBtn = chatBtn;
             }
         });
     }
-    static void changeChatStatus(Boolean status){
-        ChatBtn.setDisable(status);
+    static void disableChatArea(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (ChatBox.isVisible()) {
+                    ChatBox.setVisible(false);
+                }
+            }
+        });
+    }
+    public static void setChatButtonDisable(Boolean status){
+        final Boolean disabled = !status;
+        
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ChatBtn.setDisable(disabled);
+            }
+        });
     }
 
     public static void initScene() throws IOException {
@@ -327,6 +349,8 @@ GameBoardUtility.ChatBtn = chatBtn;
         System.out.println("Reseting Scene");
         resetChatArea();
         resetAllBoxes();
+        setChatButtonDisable(false);
+        disableChatArea();
     }
     
 }
