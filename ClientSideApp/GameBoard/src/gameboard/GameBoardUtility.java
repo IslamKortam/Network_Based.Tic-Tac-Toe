@@ -37,18 +37,20 @@ public class GameBoardUtility {
     static Label player2Score;
     static ImageView img1;
     static ImageView img2;
+    static ImageView ChatBtn;
     public static Parent ref;
     static JFXButton btnSave;
     static ImageView imgPlayerTurn;
     private static TextArea ChatArea;
 
-    public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2) {
+    public static void setNodes(Label player1, Label player2, Label score1, Label score2, ImageView im1, ImageView im2 , ImageView chatBtn) {
         GameBoardUtility.player1Name = player1;
         GameBoardUtility.player2Name = player2;
         GameBoardUtility.player1Score = score1;
         GameBoardUtility.player2Score = score2;
         GameBoardUtility.img1 = im1;
         GameBoardUtility.img2 = im2;
+GameBoardUtility.ChatBtn = chatBtn;
     }
 
     public static void setPlyer(String player1, String score1, int png1, String player2, String score2, int i) {
@@ -172,6 +174,9 @@ public class GameBoardUtility {
                 }
             }
         });
+    }
+    static void changeChatStatus(Boolean status){
+        ChatBtn.setDisable(status);
     }
 
     public static void initScene() throws IOException {
